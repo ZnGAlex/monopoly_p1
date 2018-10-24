@@ -46,16 +46,16 @@ public class Avatar {
         Character n = (char) Math.ceil(Math.random() * 255);
         this.id = n.toString();
         this.jugador = jugador;
-        if (ficha.equals("Esfinge") || ficha.equals("Coche") || ficha.equals("Sombrero") || ficha.equals("Pelota")) {
-            this.ficha = ficha;
-        } else {
-            throw new IllegalArgumentException("Ficha debe ser: Esfinge, Coche, Sombrero o Pelota");
-        }
+        this.ficha = ficha;
     }
 
     @Override
     public String toString() {
-        String cadena= "{\n \t id: " + this.id + "\n\t tipo: " + this.ficha + "\n\t casilla: placeholder" + "\n\t jugador: " + this.jugador.getNombre() ;
+        String cadena= "{\n " +
+                            "\t id: " + this.id +
+                            ",\n\t tipo: " + this.ficha +
+                            ",\n\t casilla: placeholder" +
+                            ",\n\t jugador: " + this.jugador.getNombre() + "\n}" ;
         return cadena;
     }
 }

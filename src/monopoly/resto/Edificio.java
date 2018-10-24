@@ -4,11 +4,10 @@ import monopoly.persona.Jugador;
 
 public class Edificio {
     private String tipo;
-    private Jugador propietario;
     private Casilla casilla;
     private int valor;
     private int alquiler;
-    private Grupo grupo;
+
 
     public String getTipo() {
         return tipo;
@@ -16,14 +15,6 @@ public class Edificio {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
-    }
-
-    public Jugador getPropietario() {
-        return propietario;
-    }
-
-    public void setPropietario(Jugador propietario) {
-        this.propietario = propietario;
     }
 
     public Casilla getCasilla() {
@@ -50,11 +41,13 @@ public class Edificio {
         this.alquiler = alquiler;
     }
 
-    public Grupo getGrupo() {
-        return grupo;
-    }
-
-    public void setGrupo(Grupo grupo) {
-        this.grupo = grupo;
+    @Override
+    public String toString() {
+        String cadena = "{\n " +
+                            "\n\t tipo: " + this.tipo +
+                            ",\n\t precio: " + this.valor +
+                            ",\n\t alquiler: " + this.alquiler +
+                            "\n}";
+        return cadena;
     }
 }

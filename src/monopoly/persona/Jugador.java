@@ -2,7 +2,10 @@ package monopoly.persona;
 
 import monopoly.resto.*;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class Jugador {
     private String nombre;
@@ -65,19 +68,86 @@ public class Jugador {
     // constructores
     public Jugador(String nombre, String ficha) {
         if (nombre == null) {
-            System.out.println((char)27 + "[31m" + "Nombre nulo.");
-            System.exit(-1);
+            System.out.println(Valor.ANSI_ROJO + "Nombre nulo.");
+            System.exit(1);
         }
         if (ficha == null) {
-            System.out.println((char)27 + "[31m" + "Ficha nula.");
-            System.exit(-1);
+            System.out.println(Valor.ANSI_ROJO + "Ficha nula.");
+            System.exit(1);
         }
         if (ficha.equals("Esfinge") || ficha.equals("Coche") || ficha.equals("Sombrero") || ficha.equals("Pelota"))
             this.avatar = new Avatar(this, ficha);
-        else
-            throw new IllegalArgumentException("Ficha debe ser: Esfinge, Coche, Sombrero o Pelota");
+        else {
+            System.out.println(Valor.ANSI_ROJO + "Ficha debe ser: Esfinge, Coche, Sombrero o Pelota");
+            System.exit(1);
+        }
         this.nombre = nombre;
-        System.out.println(this.avatar);
+        this.fortuna = Valor.FORTUNA_INICIAL;
+        this.propiedades = new HashMap<>();
+        this.hipotecas = new HashMap<>();
+        this.edificios = new HashMap<>();
+    }
+
+
+    // Metodos
+
+    public String obtenerPropiedades() {
+        String cadena = "";
+
+        if (this.propiedades.size() == 0)
+            cadena = "no tiene propiedades";
+        else {
+            Iterator propiedades_i = this.propiedades.entrySet().iterator();
+            while (propiedades_i.hasNext()) {
+                Casilla propiedad = (Casilla) propiedades_i.next();
+                cadena = cadena.concat(", " + propiedad.getNombre());
+            }
+        }
+
+        return cadena;
+    }
+
+    public String obtenerHipotecas() {
+        String cadena = "";
+
+        if (this.hipotecas.size() == 0)
+            cadena = "no tiene hipotecas";
+        else {
+            Iterator hipotecas_i = this.hipotecas.entrySet().iterator();
+            while (hipotecas_i.hasNext()) {
+                Casilla hipoteca = (Casilla) hipotecas_i.next();
+                cadena = cadena.concat(", " + hipoteca.getNombre());
+            }
+        }
+
+        return cadena;
+    }
+
+    public String obtenerEdificios() {
+        String cadena = "";
+
+        if (this.edificios.size() == 0)
+            cadena = "no tiene edificios";
+        else {
+            Iterator edificios_i = this.edificios.entrySet().iterator();
+            while (edificios_i.hasNext()) {
+                Casilla edificio = (Casilla) edificios_i.next();
+                cadena = cadena.concat(", " + edificio.getNombre());
+            }
+        }
+        return cadena;
+    }
+
+    @Override
+    public String toString() {
+        String cadena = "{\n" +
+                            "\t nombre: " + this.nombre +
+                            ",\n\t avatar: " + this.avatar.getId() +
+                            ",\n\t fortuna: " + this.fortuna +
+                            ",\n\t propiedades: [" + this.obtenerPropiedades() +
+                            "]\n\t hipotecas: [" + this.obtenerHipotecas() +
+                            "]\n\t edificios: [" + this.obtenerEdificios() + "]\n}";
+        return cadena;
     }
 
 }
