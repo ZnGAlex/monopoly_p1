@@ -85,38 +85,38 @@ public class Casilla {
         this.tipo = tipo;
         this.grupo = grupo;
         this.propietario = null;
-        switch (grupo.getColor()) { // posible temporal. solo para instanciar objeto rapidamente
+        switch (grupo.getColor()) {
             case "MARRON":
-                this.valor = Valor.COSTE_INICIAL;
-                this.alquiler = Valor.COSTE_INICIAL;
+                this.valor = Valor.COSTE_GRUPO1;
+                this.alquiler = Valor.ALQUILER_GRUPO1;
                 break;
             case "CYAN":
-                this.valor = (int) (Valor.COSTE_INICIAL * 1.3);
-                this.alquiler = (int) (Valor.COSTE_INICIAL * 1.3);
+                this.valor = Valor.COSTE_GRUPO2;
+                this.alquiler = Valor.ALQUILER_GRUPO2;
                 break;
             case "ROSA":
-                this.valor = (int) (Valor.COSTE_INICIAL * 1.3 * 1.3);
-                this.alquiler = (int) (Valor.COSTE_INICIAL * 1.3 * 1.3);
+                this.valor = Valor.COSTE_GRUPO3;
+                this.alquiler = Valor.ALQUILER_GRUPO3;
                 break;
             case "NARANJA":
-                this.valor = (int) (Valor.COSTE_INICIAL * 1.3 * 1.3 * 1.3);
-                this.alquiler = (int) (Valor.COSTE_INICIAL * 1.3 * 1.3 * 1.3);
+                this.valor = Valor.COSTE_GRUPO4;
+                this.alquiler = Valor.ALQUILER_GRUPO4;
                 break;
             case "ROJO":
-                this.valor = (int) (Valor.COSTE_INICIAL * 1.3 * 1.3 * 1.3 * 1.3);
-                this.alquiler = (int) (Valor.COSTE_INICIAL * 1.3 * 1.3 * 1.3 * 1.3);
+                this.valor = Valor.COSTE_GRUPO5;
+                this.alquiler = Valor.ALQUILER_GRUPO5;
                 break;
             case "AMARILLO":
-                this.valor = (int) (Valor.COSTE_INICIAL * 1.3 * 1.3 * 1.3 * 1.3 * 1.3);
-                this.alquiler = (int) (Valor.COSTE_INICIAL * 1.3 * 1.3 * 1.3 * 1.3 * 1.3);
+                this.valor = Valor.COSTE_GRUPO6;
+                this.alquiler = Valor.ALQUILER_GRUPO6;
                 break;
             case "VERDE":
-                this.valor = (int) (Valor.COSTE_INICIAL * 1.3 * 1.3 * 1.3 * 1.3 * 1.3 * 1.3);
-                this.alquiler = (int) (Valor.COSTE_INICIAL * 1.3 * 1.3 * 1.3 * 1.3 * 1.3 * 1.3);
+                this.valor = Valor.COSTE_GRUPO7;
+                this.alquiler = Valor.ALQUILER_GRUPO7;
                 break;
             case "AZUL":
-                this.valor = (int) (Valor.COSTE_INICIAL * 1.3 * 1.3 * 1.3 * 1.3 * 1.3 * 1.3 * 1.3);
-                this.alquiler = (int) (Valor.COSTE_INICIAL * 1.3 * 1.3 * 1.3 * 1.3 * 1.3 * 1.3 * 1.3);
+                this.valor = Valor.COSTE_GRUPO8;
+                this.alquiler =Valor.ALQUILER_GRUPO8;
                 break;
         }
     }

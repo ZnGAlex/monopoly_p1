@@ -2,6 +2,22 @@ package monopoly.resto;
 
 public class Valor {
     public static final int COSTE_INICIAL = 100000;
+    public static final int COSTE_GRUPO1 = COSTE_INICIAL;
+    public static final int ALQUILER_GRUPO1 = COSTE_INICIAL / 2;
+    public static final int COSTE_GRUPO2 = (int) (COSTE_GRUPO1 * 1.3);
+    public static final int ALQUILER_GRUPO2 = COSTE_GRUPO2 / 2;
+    public static final int COSTE_GRUPO3 = (int) (COSTE_GRUPO2 * 1.3);
+    public static final int ALQUILER_GRUPO3 = COSTE_GRUPO3 / 2;
+    public static final int COSTE_GRUPO4 = (int) (COSTE_GRUPO3 * 1.3);
+    public static final int ALQUILER_GRUPO4 = COSTE_GRUPO4 / 2;
+    public static final int COSTE_GRUPO5 = (int) (COSTE_GRUPO4 * 1.3);
+    public static final int ALQUILER_GRUPO5 = COSTE_GRUPO5 / 2;
+    public static final int COSTE_GRUPO6 = (int) (COSTE_GRUPO5 * 1.3);
+    public static final int ALQUILER_GRUPO6 = COSTE_GRUPO6 / 2;
+    public static final int COSTE_GRUPO7 = (int) (COSTE_GRUPO6 * 1.3);
+    public static final int ALQUILER_GRUPO7 = COSTE_GRUPO7 / 2;
+    public static final int COSTE_GRUPO8 = (int) (COSTE_GRUPO7 * 1.3);
+    public static final int ALQUILER_GRUPO8 = COSTE_GRUPO8 / 2;
     public static final int FORTUNA_INICIAL = 500000;
     public static final String MARRON = "MARRON";
     public static final String CYAN = "CYAN";
