@@ -87,38 +87,40 @@ public class Casilla {
         this.propietario = null;
         switch (grupo.getColor()) {
             case "MARRON":
-                this.valor = Valor.COSTE_GRUPO1;
-                this.alquiler = Valor.ALQUILER_GRUPO1;
+                this.valor = Valor.COSTE_GRUPO_MARRON;
+                this.alquiler = Valor.ALQUILER_GRUPO_MARRON;
                 break;
             case "CYAN":
-                this.valor = Valor.COSTE_GRUPO2;
-                this.alquiler = Valor.ALQUILER_GRUPO2;
+                this.valor = Valor.COSTE_GRUPO_CYAN;
+                this.alquiler = Valor.ALQUILER_GRUPO_CYAN;
                 break;
             case "ROSA":
-                this.valor = Valor.COSTE_GRUPO3;
-                this.alquiler = Valor.ALQUILER_GRUPO3;
+                this.valor = Valor.COSTE_GRUPO_ROSA;
+                this.alquiler = Valor.ALQUILER_GRUPO_ROSA;
                 break;
             case "NARANJA":
-                this.valor = Valor.COSTE_GRUPO4;
-                this.alquiler = Valor.ALQUILER_GRUPO4;
+                this.valor = Valor.COSTE_GRUPO_NARANJA;
+                this.alquiler = Valor.ALQUILER_GRUPO_NARANJA;
                 break;
             case "ROJO":
-                this.valor = Valor.COSTE_GRUPO5;
-                this.alquiler = Valor.ALQUILER_GRUPO5;
+                this.valor = Valor.COSTE_GRUPO_ROJO;
+                this.alquiler = Valor.ALQUILER_GRUPO_ROJO;
                 break;
             case "AMARILLO":
-                this.valor = Valor.COSTE_GRUPO6;
-                this.alquiler = Valor.ALQUILER_GRUPO6;
+                this.valor = Valor.COSTE_GRUPO_AMARILLO;
+                this.alquiler = Valor.ALQUILER_GRUPO_AMARILLO;
                 break;
             case "VERDE":
-                this.valor = Valor.COSTE_GRUPO7;
-                this.alquiler = Valor.ALQUILER_GRUPO7;
+                this.valor = Valor.COSTE_GRUPO_VERDE;
+                this.alquiler = Valor.ALQUILER_GRUPO_VERDE;
                 break;
             case "AZUL":
-                this.valor = Valor.COSTE_GRUPO8;
-                this.alquiler =Valor.ALQUILER_GRUPO8;
+                this.valor = Valor.COSTE_GRUPO_AZUL;
+                this.alquiler =Valor.ALQUILER_GRUPO_AZUL;
                 break;
         }
+        this.avatares = new HashMap<>();
+        this.edificios = new HashMap<>();
     }
 
     @Override
@@ -129,7 +131,18 @@ public class Casilla {
                             ",\n\t propietario: " + this.propietario.getNombre() +
                             ",\n\t valor: " + this.valor +
                             ",\n\t alquiler: " + this.alquiler +
-                            ",\n\t ... por hacer ...";
+                            ",\n\t valor hotel: " +
+                            ",\n\t valor casa: " +
+                            ",\n\t valor piscina: " +
+                            ",\n\t valor pista de deporte: " +
+                            ",\n\t alquiler una casa: " +
+                            ",\n\t alquiler dos casas: " +
+                            ",\n\t alquiler tres casas: " +
+                            ",\n\t alquiler cuatro casas: " +
+                            ",\n\t alquiler hotel: " +
+                            ",\n\t alquiler piscina: " +
+                            ",\n\t alquiler pista de deporte: " +
+                        "\n}";
         return cadena;
     }
 }

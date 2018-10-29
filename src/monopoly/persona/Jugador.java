@@ -75,7 +75,7 @@ public class Jugador {
             System.out.println(Valor.ANSI_ROJO + "Ficha nula.");
             System.exit(1);
         }
-        if (ficha.equals("Esfinge") || ficha.equals("Coche") || ficha.equals("Sombrero") || ficha.equals("Pelota"))
+        if (ficha.equalsIgnoreCase("Esfinge") || ficha.equalsIgnoreCase("Coche") || ficha.equalsIgnoreCase("Sombrero") || ficha.equalsIgnoreCase("Pelota"))
             this.avatar = new Avatar(this, ficha);
         else {
             System.out.println(Valor.ANSI_ROJO + "Ficha debe ser: Esfinge, Coche, Sombrero o Pelota");
@@ -136,6 +136,23 @@ public class Jugador {
             }
         }
         return cadena;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null)
+            return false;
+        if (o == this)
+            return true;
+        if (!(o instanceof Jugador))
+            return true;
+        if (getClass() != o.getClass())
+            return false;
+        final Jugador jugador = (Jugador) o;
+        if (this.nombre.equals(jugador.nombre) && this.avatar.equals(jugador.avatar))
+            return true;
+
+        return true;
     }
 
     @Override

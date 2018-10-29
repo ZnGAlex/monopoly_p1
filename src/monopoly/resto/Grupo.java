@@ -9,6 +9,14 @@ public class Grupo {
     private int alquiler;
     private int precio;
 
+    public Grupo(String color, int precio, int alquiler) {
+        this.color = color;
+        this.edificios = new ArrayList<>();
+        this.casillas = new ArrayList<>();
+        this.precio = precio;
+        this.alquiler = alquiler;
+    }
+
     public String getColor() {
         return color;
     }
