@@ -130,18 +130,19 @@ public class Casilla {
                             ",\n\t grupo: " + this.grupo +
                             ",\n\t propietario: " + this.propietario.getNombre() +
                             ",\n\t valor: " + this.valor +
-                            ",\n\t alquiler: " + this.alquiler +
-                            ",\n\t valor hotel: " +
-                            ",\n\t valor casa: " +
-                            ",\n\t valor piscina: " +
-                            ",\n\t valor pista de deporte: " +
-                            ",\n\t alquiler una casa: " +
-                            ",\n\t alquiler dos casas: " +
-                            ",\n\t alquiler tres casas: " +
-                            ",\n\t alquiler cuatro casas: " +
-                            ",\n\t alquiler hotel: " +
-                            ",\n\t alquiler piscina: " +
-                            ",\n\t alquiler pista de deporte: " +
+                            ",\n\t alquiler actual: " + this.alquiler +
+                            ",\n\t alquiler inicial: " + this.valor * 0.9 + 
+                            ",\n\t valor hotel: " + this.valor * 0.6 + " (mas cuatro casas)" +
+                            ",\n\t valor casa: " + this.valor * 0.6 +
+                            ",\n\t valor piscina: " + this.valor * 0.4 +
+                            ",\n\t valor pista de deporte: " + this.valor * 1.25 +
+                            ",\n\t alquiler una casa: " + this.valor * 0.9 * 5 +
+                            ",\n\t alquiler dos casas: " + this.valor * 0.9 * 15 +
+                            ",\n\t alquiler tres casas: " + this.valor * 0.9 * 35 +
+                            ",\n\t alquiler cuatro casas: " + this.valor * 0.9 * 50 +
+                            ",\n\t alquiler hotel: " + this.valor * 0.9 * 70 +
+                            ",\n\t alquiler piscina: " + this.valor * 25 +
+                            ",\n\t alquiler pista de deporte: " + this.valor * 25 +
                         "\n}";
         return cadena;
     }

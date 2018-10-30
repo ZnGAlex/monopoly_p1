@@ -1,5 +1,7 @@
 package monopoly.resto;
 
+import java.util.ArrayList;
+
 public class Valor {
     public static final int COSTE_INICIAL = 100000;
     public static final int COSTE_GRUPO_MARRON = COSTE_INICIAL;
@@ -67,6 +69,15 @@ public class Valor {
     public static final String CASILLA_TIPO_PARKING = "parking";
     public static final String CASILLA_TIPO_SALIDA = "salida";
     public static final String CASILLA_TIPO_IR_CARCEL = "ir_carcel";
+    
+    
+    public void aumentarValor5(Tablero t){
+        for(ArrayList<Casilla> a: t.getCasillas()){
+            for(Casilla casilla: a){
+                casilla.setValor((int) (1.05 * casilla.getValor()));
+            }
+        }
+    }
 
 
 }

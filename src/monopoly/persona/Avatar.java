@@ -43,10 +43,16 @@ public class Avatar {
     // constructores
 
     public Avatar(Jugador jugador, String ficha) {
-        Character n = (char) Math.ceil(Math.random() * 255);
-        this.id = n.toString();
-        this.jugador = jugador;
-        this.ficha = ficha;
+        if(jugador != null && ficha != null){
+            Character n = (char) Math.ceil(Math.random() * 255);
+            this.id = n.toString();
+            this.jugador = jugador;
+            this.ficha = ficha;
+        }
+        else{
+            System.out.println("ERROR CONSTRUCTOR AVATAR: jugador o ficha nulo/s\n");
+            System.exit(1);
+        }
     }
 
     @Override
