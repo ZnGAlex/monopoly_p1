@@ -122,6 +122,25 @@ public class Casilla {
         this.avatares = new HashMap<>();
         this.edificios = new HashMap<>();
     }
+    
+    public Casilla (String nombre, String tipo){
+        if (nombre == null) {
+            System.out.println(Valor.ANSI_ROJO + "Nombre nulo.");
+            System.exit(1);
+        }
+        if (tipo == null) {
+            System.out.println(Valor.ANSI_ROJO + "Tipo nulo.");
+            System.exit(1);
+        }
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.grupo = null;
+        this.alquiler = 0;
+        this.propietario = null;
+        this.valor = 0;
+        this.avatares = new HashMap<>();
+        this.edificios = null;
+    }
 
     @Override
     public String toString() {
