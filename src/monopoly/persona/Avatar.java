@@ -54,7 +54,7 @@ public class Avatar {
             System.exit(1);
         }
     }
-
+    
     @Override
     public String toString() {
         String cadena= "{\n " +
