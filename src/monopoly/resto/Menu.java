@@ -35,7 +35,7 @@ public class Menu {
 
         Tablero tablero = new Tablero();
 
-        System.out.println(tablero);
+        System.out.println(tablero.toString());
 
         while (!salir) {
             System.out.print("$> ");
@@ -43,6 +43,9 @@ public class Menu {
             String orden = scanner.nextLine();
             String[] partes = orden.split(" ");
             String comando = partes[0];
+
+            String nombre_casilla = "";
+            int n = 0;
 
             switch(comando) {
                 case "salir":
@@ -52,13 +55,27 @@ public class Menu {
                         System.out.println("\nGracias por jugar.");
                     return;
                 case "describir":
-                    if (partes.length != 3)
-                        System.out.println("\nComando incorrecto.");
-                    else {
+                    if (partes.length == 3) {
                         if (jugadores.get(partes[2]) == null)
                             System.out.println("El jugador " + partes[2] + " no existe.");
                         else
                             System.out.println(jugadores.get(partes[2]));
+                    }
+                    if (partes.length >= 2) {
+                        for (int i = 1; i < partes.length; i++) {
+                            nombre_casilla = nombre_casilla.concat(partes[i]);
+                        }
+                        for (int i = 0; i < tablero.getCasillas().size(); i++) {
+                            for (int j = 0; j < tablero.getCasillas().get(i).size(); j++) {
+                                if (nombre_casilla.equals(tablero.getCasillas().get(i).get(j).getNombre())) {
+                                    tablero.getCasillas().get(i).get(j).info();
+                                    n++;
+                                }
+                            }
+                        }
+                        if (n == 0) {
+                            System.out.println("Esa casilla no existe.");
+                        }
                     }
                     break;
                 default:

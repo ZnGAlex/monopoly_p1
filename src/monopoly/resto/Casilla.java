@@ -146,7 +146,7 @@ public class Casilla {
         String cadena = "{\n " +
                 "\t tipo: " + this.tipo +
                 ",\n\t grupo: " + this.grupo +
-                ",\n\t propietario: " + this.propietario.getNombre() +
+                ",\n\t propietario: " +
                 ",\n\t valor: " + this.valor +
                 ",\n\t alquiler actual: " + this.alquiler +
                 ",\n\t alquiler inicial: " + this.valor * 0.9 +

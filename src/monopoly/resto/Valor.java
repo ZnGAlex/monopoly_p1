@@ -70,7 +70,7 @@ public class Valor {
     public static final String SOLAR3_GRUPO_VERDE = "Los Baldios";
     public static final String SOLAR1_GRUPO_AZUL = "Crater de Un'Goro";
     public static final String SOLAR2_GRUPO_AZUL = "Corona de Hielo";
-    public static final String CASILLa_TIPO_SOLAR = "solar";
+    public static final String CASILLA_TIPO_SOLAR = "solar";
     public static final String CASILLA_SALIDA = "Salida";
     public static final String CASILLA_IMPUESTO = "Impuesto1";
     public static final String CASILLA_IMPUESTO2 = "Impuesto2";
@@ -81,6 +81,9 @@ public class Valor {
     public static final String CASILLA_SUERTE = "Suerte";
     public static final String CASILLA_CAJA = "Caja";
     public static final String CASILLA_CARCEL = "Carcel";
+    public static final String CASILLA_SERVICIO = "Servicio";
+    public static final String CASILLA_IR_CARCEL = "Ir a carcel";
+    public static final String CASILLA_PARKING = "Parking";
     public static final String CASILLA_TIPO_TRANSPORTE = "transporte";
     public static final String CASILLA_TIPO_SERVICIO = "servicio";
     public static final String CASILLA_TIPO_SUERTE = "suerte";
