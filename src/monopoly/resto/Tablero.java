@@ -11,7 +11,7 @@ public class Tablero {
     private HashMap<String, Jugador> jugadores;
 
     public Tablero() {
-        ArrayList<ArrayList<Casilla>> tablero = new ArrayList<>();
+        this.casillas = new ArrayList<>();
         ArrayList<Casilla> abajo = new ArrayList<>();
         ArrayList<Casilla> izquierda = new ArrayList<>();
         ArrayList<Casilla> derecha = new ArrayList<>();
@@ -55,12 +55,27 @@ public class Tablero {
         Casilla solar3GrupoVerde = new Casilla(Valor.SOLAR3_GRUPO_VERDE, Valor.CASILLa_TIPO_SOLAR, grupo_verde);
         Casilla solar1GrupoAzul = new Casilla(Valor.SOLAR1_GRUPO_AZUL, Valor.CASILLa_TIPO_SOLAR, grupo_azul);
         Casilla solar2GrupoAzul = new Casilla(Valor.SOLAR2_GRUPO_AZUL, Valor.CASILLa_TIPO_SOLAR, grupo_azul);
+        Casilla salida = new Casilla(Valor.CASILLA_SALIDA, Valor.CASILLA_TIPO_SALIDA);
+        Casilla suerte = new Casilla(Valor.CASILLA_SUERTE, Valor.CASILLA_TIPO_SUERTE);
+        Casilla caja = new Casilla(Valor.CASILLA_CAJA, Valor.CASILLA_TIPO_CAJA);
+        Casilla impuesto1 = new Casilla(Valor.CASILLA_IMPUESTO, Valor.CASILLA_TIPO_IMPUESTO);
+        Casilla transporte1 = new Casilla(Valor.CASILLA_TRANSPORTE, Valor.CASILLA_TIPO_TRANSPORTE);
+        Casilla carcel = new Casilla(Valor.CASILLA_CARCEL, Valor.CASILLA_TIPO_CARCEL);
+        abajo.add(salida);
         abajo.add(solar1GrupoNegro);
+        abajo.add(caja);
         abajo.add(solar2GrupoNegro);
+        abajo.add(impuesto1);
+        abajo.add(transporte1);
         abajo.add(solar1GrupoCyan);
+        abajo.add(suerte);
         abajo.add(solar2GrupoCyan);
         abajo.add(solar2GrupoCyan);
-        
+        this.casillas.add(abajo);
+        System.out.println("Tamaño casillas " + casillas.size());
+        System.out.println("Tamaño abajo " + abajo.size());
+        for (Casilla c : abajo)
+            System.out.println(c);
     }
 
     public ArrayList<ArrayList<Casilla>> getCasillas() {
@@ -85,5 +100,16 @@ public class Tablero {
 
     public void setJugadores(HashMap<String, Jugador> jugadores) {
         this.jugadores = jugadores;
+    }
+
+    @Override
+    public String toString() {
+        return "|-----------------------------------------------------------------------------------------------------------------------------------|" +
+                "|                                                                                                                                  |" +
+                "|                                                                                                                                  |" +
+                "|                                                                                                                                  |" +
+                "|                                                                                                                                  |" +
+                "|                                                                                                                                  |" +
+                this.casillas.get(0).get(9).toString() + this.casillas.get(0).get(8).toString() + this.casillas.get(0).get(7).toString() + this.casillas.get(0).get(6).toString() + this.casillas.get(0).get(5).toString() + this.casillas.get(0).get(4).toString() + this.casillas.get(0).get(3).toString() + this.casillas.get(0).get(2).toString() + this.casillas.get(0).get(1).toString() + this.casillas.get(0).get(0).toString();
     }
 }

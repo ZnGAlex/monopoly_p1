@@ -175,15 +175,17 @@ public class Casilla {
     }
 
     public String printNombreColor() {
-        String nombre = this.grupo.obtenerColorPrint() + this.nombre + Valor.ANSI_RESET;
+        String nombre;
+        if (this.grupo != null)
+            nombre = this.grupo.obtenerColorPrint() + this.nombre + Valor.ANSI_RESET;
+        else
+            nombre = this.nombre;
         return nombre;
     }
 
     @Override
     public String toString() {
-       String cadena = "-----" + this.printLinea() + "-----\n" +
-                       "|    " + this.printNombreColor() + "    |\n" +
-                       "-----" + this.printLinea() + "-----";
+       String cadena = this.printNombreColor() + "|";
 
        return cadena;
     }

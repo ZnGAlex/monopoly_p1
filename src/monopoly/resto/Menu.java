@@ -35,6 +35,8 @@ public class Menu {
 
         Tablero tablero = new Tablero();
 
+        System.out.println(tablero);
+
         while (!salir) {
             System.out.print("$> ");
             Scanner scanner = new Scanner(System.in);
