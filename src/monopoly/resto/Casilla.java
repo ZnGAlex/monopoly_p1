@@ -165,27 +165,38 @@ public class Casilla {
         return cadena;
     }
 
-    public String printLinea() {
-        int veces = this.nombre.length();
-        String cadena = "";
-        for (int i = 0; i < veces; i++)
-            cadena = cadena.concat("-");
-
-        return cadena;
-    }
-
     public String printNombreColor() {
-        String nombre;
-        if (this.grupo != null)
+        String nombre = "";
+        int t;
+        if (this.nombre.length() < Valor.TAMANHO_CASILLA) {
+            t = Valor.TAMANHO_CASILLA - this.nombre.length();
+            if (t%2 == 0) {
+                for (int i = 0; i < t / 2; i++)
+                    nombre = nombre.concat(" ");
+                if (this.grupo != null)
+                    nombre = nombre.concat(this.grupo.obtenerColorPrint() + this.nombre + Valor.ANSI_RESET);
+                else
+                    nombre = nombre.concat(this.nombre);
+                for (int i = 0; i < t / 2; i++)
+                    nombre = nombre.concat(" ");
+            } else {
+                for (int i = 0; i < (t / 2) + 1; i++)
+                    nombre = nombre.concat(" ");
+                if (this.grupo != null)
+                    nombre = nombre.concat(this.grupo.obtenerColorPrint() + this.nombre + Valor.ANSI_RESET);
+                else
+                    nombre = nombre.concat(this.nombre);
+                for (int i = 0; i < t / 2; i++)
+                    nombre = nombre.concat(" ");
+            }
+        } else
             nombre = this.grupo.obtenerColorPrint() + this.nombre + Valor.ANSI_RESET;
-        else
-            nombre = this.nombre;
         return nombre;
     }
 
     @Override
     public String toString() {
-       String cadena = this.printNombreColor() + "|";
+       String cadena = this.printNombreColor();
 
        return cadena;
     }

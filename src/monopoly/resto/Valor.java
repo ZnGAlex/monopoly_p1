@@ -94,7 +94,17 @@ public class Valor {
     public static final String CASILLA_TIPO_IMPUESTO = "impuesto";
     public static final String CASILLA_TIPO_IR_CARCEL = "ir_carcel";
     public static final String CASILLA_TIPO_CAJA = "caja";
-    
+    public static final String LINEA_HORIZONTAL = new String(Character.toChars(0x2500));
+    public static final String LINEA_VERTICAL = new String(Character.toChars(0x2502));
+    public static final String ESQUINA_SUPERIOR_IZQUIERDA = new String(Character.toChars(0x250c));
+    public static final String ESQUINA_SUPERIOR_DERECHA = new String(Character.toChars(0x2510));
+    public static final String ESQUINA_INFERIOR_IZQUIERDA = new String(Character.toChars(0x2514));
+    public static final String ESQUINA_INFERIOR_DERECHA = new String(Character.toChars(0x2518));
+    public static final String INTERSECCION_IZQUIERDA = new String(Character.toChars(0x251c));
+    public static final String INTERSECCION_DERECHA = new String(Character.toChars(0x2524));
+    public static final int TAMANHO_CASILLA = Valor.SOLAR3_GRUPO_AMARILLO.length();
+    public static final int TAMANHO_LINEA = TAMANHO_CASILLA * 11;
+
     public void aumentarValor5(Tablero t){
         for(ArrayList<Casilla> a: t.getCasillas()){
             for(Casilla casilla: a){

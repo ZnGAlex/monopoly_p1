@@ -144,18 +144,36 @@ public class Tablero {
         this.jugadores = jugadores;
     }
 
+    public String imprimirBordeSuperior() {
+        String cadena = Valor.ESQUINA_SUPERIOR_IZQUIERDA;
+        for (int i = 0; i < Valor.TAMANHO_LINEA + 27; i++)
+            cadena = cadena.concat(Valor.LINEA_HORIZONTAL);
+        cadena = cadena.concat(Valor.ESQUINA_SUPERIOR_DERECHA);
+
+        return cadena;
+    }
+
+    public String imprimirEspacio() {
+        String cadena = "";
+        for (int i = 0; i < Valor.TAMANHO_LINEA - (Valor.TAMANHO_CASILLA * 2); i++)
+            cadena = cadena.concat(" ");
+
+        return cadena;
+    }
+
     @Override
     public String toString() {
-        return "|" + this.casillas.get(2).get(0) + "" + this.casillas.get(2).get(1) + "" + this.casillas.get(2).get(2) + "" + this.casillas.get(2).get(3) + "" + this.casillas.get(2).get(4) + this.casillas.get(2).get(5) + "" + this.casillas.get(2).get(6) + "" + this.casillas.get(2).get(7) + "" + this.casillas.get(2).get(8) + "" + this.casillas.get(2).get(9) + this.casillas.get(3).get(0) + "|\n" +
-                "|" + this.casillas.get(1).get(9) + "                                                                                                                                 " + this.casillas.get(3).get(1) + " |\n" +
-                "|" + this.casillas.get(1).get(8) + "                                                                                                                                 " + this.casillas.get(3).get(2) + " |\n" +
-                "|" + this.casillas.get(1).get(7) + "                                                                                                                                 " + this.casillas.get(3).get(3) + " |\n" +
-                "|" + this.casillas.get(1).get(6) + "                                                                                                                                 " + this.casillas.get(3).get(4) + "|\n" +
-                "|" + this.casillas.get(1).get(5) + "                                                                                                                                 " + this.casillas.get(3).get(5) + "|\n" +
-                "|" + this.casillas.get(1).get(4) + "                                                                                                                                 " + this.casillas.get(3).get(6) + "|\n" +
-                "|" + this.casillas.get(1).get(3) + "                                                                                                                                 " + this.casillas.get(3).get(7) + "|\n" +
-                "|" + this.casillas.get(1).get(2) + "                                                                                                                                 " + this.casillas.get(3).get(8) + "|\n" +
-                "|" + this.casillas.get(1).get(1) + "                                                                                                                                 " + this.casillas.get(3).get(9) + "|\n" +
-                "|" + this.casillas.get(1).get(0) + "" + this.casillas.get(0).get(9) + "" + this.casillas.get(0).get(8) + "" + this.casillas.get(0).get(7) + "" + this.casillas.get(0).get(6) + this.casillas.get(0).get(5) + "" + this.casillas.get(0).get(4) + "" + this.casillas.get(0).get(3) + "" + this.casillas.get(0).get(2) + "" + this.casillas.get(0).get(1) + "" + this.casillas.get(0).get(0) +  "|\n";
+        return this.imprimirBordeSuperior() + "\n" +
+               this.casillas.get(2).get(0) + this.casillas.get(2).get(1) + this.casillas.get(2).get(2) + this.casillas.get(2).get(3) + this.casillas.get(2).get(4) + this.casillas.get(2).get(5)  + this.casillas.get(2).get(6) + this.casillas.get(2).get(7) + this.casillas.get(2).get(8) + this.casillas.get(2).get(9) + this.casillas.get(3).get(0) + Valor.LINEA_VERTICAL + "\n" +
+               this.casillas.get(1).get(9) + this.imprimirEspacio() + this.casillas.get(3).get(1) + "\n" +
+               this.casillas.get(1).get(8) + this.imprimirEspacio() + this.casillas.get(3).get(2) + "\n" +
+               this.casillas.get(1).get(7) + this.imprimirEspacio() + this.casillas.get(3).get(3) + "\n" +
+               this.casillas.get(1).get(6) + this.imprimirEspacio() + this.casillas.get(3).get(4) + "\n" +
+               this.casillas.get(1).get(5) + this.imprimirEspacio() + this.casillas.get(3).get(5) + "\n" +
+               this.casillas.get(1).get(4) + this.imprimirEspacio() + this.casillas.get(3).get(6) + "\n" +
+               this.casillas.get(1).get(3) + this.imprimirEspacio() + this.casillas.get(3).get(7) + "\n" +
+               this.casillas.get(1).get(2) + this.imprimirEspacio() + this.casillas.get(3).get(8) + "\n" +
+               this.casillas.get(1).get(1) + this.imprimirEspacio() + this.casillas.get(3).get(9) + "\n" +
+               this.casillas.get(1).get(0) + "" + this.casillas.get(0).get(9) + "" + this.casillas.get(0).get(8) + "" + this.casillas.get(0).get(7) + "" + this.casillas.get(0).get(6) + this.casillas.get(0).get(5) + "" + this.casillas.get(0).get(4) + "" + this.casillas.get(0).get(3) + "" + this.casillas.get(0).get(2) + "" + this.casillas.get(0).get(1) + "" + this.casillas.get(0).get(0) +  "\n";
     }
 }
