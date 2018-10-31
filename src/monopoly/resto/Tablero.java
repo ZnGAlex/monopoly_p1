@@ -11,10 +11,13 @@ public class Tablero {
     private HashMap<String, Jugador> jugadores;
 
     public Tablero() {
-        ArrayList<ArrayList<Casilla>> tablero;
-        ArrayList<Casilla> lado;
+        ArrayList<ArrayList<Casilla>> tablero = new ArrayList<>();
+        ArrayList<Casilla> abajo = new ArrayList<>();
+        ArrayList<Casilla> izquierda = new ArrayList<>();
+        ArrayList<Casilla> derecha = new ArrayList<>();
+        ArrayList<Casilla> arriba = new ArrayList<>();
         HashMap<String, Grupo> grupos = new HashMap<>();
-        Grupo grupo_marron = new Grupo(Valor.GRUPO_MARRON, Valor.COSTE_GRUPO_MARRON, Valor.ALQUILER_GRUPO_MARRON);
+        Grupo grupo_marron = new Grupo(Valor.GRUPO_NEGRO, Valor.COSTE_GRUPO_NEGRO, Valor.ALQUILER_GRUPO_NEGRO);
         Grupo grupo_cyan = new Grupo(Valor.GRUPO_CYAN, Valor.COSTE_GRUPO_CYAN, Valor.ALQUILER_GRUPO_CYAN);
         Grupo grupo_rosa = new Grupo(Valor.GRUPO_ROSA, Valor.COSTE_GRUPO_ROSA, Valor.ALQUILER_GRUPO_ROSA);
         Grupo grupo_naranja = new Grupo(Valor.GRUPO_NARANJA, Valor.COSTE_GRUPO_NARANJA, Valor.ALQUILER_GRUPO_NARANJA);
@@ -22,7 +25,7 @@ public class Tablero {
         Grupo grupo_amarillo = new Grupo(Valor.GRUPO_AMARILLO, Valor.COSTE_GRUPO_AMARILLO, Valor.ALQUILER_GRUPO_AMARILLO);
         Grupo grupo_verde = new Grupo(Valor.GRUPO_VERDE, Valor.COSTE_GRUPO_VERDE, Valor.ALQUILER_GRUPO_VERDE);
         Grupo grupo_azul = new Grupo(Valor.GRUPO_AZUL, Valor.COSTE_GRUPO_AZUL, Valor.ALQUILER_GRUPO_AZUL);
-        grupos.put(Valor.GRUPO_MARRON, grupo_marron);
+        grupos.put(Valor.GRUPO_NEGRO, grupo_marron);
         grupos.put(Valor.GRUPO_CYAN, grupo_cyan);
         grupos.put(Valor.GRUPO_ROSA, grupo_rosa);
         grupos.put(Valor.GRUPO_NARANJA, grupo_naranja);
@@ -30,8 +33,8 @@ public class Tablero {
         grupos.put(Valor.GRUPO_AMARILLO, grupo_amarillo);
         grupos.put(Valor.GRUPO_VERDE, grupo_verde);
         grupos.put(Valor.GRUPO_AZUL, grupo_azul);
-        Casilla solar1GrupoMarron = new Casilla(Valor.SOLAR1_GRUPO_MARRON, Valor.CASILLa_TIPO_SOLAR, grupo_marron);
-        Casilla solar2GrupoMarron = new Casilla(Valor.SOLAR2_GRUPO_MARRON, Valor.CASILLa_TIPO_SOLAR, grupo_marron);
+        Casilla solar1GrupoNegro = new Casilla(Valor.SOLAR1_GRUPO_NEGRO, Valor.CASILLa_TIPO_SOLAR, grupo_marron);
+        Casilla solar2GrupoNegro = new Casilla(Valor.SOLAR2_GRUPO_NEGRO, Valor.CASILLa_TIPO_SOLAR, grupo_marron);
         Casilla solar1GrupoCyan = new Casilla(Valor.SOLAR1_GRUPO_CYAN, Valor.CASILLa_TIPO_SOLAR, grupo_cyan);
         Casilla solar2GrupoCyan = new Casilla(Valor.SOLAR2_GRUPO_CYAN, Valor.CASILLa_TIPO_SOLAR, grupo_cyan);
         Casilla solar3GrupoCyan = new Casilla(Valor.SOLAR3_GRUPO_CYAN, Valor.CASILLa_TIPO_SOLAR, grupo_cyan);
@@ -52,6 +55,12 @@ public class Tablero {
         Casilla solar3GrupoVerde = new Casilla(Valor.SOLAR3_GRUPO_VERDE, Valor.CASILLa_TIPO_SOLAR, grupo_verde);
         Casilla solar1GrupoAzul = new Casilla(Valor.SOLAR1_GRUPO_AZUL, Valor.CASILLa_TIPO_SOLAR, grupo_azul);
         Casilla solar2GrupoAzul = new Casilla(Valor.SOLAR2_GRUPO_AZUL, Valor.CASILLa_TIPO_SOLAR, grupo_azul);
+        abajo.add(solar1GrupoNegro);
+        abajo.add(solar2GrupoNegro);
+        abajo.add(solar1GrupoCyan);
+        abajo.add(solar2GrupoCyan);
+        abajo.add(solar2GrupoCyan);
+
         
     }
 
@@ -93,7 +102,7 @@ public class Tablero {
         }
         for(ArrayList<Casilla> n: casillas){
             for(Casilla cas: n){
-                if (cas.getNombre() == nombre) return cas;
+                if (cas.getNombre().equals(nombre)) return cas;
             }
         }
             return null;

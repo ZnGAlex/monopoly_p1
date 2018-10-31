@@ -8,8 +8,9 @@ import java.util.Scanner;
 
 public class Menu {
 
-    Tablero tablero = new Tablero();
 
+    Tablero tablero;
+    
     public Menu() {
         System.out.println("Cuantos jugadores hay?");
         Scanner s = new Scanner(System.in);
@@ -34,6 +35,8 @@ public class Menu {
 
 
         boolean salir = false;
+
+        tablero = new Tablero();
 
         while (!salir) {
             System.out.print("$> ");
@@ -72,9 +75,10 @@ public class Menu {
                                 for(int i=1; i< partes.length;i++){
                                     unido = unido.concat(partes[i] + "");
                                 }
-                                for(Casilla casil: tablero.getCasillas()){
-                                    
-                                }
+                                if(tablero.casillaByName(unido) == null)
+                                    System.out.println("La casilla " + unido + " no existe.");
+                                else
+                                    tablero.casillaByName(unido).info();
                         }
                     }
                     break;

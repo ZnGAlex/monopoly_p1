@@ -87,8 +87,8 @@ public class Casilla {
         this.propietario = null;
         switch (grupo.getColor()) {
             case "MARRON":
-                this.valor = Valor.COSTE_GRUPO_MARRON;
-                this.alquiler = Valor.ALQUILER_GRUPO_MARRON;
+                this.valor = Valor.COSTE_GRUPO_NEGRO;
+                this.alquiler = Valor.ALQUILER_GRUPO_NEGRO;
                 break;
             case "CYAN":
                 this.valor = Valor.COSTE_GRUPO_CYAN;
@@ -142,27 +142,49 @@ public class Casilla {
         this.edificios = null;
     }
 
+    public String info() {
+        String cadena = "{\n " +
+                "\t tipo: " + this.tipo +
+                ",\n\t grupo: " + this.grupo +
+                ",\n\t propietario: " + this.propietario.getNombre() +
+                ",\n\t valor: " + this.valor +
+                ",\n\t alquiler actual: " + this.alquiler +
+                ",\n\t alquiler inicial: " + this.valor * 0.9 +
+                ",\n\t valor hotel: " + this.valor * 0.6 + " (mas cuatro casas)" +
+                ",\n\t valor casa: " + this.valor * 0.6 +
+                ",\n\t valor piscina: " + this.valor * 0.4 +
+                ",\n\t valor pista de deporte: " + this.valor * 1.25 +
+                ",\n\t alquiler una casa: " + this.valor * 0.9 * 5 +
+                ",\n\t alquiler dos casas: " + this.valor * 0.9 * 15 +
+                ",\n\t alquiler tres casas: " + this.valor * 0.9 * 35 +
+                ",\n\t alquiler cuatro casas: " + this.valor * 0.9 * 50 +
+                ",\n\t alquiler hotel: " + this.valor * 0.9 * 70 +
+                ",\n\t alquiler piscina: " + this.valor * 25 +
+                ",\n\t alquiler pista de deporte: " + this.valor * 25 +
+                "\n}";
+        return cadena;
+    }
+
+    public String printLinea() {
+        int veces = this.nombre.length();
+        String cadena = "";
+        for (int i = 0; i < veces; i++)
+            cadena = cadena.concat("-");
+
+        return cadena;
+    }
+
+    public String printNombreColor() {
+        String nombre = this.grupo.obtenerColorPrint() + this.nombre + Valor.ANSI_RESET;
+        return nombre;
+    }
+
     @Override
     public String toString() {
-        String cadena= "{\n " +
-                            "\t tipo: " + this.tipo +
-                            ",\n\t grupo: " + this.grupo +
-                            ",\n\t propietario: " + this.propietario.getNombre() +
-                            ",\n\t valor: " + this.valor +
-                            ",\n\t alquiler actual: " + this.alquiler +
-                            ",\n\t alquiler inicial: " + this.valor * 0.9 + 
-                            ",\n\t valor hotel: " + this.valor * 0.6 + " (mas cuatro casas)" +
-                            ",\n\t valor casa: " + this.valor * 0.6 +
-                            ",\n\t valor piscina: " + this.valor * 0.4 +
-                            ",\n\t valor pista de deporte: " + this.valor * 1.25 +
-                            ",\n\t alquiler una casa: " + this.valor * 0.9 * 5 +
-                            ",\n\t alquiler dos casas: " + this.valor * 0.9 * 15 +
-                            ",\n\t alquiler tres casas: " + this.valor * 0.9 * 35 +
-                            ",\n\t alquiler cuatro casas: " + this.valor * 0.9 * 50 +
-                            ",\n\t alquiler hotel: " + this.valor * 0.9 * 70 +
-                            ",\n\t alquiler piscina: " + this.valor * 25 +
-                            ",\n\t alquiler pista de deporte: " + this.valor * 25 +
-                        "\n}";
-        return cadena;
+       String cadena = "-----" + this.printLinea() + "-----\n" +
+                       "|    " + this.printNombreColor() + "    |\n" +
+                       "-----" + this.printLinea() + "-----";
+
+       return cadena;
     }
 }
