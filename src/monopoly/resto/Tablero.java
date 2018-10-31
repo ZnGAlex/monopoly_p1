@@ -52,7 +52,7 @@ public class Tablero {
         Casilla solar3GrupoVerde = new Casilla(Valor.SOLAR3_GRUPO_VERDE, Valor.CASILLa_TIPO_SOLAR, grupo_verde);
         Casilla solar1GrupoAzul = new Casilla(Valor.SOLAR1_GRUPO_AZUL, Valor.CASILLa_TIPO_SOLAR, grupo_azul);
         Casilla solar2GrupoAzul = new Casilla(Valor.SOLAR2_GRUPO_AZUL, Valor.CASILLa_TIPO_SOLAR, grupo_azul);
-
+        
     }
 
     public ArrayList<ArrayList<Casilla>> getCasillas() {
@@ -77,5 +77,25 @@ public class Tablero {
 
     public void setJugadores(HashMap<String, Jugador> jugadores) {
         this.jugadores = jugadores;
+    }
+    
+    //metodos
+    
+    /**
+     * BUsca una casilla del tablero por su nombre
+     * @param nombre Nombre de la casila a buscar
+     * @return Casilla si existe. Si no existe return null
+     */
+    public Casilla casillaByName(String nombre){
+        if(nombre == null){
+            System.out.println(Valor.ANSI_ROJO + "Nombre nulo.");
+            System.exit(1);
+        }
+        for(ArrayList<Casilla> n: casillas){
+            for(Casilla cas: n){
+                if (cas.getNombre() == nombre) return cas;
+            }
+        }
+            return null;
     }
 }
