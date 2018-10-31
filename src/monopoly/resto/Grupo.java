@@ -56,4 +56,27 @@ public class Grupo {
     public void setPrecio(int precio) {
         this.precio = precio;
     }
+
+    public String obtenerColorPrint() {
+        switch(this.color) {
+            case Valor.GRUPO_NEGRO:
+                return Valor.ANSI_NEGRO;
+            case Valor.GRUPO_CYAN:
+                return Valor.ANSI_CYAN;
+            case Valor.GRUPO_ROSA:
+                return Valor.ANSI_ROSA;
+            case Valor.GRUPO_NARANJA:
+                return Valor.ANSI_NARANJA;
+            case Valor.GRUPO_ROJO:
+                return Valor.ANSI_ROJO;
+            case Valor.GRUPO_AMARILLO:
+                return Valor.ANSI_AMARILLO;
+            case Valor.GRUPO_VERDE:
+                return Valor.ANSI_VERDE;
+            case Valor.GRUPO_AZUL:
+                return Valor.ANSI_AZUL;
+            default:
+                return "";
+        }
+    }
 }

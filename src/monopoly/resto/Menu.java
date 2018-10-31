@@ -8,8 +8,6 @@ import java.util.Scanner;
 
 public class Menu {
 
-    Tablero tablero;
-
     public Menu() {
         System.out.println("Cuantos jugadores hay?");
         Scanner s = new Scanner(System.in);
@@ -34,6 +32,8 @@ public class Menu {
 
 
         boolean salir = false;
+
+        Tablero tablero = new Tablero();
 
         while (!salir) {
             System.out.print("$> ");
