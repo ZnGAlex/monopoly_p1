@@ -12,8 +12,6 @@ public class Menu {
     public Menu() {
         Tablero tablero = new Tablero();
 
-        System.out.println(tablero);
-
         System.out.println("Cuantos jugadores hay?");
         Scanner s = new Scanner(System.in);
         int numJugadores = s.nextInt();
@@ -30,17 +28,12 @@ public class Menu {
                 String nombre = datos.nextLine();
                 System.out.print("Escoja una ficha (esfinge, coche, sombrero o pelota): ");
                 String ficha = datos.nextLine();
-                Jugador j = new Jugador(nombre, ficha);
+                Jugador j = new Jugador(nombre, ficha, tablero.getCasillas().get(0).get(0));
                 jugadores.put(nombre, j);
             }
         }
 
-        Iterator jugadores_it = jugadores.entrySet().iterator();
-        while (jugadores_it.hasNext()) {
-            Jugador j = (Jugador) jugadores_it.next();
-            j.getAvatar().setCasilla(tablero.getCasillas().get(0).get(0));
-        }
-
+        System.out.println(tablero);
 
         boolean salir = false;
 
@@ -75,7 +68,7 @@ public class Menu {
                         for (int i = 0; i < tablero.getCasillas().size(); i++) {
                             for (int j = 0; j < tablero.getCasillas().get(i).size(); j++) {
                                 if (nombre_casilla.equals(tablero.getCasillas().get(i).get(j).getNombre())) {
-                                    tablero.getCasillas().get(i).get(j).info();
+                                    System.out.println(tablero.getCasillas().get(i).get(j).info());
                                     n++;
                                 }
                             }

@@ -42,12 +42,13 @@ public class Avatar {
 
     // constructores
 
-    public Avatar(Jugador jugador, String ficha) {
+    public Avatar(Jugador jugador, String ficha, Casilla casilla) {
         if(jugador != null && ficha != null){
             Character n = (char) Math.ceil(Math.random() * 255);
             this.id = n.toString();
             this.jugador = jugador;
             this.ficha = ficha;
+            this.casilla = casilla;
         }
         else{
             System.out.println("ERROR CONSTRUCTOR AVATAR: jugador o ficha nulo/s\n");
