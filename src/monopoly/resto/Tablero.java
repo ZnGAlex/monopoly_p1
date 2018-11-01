@@ -145,32 +145,24 @@ public class Tablero {
     }
 
     public String imprimirBordeSuperior() {
-        /*
-        String cadena = "";
-        for (int i = 0; i < Valor.TAMANHO_LINEA + 1; i++)
-            if (i == 0)
-                cadena = cadena.concat(Valor.ESQUINA_SUPERIOR_IZQUIERDA);
-            else if (i == Valor.TAMANHO_LINEA + 1)
-                cadena = cadena.concat(Valor.ESQUINA_SUPERIOR_DERECHA);
-            else {
-                if (i % Valor.TAMANHO_CASILLA == 0)
-                    cadena = cadena.concat(Valor.INTERSECCION_SUPERIOR);
-                else
-                    cadena = cadena.concat(Valor.LINEA_HORIZONTAL);
-            }
-        cadena = cadena.concat(Valor.ESQUINA_SUPERIOR_DERECHA);
-        */
         String cadena = Valor.ESQUINA_SUPERIOR_IZQUIERDA;
-        for (int i = 0; i < Valor.TAMANHO_LINEA + 1; i++)
+        for (int i = 0; i < Valor.TAMANHO_LINEA; i++) {
+            if (i != 0 && i % Valor.TAMANHO_CASILLA == 0)
+                cadena = cadena.concat(Valor.INTERSECCION_SUPERIOR);
             cadena = cadena.concat(Valor.LINEA_HORIZONTAL);
+        }
         cadena = cadena.concat(Valor.ESQUINA_SUPERIOR_DERECHA);
+
         return cadena;
     }
 
     public String imprimirBordeInferior() {
         String cadena = Valor.ESQUINA_INFERIOR_IZQUIERDA;
-        for (int i = 0; i < Valor.TAMANHO_LINEA + 1; i++)
+        for (int i = 0; i < Valor.TAMANHO_LINEA; i++) {
+            if (i != 0 && i % Valor.TAMANHO_CASILLA == 0)
+                cadena = cadena.concat(Valor.INTERSECCION_INFERIOR);
             cadena = cadena.concat(Valor.LINEA_HORIZONTAL);
+        }
         cadena = cadena.concat(Valor.ESQUINA_INFERIOR_DERECHA);
 
         return cadena;
@@ -178,7 +170,9 @@ public class Tablero {
 
     public String imprimirEspacio() {
         String cadena = "";
-        for (int i = 0; i < Valor.TAMANHO_LINEA - (Valor.TAMANHO_CASILLA * 2); i++)
+        /*for (int i = 0; i < Valor.TAMANHO_LINEA - (Valor.TAMANHO_CASILLA  * 2) + 8 ; i++)
+            cadena = cadena.concat(" ");*/
+        for (int i = 0; i < (Valor.TAMANHO_CASILLA * 9) + 8; i++)
             cadena = cadena.concat(" ");
 
         return cadena;
@@ -196,41 +190,49 @@ public class Tablero {
         return cadena;
     }
 
+    public String imprimirHorizontal() {
+        String cadena  = "";
+        for (int i = 0; i < Valor.TAMANHO_CASILLA; i++)
+            cadena = cadena.concat(Valor.LINEA_HORIZONTAL);
+
+        return cadena;
+    }
+
     @Override
     public String toString() {
         return this.imprimirBordeSuperior() + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(2).get(0) + Valor.LINEA_VERTICAL + this.casillas.get(2).get(1) + this.casillas.get(2).get(2) + this.casillas.get(2).get(3) + this.casillas.get(2).get(4) + this.casillas.get(2).get(5)  + this.casillas.get(2).get(6) + this.casillas.get(2).get(7) + this.casillas.get(2).get(8) + Valor.LINEA_VERTICAL + this.casillas.get(2).get(9) + Valor.LINEA_VERTICAL + this.casillas.get(3).get(0)  + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(2).get(0).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(2).get(1).stringAvatares() + this.casillas.get(2).get(2).stringAvatares() +  this.casillas.get(2).get(3) .stringAvatares() + this.casillas.get(2).get(4).stringAvatares() +  this.casillas.get(2).get(5).stringAvatares()  +  this.casillas.get(2).get(6).stringAvatares() + this.casillas.get(2).get(7).stringAvatares() + this.casillas.get(2).get(8).stringAvatares() + this.casillas.get(2).get(9).stringAvatares() + this.casillas.get(3).get(0).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
-                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(9) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(1) + Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(9).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(1).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
-                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(8) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(2) + Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(8).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(2).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
-                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(7) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(3) + Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(7).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(3).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
-                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(6) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(4) + Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(6).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(4).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
-                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(5) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(5) + Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(5).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(5).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
-                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(4) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(6) + Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(4).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(6).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
-                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(3) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(7) + Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(3).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(7).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
-                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(2) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(8) + Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(2).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(8).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
-                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(1) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(9) + Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(1).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + this.casillas.get(3).get(9).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
-                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.LINEA_VERTICAL + "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(0) + "" + this.casillas.get(0).get(9) + "" + this.casillas.get(0).get(8) + "" + this.casillas.get(0).get(7) + "" + this.casillas.get(0).get(6) + this.casillas.get(0).get(5) + "" + this.casillas.get(0).get(4) + "" + this.casillas.get(0).get(3) + "" + this.casillas.get(0).get(2) + "" + this.casillas.get(0).get(1) + "" + this.casillas.get(0).get(0) + " " + Valor.LINEA_VERTICAL +  "\n" +
-                Valor.LINEA_VERTICAL + this.casillas.get(1).get(0).stringAvatares() + "" + this.casillas.get(0).get(9).stringAvatares() + "" + this.casillas.get(0).get(8).stringAvatares() + "" + this.casillas.get(0).get(7).stringAvatares() + "" + this.casillas.get(0).get(6).stringAvatares() + this.casillas.get(0).get(5).stringAvatares() + "" + this.casillas.get(0).get(4).stringAvatares() + "" + this.casillas.get(0).get(3).stringAvatares() + "" + this.casillas.get(0).get(2).stringAvatares() + "" + this.casillas.get(0).get(1).stringAvatares() + "" + this.casillas.get(0).get(0).stringAvatares() + " " + Valor.LINEA_VERTICAL +  "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(2).get(0) + Valor.LINEA_VERTICAL + this.casillas.get(2).get(1) + Valor.LINEA_VERTICAL + this.casillas.get(2).get(2) + Valor.LINEA_VERTICAL + this.casillas.get(2).get(3) + Valor.LINEA_VERTICAL + this.casillas.get(2).get(4) + Valor.LINEA_VERTICAL + this.casillas.get(2).get(5)  + Valor.LINEA_VERTICAL + this.casillas.get(2).get(6) + Valor.LINEA_VERTICAL + this.casillas.get(2).get(7) + Valor.LINEA_VERTICAL + this.casillas.get(2).get(8) + Valor.LINEA_VERTICAL + this.casillas.get(2).get(9) + Valor.LINEA_VERTICAL + this.casillas.get(3).get(0)  + Valor.LINEA_VERTICAL + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(2).get(0).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(2).get(1).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(2).get(2).stringAvatares() + Valor.LINEA_VERTICAL +  this.casillas.get(2).get(3) .stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(2).get(4).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(2).get(5).stringAvatares()  + Valor.LINEA_VERTICAL +  this.casillas.get(2).get(6).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(2).get(7).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(2).get(8).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(2).get(9).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(0).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
+                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_TOTAL + this.imprimirHorizontal() + Valor.INTERSECCION_INFERIOR + this.imprimirHorizontal() + Valor.INTERSECCION_INFERIOR +  this.imprimirHorizontal() + Valor.INTERSECCION_INFERIOR + this.imprimirHorizontal() + Valor.INTERSECCION_INFERIOR + this.imprimirHorizontal() + Valor.INTERSECCION_INFERIOR + this.imprimirHorizontal() + Valor.INTERSECCION_INFERIOR  + this.imprimirHorizontal() + Valor.INTERSECCION_INFERIOR + this.imprimirHorizontal() + Valor.INTERSECCION_INFERIOR + this.imprimirHorizontal() + Valor.INTERSECCION_TOTAL + this.imprimirHorizontal() + Valor.INTERSECCION_DERECHA + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(9) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(1) + Valor.LINEA_VERTICAL + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(9).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL +  this.casillas.get(3).get(1).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
+                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.INTERSECCION_IZQUIERDA + this.imprimirHorizontal() + Valor.INTERSECCION_DERECHA + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(8) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(2) + Valor.LINEA_VERTICAL + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(8).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(2).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
+                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.INTERSECCION_IZQUIERDA + this.imprimirHorizontal() + Valor.INTERSECCION_DERECHA + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(7) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(3) + Valor.LINEA_VERTICAL + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(7).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(3).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
+                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.INTERSECCION_IZQUIERDA + this.imprimirHorizontal() + Valor.INTERSECCION_DERECHA +  "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(6) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(4) + Valor.LINEA_VERTICAL + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(6).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(4).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
+                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.INTERSECCION_IZQUIERDA + this.imprimirHorizontal() + Valor.INTERSECCION_DERECHA +  "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(5) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(5) + Valor.LINEA_VERTICAL + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(5).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(5).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
+                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.INTERSECCION_IZQUIERDA + this.imprimirHorizontal() + Valor.INTERSECCION_DERECHA +  "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(4) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(6) + Valor.LINEA_VERTICAL + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(4).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(6).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
+                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.INTERSECCION_IZQUIERDA + this.imprimirHorizontal() + Valor.INTERSECCION_DERECHA +  "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(3) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(7) + Valor.LINEA_VERTICAL + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(3).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(7).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
+                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.INTERSECCION_IZQUIERDA + this.imprimirHorizontal() + Valor.INTERSECCION_DERECHA +  "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(2) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(8) + Valor.LINEA_VERTICAL + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(2).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(8).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
+                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_DERECHA + this.imprimirEspacio() +  Valor.INTERSECCION_IZQUIERDA + this.imprimirHorizontal() + Valor.INTERSECCION_DERECHA +  "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(1) + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(9) + Valor.LINEA_VERTICAL + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(1).stringAvatares() + Valor.LINEA_VERTICAL + this.imprimirEspacio() + Valor.LINEA_VERTICAL + this.casillas.get(3).get(9).stringAvatares() + Valor.LINEA_VERTICAL + "\n" +
+                Valor.INTERSECCION_IZQUIERDA + this.imprimirEspacio(true) + Valor.INTERSECCION_TOTAL + this.imprimirHorizontal() + Valor.INTERSECCION_SUPERIOR + this.imprimirHorizontal() + Valor.INTERSECCION_SUPERIOR +  this.imprimirHorizontal() + Valor.INTERSECCION_SUPERIOR + this.imprimirHorizontal() + Valor.INTERSECCION_SUPERIOR + this.imprimirHorizontal() + Valor.INTERSECCION_SUPERIOR + this.imprimirHorizontal() + Valor.INTERSECCION_SUPERIOR  + this.imprimirHorizontal() + Valor.INTERSECCION_SUPERIOR + this.imprimirHorizontal() + Valor.INTERSECCION_SUPERIOR + this.imprimirHorizontal() + Valor.INTERSECCION_TOTAL + this.imprimirHorizontal() + Valor.INTERSECCION_DERECHA + "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(0) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(9) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(8) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(7) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(6) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(5) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(4) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(3) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(2) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(1) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(0) + Valor.LINEA_VERTICAL +  "\n" +
+                Valor.LINEA_VERTICAL + this.casillas.get(1).get(0).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(9).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(8).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(7).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(6).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(5).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(4).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(3).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(2).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(1).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(0).stringAvatares() + Valor.LINEA_VERTICAL +  "\n" +
                 this.imprimirBordeInferior() + "\n";
     }
 }

@@ -4,11 +4,16 @@ import monopoly.persona.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Menu {
 
     public Menu() {
+        Tablero tablero = new Tablero();
+
+        System.out.println(tablero);
+
         System.out.println("Cuantos jugadores hay?");
         Scanner s = new Scanner(System.in);
         int numJugadores = s.nextInt();
@@ -30,12 +35,14 @@ public class Menu {
             }
         }
 
+        Iterator jugadores_it = jugadores.entrySet().iterator();
+        while (jugadores_it.hasNext()) {
+            Jugador j = (Jugador) jugadores_it.next();
+            j.getAvatar().setCasilla(tablero.getCasillas().get(0).get(0));
+        }
+
 
         boolean salir = false;
-
-        Tablero tablero = new Tablero();
-
-        System.out.println(tablero.toString());
 
         while (!salir) {
             System.out.print("$> ");
