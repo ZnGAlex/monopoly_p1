@@ -102,7 +102,8 @@ public class Valor {
     public static final String ESQUINA_INFERIOR_DERECHA = new String(Character.toChars(0x2518));
     public static final String INTERSECCION_IZQUIERDA = new String(Character.toChars(0x251c));
     public static final String INTERSECCION_DERECHA = new String(Character.toChars(0x2524));
-    public static final int TAMANHO_CASILLA = Valor.SOLAR3_GRUPO_AMARILLO.length();
+    public static final String INTERSECCION_SUPERIOR = new String(Character.toChars(0x252c));
+    public static final int TAMANHO_CASILLA = Valor.SOLAR3_GRUPO_AMARILLO.length() + 2;
     public static final int TAMANHO_LINEA = TAMANHO_CASILLA * 11;
 
     public void aumentarValor5(Tablero t){

@@ -3,6 +3,7 @@ package monopoly.resto;
 import monopoly.persona.*;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 public class Casilla {
     private String nombre;
@@ -162,6 +163,24 @@ public class Casilla {
                 ",\n\t alquiler piscina: " + this.valor * 25 +
                 ",\n\t alquiler pista de deporte: " + this.valor * 25 +
                 "\n}";
+        return cadena;
+    }
+
+    public String stringAvatares() {
+        String avatares = "";
+        String cadena = "";
+        if (this.avatares.size() != 0) {
+            Iterator it = this.avatares.entrySet().iterator();
+            while (it.hasNext()) {
+                Avatar a = (Avatar) it.next();
+                avatares = avatares.concat(a.getFicha());
+            }
+        }
+        cadena = cadena.concat(avatares);
+        int t = Valor.TAMANHO_CASILLA - avatares.length();
+        for (int i = 0; i < t; i++)
+            cadena = cadena.concat(" ");
+
         return cadena;
     }
 
