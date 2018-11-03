@@ -71,6 +71,16 @@ public class Valor {
     public static final String SOLAR1_GRUPO_AZUL = "Crater de Un'Goro";
     public static final String SOLAR2_GRUPO_AZUL = "Corona de Hielo";
     public static final String CASILLa_TIPO_SOLAR = "solar";
+    public static final String CASILLA_SALIDA = "Salida";
+    public static final String CASILLA_IMPUESTO = "Impuesto1";
+    public static final String CASILLA_IMPUESTO2 = "Impuesto2";
+    public static final String CASILLA_TRANSPORTE = "Transporte1";
+    public static final String CASILLA_TRANSPORTE2 = "Transporte2";
+    public static final String CASILLA_TRANSPORTE3 = "Transporte3";
+    public static final String CASILLA_TRANSPORTE4 = "Transporte4";
+    public static final String CASILLA_SUERTE = "Suerte";
+    public static final String CASILLA_CAJA = "Caja";
+    public static final String CASILLA_CARCEL = "Carcel";
     public static final String CASILLA_TIPO_TRANSPORTE = "transporte";
     public static final String CASILLA_TIPO_SERVICIO = "servicio";
     public static final String CASILLA_TIPO_SUERTE = "suerte";
@@ -78,8 +88,9 @@ public class Valor {
     public static final String CASILLA_TIPO_CARCEL = "carcel";
     public static final String CASILLA_TIPO_PARKING = "parking";
     public static final String CASILLA_TIPO_SALIDA = "salida";
+    public static final String CASILLA_TIPO_IMPUESTO = "impuesto";
     public static final String CASILLA_TIPO_IR_CARCEL = "ir_carcel";
-    
+    public static final String CASILLA_TIPO_CAJA = "caja";
     
     public void aumentarValor5(Tablero t){
         for(ArrayList<Casilla> a: t.getCasillas()){
