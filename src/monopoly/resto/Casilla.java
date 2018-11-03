@@ -89,35 +89,35 @@ public class Casilla {
         this.grupo = grupo;
         this.propietario = null;
         switch (grupo.getColor()) {
-            case "MARRON":
+            case Valor.GRUPO_NEGRO:
                 this.valor = Valor.COSTE_GRUPO_NEGRO;
                 this.alquiler = Valor.ALQUILER_GRUPO_NEGRO;
                 break;
-            case "CYAN":
+            case Valor.GRUPO_CYAN:
                 this.valor = Valor.COSTE_GRUPO_CYAN;
                 this.alquiler = Valor.ALQUILER_GRUPO_CYAN;
                 break;
-            case "ROSA":
+            case Valor.GRUPO_ROSA:
                 this.valor = Valor.COSTE_GRUPO_ROSA;
                 this.alquiler = Valor.ALQUILER_GRUPO_ROSA;
                 break;
-            case "NARANJA":
+            case Valor.GRUPO_NARANJA:
                 this.valor = Valor.COSTE_GRUPO_NARANJA;
                 this.alquiler = Valor.ALQUILER_GRUPO_NARANJA;
                 break;
-            case "ROJO":
+            case Valor.GRUPO_ROJO:
                 this.valor = Valor.COSTE_GRUPO_ROJO;
                 this.alquiler = Valor.ALQUILER_GRUPO_ROJO;
                 break;
-            case "AMARILLO":
+            case Valor.GRUPO_AMARILLO:
                 this.valor = Valor.COSTE_GRUPO_AMARILLO;
                 this.alquiler = Valor.ALQUILER_GRUPO_AMARILLO;
                 break;
-            case "VERDE":
+            case Valor.GRUPO_VERDE:
                 this.valor = Valor.COSTE_GRUPO_VERDE;
                 this.alquiler = Valor.ALQUILER_GRUPO_VERDE;
                 break;
-            case "AZUL":
+            case Valor.GRUPO_AZUL:
                 this.valor = Valor.COSTE_GRUPO_AZUL;
                 this.alquiler =Valor.ALQUILER_GRUPO_AZUL;
                 break;
@@ -128,11 +128,11 @@ public class Casilla {
     
     public Casilla (String nombre, String tipo){
         if (nombre == null) {
-            System.out.println(Valor.ANSI_ROJO + "Nombre nulo.");
+            System.out.println(Valor.ANSI_ROJO + "Nombre nulo." + Valor.ANSI_RESET);
             System.exit(1);
         }
         if (tipo == null) {
-            System.out.println(Valor.ANSI_ROJO + "Tipo nulo.");
+            System.out.println(Valor.ANSI_ROJO + "Tipo nulo." + Valor.ANSI_RESET);
             System.exit(1);
         }
         this.nombre = nombre;
@@ -172,11 +172,10 @@ public class Casilla {
         String cadena_avatares = "";
         String cadena = "";
         if (this.avatares.size() != 0) {
-            Iterator avatares_it = this.avatares.entrySet().iterator();
+            Iterator avatares_it = this.avatares.values().iterator();
             while (avatares_it.hasNext()) {
-                Map.Entry mp = (Map.Entry) avatares_it.next();
-                Avatar a = (Avatar) mp.getValue();
-                cadena_avatares = cadena_avatares.concat(a.getId());
+                Avatar a = (Avatar) avatares_it.next();
+                cadena_avatares = cadena_avatares.concat("&" + a.getId());
             }
         }
         cadena = cadena.concat(cadena_avatares);

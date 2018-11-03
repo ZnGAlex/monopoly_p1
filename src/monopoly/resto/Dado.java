@@ -1,8 +1,16 @@
 package monopoly.resto;
 
+import java.util.Random;
+
 public class Dado {
     private int dado1;
     private int dado2;
+
+    public static int tirarDados() {
+        Random random = new Random();
+
+        return random.nextInt((6-1) + 1) + 1 + random.nextInt((6-1)+1)+1;
+    }
 
     public int getDado1() {
         return dado1;

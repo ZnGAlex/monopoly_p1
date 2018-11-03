@@ -4,6 +4,7 @@ import monopoly.persona.*;
 
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.StringJoiner;
 
 public class Menu {
 
@@ -63,10 +64,8 @@ public class Menu {
                             System.out.println("El jugador " + partes[2] + " no existe.");
                         else
                             System.out.println(jugadores.get(partes[2]));
-                    } else  if (partes.length >= 2) {
-                        for (int i = 1; i < partes.length; i++) {
-                            nombre_casilla = nombre_casilla.concat(partes[i]);
-                        }
+                    } else  if (partes.length == 2) {
+                        nombre_casilla = partes[1];
                         for (int i = 0; i < tablero.getCasillas().size(); i++) {
                             for (int j = 0; j < tablero.getCasillas().get(i).size(); j++) {
                                 if (nombre_casilla.equals(tablero.getCasillas().get(i).get(j).getNombre())) {
