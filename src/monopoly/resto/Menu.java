@@ -2,15 +2,15 @@ package monopoly.resto;
 
 import monopoly.persona.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Menu {
 
     public Menu() {
         Tablero tablero = new Tablero();
+
+        HashMap<String, Avatar> avatares = new HashMap<>();
 
         System.out.println("Cuantos jugadores hay?");
         Scanner s = new Scanner(System.in);
@@ -30,8 +30,11 @@ public class Menu {
                 String ficha = datos.nextLine();
                 Jugador j = new Jugador(nombre, ficha, tablero.getCasillas().get(0).get(0));
                 jugadores.put(nombre, j);
+                avatares.put(nombre,j.getAvatar());
             }
         }
+
+        tablero.getCasillas().get(0).get(0).setAvatares(avatares);
 
         System.out.println(tablero);
 
@@ -60,8 +63,7 @@ public class Menu {
                             System.out.println("El jugador " + partes[2] + " no existe.");
                         else
                             System.out.println(jugadores.get(partes[2]));
-                    }
-                    if (partes.length >= 2) {
+                    } else  if (partes.length >= 2) {
                         for (int i = 1; i < partes.length; i++) {
                             nombre_casilla = nombre_casilla.concat(partes[i]);
                         }

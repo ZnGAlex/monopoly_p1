@@ -4,6 +4,8 @@ import monopoly.persona.*;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 public class Casilla {
     private String nombre;
@@ -167,17 +169,18 @@ public class Casilla {
     }
 
     public String stringAvatares() {
-        String avatares = "";
+        String cadena_avatares = "";
         String cadena = "";
         if (this.avatares.size() != 0) {
-            Iterator it = this.avatares.entrySet().iterator();
-            while (it.hasNext()) {
-                Avatar a = (Avatar) it.next();
-                avatares = avatares.concat(a.getFicha());
+            Iterator avatares_it = this.avatares.entrySet().iterator();
+            while (avatares_it.hasNext()) {
+                Map.Entry mp = (Map.Entry) avatares_it.next();
+                Avatar a = (Avatar) mp.getValue();
+                cadena_avatares = cadena_avatares.concat(a.getId());
             }
         }
-        cadena = cadena.concat(avatares);
-        int t = Valor.TAMANHO_CASILLA - avatares.length();
+        cadena = cadena.concat(cadena_avatares);
+        int t = Valor.TAMANHO_CASILLA - cadena_avatares.length();
         for (int i = 0; i < t; i++)
             cadena = cadena.concat(" ");
 
