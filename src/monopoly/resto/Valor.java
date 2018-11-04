@@ -21,6 +21,8 @@ public class Valor {
     public static final int COSTE_GRUPO_AZUL = (int) (COSTE_GRUPO_VERDE * 1.3);
     public static final int ALQUILER_GRUPO_AZUL = COSTE_GRUPO_AZUL / 2;
     public static final int FORTUNA_INICIAL = 500000; // temporal
+    public static final int CANTIDAD_PASAR_SALIDA = ((COSTE_GRUPO_NEGRO + COSTE_GRUPO_AZUL)*2 + (COSTE_GRUPO_CYAN + COSTE_GRUPO_ROSA + COSTE_GRUPO_NARANJA + COSTE_GRUPO_ROJO + COSTE_GRUPO_AMARILLO + COSTE_GRUPO_VERDE)*3)/22;
+    public static final int COSTE_SALIR_CARCEL = (int)(CANTIDAD_PASAR_SALIDA * 0.25);
     public static final String GRUPO_NEGRO = "Negro";
     public static final String GRUPO_CYAN = "Cyan";
     public static final String GRUPO_ROSA = "Rosa";

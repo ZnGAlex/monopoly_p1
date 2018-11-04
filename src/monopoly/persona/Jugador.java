@@ -137,6 +137,18 @@ public class Jugador {
         }
         return cadena;
     }
+    
+    public void tirarDadosJugador(Tablero tablero){
+        Dado dados = new Dado();
+        
+        do{
+            avatar.moverAvatar(dados.tirarDados(), tablero);
+        }while(dados.dadosIguales());
+    }
+    
+    public void salirCarcel(){
+        System.out.println(nombre + " paga " + Valor.COSTE_SALIR_CARCEL +  " y sale de la cárcel. Puede lanzar los dados.");
+    }
 
     @Override
     public boolean equals(Object o) {

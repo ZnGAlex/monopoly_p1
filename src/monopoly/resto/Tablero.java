@@ -148,7 +148,7 @@ public class Tablero {
     //metodos
     
     /**
-     * BUsca una casilla del tablero por su nombre
+     * Busca una casilla del tablero por su nombre
      * @param nombre Nombre de la casila a buscar
      * @return Casilla si existe. Si no existe return null
      */
