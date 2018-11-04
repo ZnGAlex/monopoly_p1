@@ -118,6 +118,17 @@ public class Menu {
                         }
                     }
                     break;
+                case "jugador":
+                        /*COMPLETAR JUGADOR ACTUAL CUANDO TURNO ESTE LISTO*/
+                    break;
+                    
+                case "lanzar":
+                    if(!partes[1].equals("dados"))
+                        System.out.println("\nComando incorrecto.");
+                    else{
+                        /*COMPLETA CON TIRARDADOSJUGADOR CUANDO TURNO ESTÉ LISTO*/
+                    }    
+                    
                 default:
                     System.out.println("\nComando incorrecto.");
                     break;

@@ -1,5 +1,6 @@
 package monopoly.persona;
 
+import java.util.ArrayList;
 import monopoly.resto.*;
 
 public class Avatar {
@@ -7,7 +8,26 @@ public class Avatar {
     private String ficha;
     private Jugador jugador;
     private Casilla casilla;
+    
+    
+    // constructores
 
+    public Avatar(Jugador jugador, String ficha, Casilla casilla) {
+        if(jugador != null && ficha != null){
+            Character n = (char) Math.ceil(Math.random() * 255);
+            this.id = n.toString();
+            this.jugador = jugador;
+            this.ficha = ficha;
+            this.casilla = casilla;
+        }
+        else{
+            System.out.println("ERROR CONSTRUCTOR AVATAR: jugador o ficha nulo/s\n");
+            System.exit(1);
+        }
+    }
+
+    // getters y setters
+    
     public String getId() {
         return id;
     }
@@ -39,21 +59,28 @@ public class Avatar {
     public void setCasilla(Casilla casilla) {
         this.casilla = casilla;
     }
-
-    // constructores
-
-    public Avatar(Jugador jugador, String ficha, Casilla casilla) {
-        if(jugador != null && ficha != null){
-            Character n = (char) Math.ceil(Math.random() * 255);
-            this.id = n.toString();
-            this.jugador = jugador;
-            this.ficha = ficha;
-            this.casilla = casilla;
-        }
-        else{
-            System.out.println("ERROR CONSTRUCTOR AVATAR: jugador o ficha nulo/s\n");
+    
+    // metodos
+    
+    public void moverAvatar(int avance,Tablero tablero){
+       if(avance < 0){
+            System.out.println(Valor.ANSI_ROJO + "Avance negativo.");
             System.exit(1);
-        }
+       }
+       if(tablero == null){
+            System.out.println(Valor.ANSI_ROJO + "Tablero nulo.");
+            System.exit(1);
+       }
+       for(ArrayList<Casilla> n : tablero.getCasillas()){
+           if(n.contains(this.casilla)){
+               int newPos = n.indexOf(casilla) + avance;             
+               while(newPos > n.size()){
+                   newPos -= 10;
+                   n = tablero.getCasillas().get((tablero.getCasillas().indexOf(n)+1)%4); /*Siguiente lado del tablero*/
+               }
+               this.casilla = n.get(newPos);
+           }
+       }
     }
     
     @Override

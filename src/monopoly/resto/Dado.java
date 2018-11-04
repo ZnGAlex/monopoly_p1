@@ -16,13 +16,6 @@ public class Dado {
 
 
     //getters y setters
-    
-    public static int tirarDados() {
-        Random random = new Random();
-
-        return random.nextInt((6-1) + 1) + 1 + random.nextInt((6-1)+1)+1;
-    }
-
 
     public int getDado1() {
         return dado1;
@@ -44,12 +37,20 @@ public class Dado {
     
     /**
      * Modifica el valor de los dados de manera aleatoria
-     * @return True si los dados tienen el mismo valor, False si no tienen el mismo valor
+     * @return Valor total de ambos dados
      */
-    public boolean refreshDado(){
-        Random rn = new Random();
-        dado1 = rn.nextInt(7);
-        dado2 = rn.nextInt(7);
+    public int tirarDados(){
+        Random random = new Random();
+        dado1 = random.nextInt((6-1) + 1) + 1;
+        dado2 = random.nextInt((6-1) + 1) + 1;
+        return dado1 + dado2;
+    }
+    
+    /**
+     * Comprueba si dado1 == dado2
+     * @return True si dado1 == dado2, False si dado1 != dado2
+     */
+    public boolean dadosIguales(){
         return dado1 == dado2;
     }
 }
