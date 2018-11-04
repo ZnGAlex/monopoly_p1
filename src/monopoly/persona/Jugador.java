@@ -66,7 +66,7 @@ public class Jugador {
     // setter y getter
 
     // constructores
-    public Jugador(String nombre, String ficha) {
+    public Jugador(String nombre, String ficha, Casilla casilla) {
         if (nombre == null) {
             System.out.println(Valor.ANSI_ROJO + "Nombre nulo.");
             System.exit(1);
@@ -76,7 +76,7 @@ public class Jugador {
             System.exit(1);
         }
         if (ficha.equalsIgnoreCase("Esfinge") || ficha.equalsIgnoreCase("Coche") || ficha.equalsIgnoreCase("Sombrero") || ficha.equalsIgnoreCase("Pelota"))
-            this.avatar = new Avatar(this, ficha);
+            this.avatar = new Avatar(this, ficha, casilla);
         else {
             System.out.println(Valor.ANSI_ROJO + "Ficha debe ser: Esfinge, Coche, Sombrero o Pelota");
             System.exit(1);

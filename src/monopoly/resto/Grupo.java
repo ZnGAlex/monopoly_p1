@@ -79,4 +79,9 @@ public class Grupo {
                 return "";
         }
     }
+
+    @Override
+    public String toString() {
+        return this.color;
+    }
 }

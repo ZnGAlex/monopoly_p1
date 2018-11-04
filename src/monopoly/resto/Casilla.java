@@ -3,6 +3,9 @@ package monopoly.resto;
 import monopoly.persona.*;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 public class Casilla {
     private String nombre;
@@ -86,35 +89,35 @@ public class Casilla {
         this.grupo = grupo;
         this.propietario = null;
         switch (grupo.getColor()) {
-            case "MARRON":
+            case Valor.GRUPO_NEGRO:
                 this.valor = Valor.COSTE_GRUPO_NEGRO;
                 this.alquiler = Valor.ALQUILER_GRUPO_NEGRO;
                 break;
-            case "CYAN":
+            case Valor.GRUPO_CYAN:
                 this.valor = Valor.COSTE_GRUPO_CYAN;
                 this.alquiler = Valor.ALQUILER_GRUPO_CYAN;
                 break;
-            case "ROSA":
+            case Valor.GRUPO_ROSA:
                 this.valor = Valor.COSTE_GRUPO_ROSA;
                 this.alquiler = Valor.ALQUILER_GRUPO_ROSA;
                 break;
-            case "NARANJA":
+            case Valor.GRUPO_NARANJA:
                 this.valor = Valor.COSTE_GRUPO_NARANJA;
                 this.alquiler = Valor.ALQUILER_GRUPO_NARANJA;
                 break;
-            case "ROJO":
+            case Valor.GRUPO_ROJO:
                 this.valor = Valor.COSTE_GRUPO_ROJO;
                 this.alquiler = Valor.ALQUILER_GRUPO_ROJO;
                 break;
-            case "AMARILLO":
+            case Valor.GRUPO_AMARILLO:
                 this.valor = Valor.COSTE_GRUPO_AMARILLO;
                 this.alquiler = Valor.ALQUILER_GRUPO_AMARILLO;
                 break;
-            case "VERDE":
+            case Valor.GRUPO_VERDE:
                 this.valor = Valor.COSTE_GRUPO_VERDE;
                 this.alquiler = Valor.ALQUILER_GRUPO_VERDE;
                 break;
-            case "AZUL":
+            case Valor.GRUPO_AZUL:
                 this.valor = Valor.COSTE_GRUPO_AZUL;
                 this.alquiler =Valor.ALQUILER_GRUPO_AZUL;
                 break;
@@ -125,11 +128,11 @@ public class Casilla {
     
     public Casilla (String nombre, String tipo){
         if (nombre == null) {
-            System.out.println(Valor.ANSI_ROJO + "Nombre nulo.");
+            System.out.println(Valor.ANSI_ROJO + "Nombre nulo." + Valor.ANSI_RESET);
             System.exit(1);
         }
         if (tipo == null) {
-            System.out.println(Valor.ANSI_ROJO + "Tipo nulo.");
+            System.out.println(Valor.ANSI_ROJO + "Tipo nulo." + Valor.ANSI_RESET);
             System.exit(1);
         }
         this.nombre = nombre;
@@ -146,7 +149,7 @@ public class Casilla {
         String cadena = "{\n " +
                 "\t tipo: " + this.tipo +
                 ",\n\t grupo: " + this.grupo +
-                ",\n\t propietario: " + this.propietario.getNombre() +
+                ",\n\t propietario: " +
                 ",\n\t valor: " + this.valor +
                 ",\n\t alquiler actual: " + this.alquiler +
                 ",\n\t alquiler inicial: " + this.valor * 0.9 +
@@ -165,27 +168,56 @@ public class Casilla {
         return cadena;
     }
 
-    public String printLinea() {
-        int veces = this.nombre.length();
+    public String stringAvatares() {
+        String cadena_avatares = "";
         String cadena = "";
-        for (int i = 0; i < veces; i++)
-            cadena = cadena.concat("-");
+        if (this.avatares.size() != 0) {
+            Iterator avatares_it = this.avatares.values().iterator();
+            while (avatares_it.hasNext()) {
+                Avatar a = (Avatar) avatares_it.next();
+                cadena_avatares = cadena_avatares.concat("&" + a.getId());
+            }
+        }
+        cadena = cadena.concat(cadena_avatares);
+        int t = Valor.TAMANHO_CASILLA - cadena_avatares.length();
+        for (int i = 0; i < t; i++)
+            cadena = cadena.concat(" ");
 
         return cadena;
     }
 
     public String printNombreColor() {
-        String nombre;
-        if (this.grupo != null)
+        String nombre = "";
+        int t;
+        if (this.nombre.length() < Valor.TAMANHO_CASILLA) {
+            t = Valor.TAMANHO_CASILLA - this.nombre.length();
+            if (t%2 == 0) {
+                for (int i = 0; i < t / 2; i++)
+                    nombre = nombre.concat(" ");
+                if (this.grupo != null)
+                    nombre = nombre.concat(this.grupo.obtenerColorPrint() + this.nombre + Valor.ANSI_RESET);
+                else
+                    nombre = nombre.concat(this.nombre);
+                for (int i = 0; i < t / 2; i++)
+                    nombre = nombre.concat(" ");
+            } else {
+                for (int i = 0; i < (t / 2) + 1; i++)
+                    nombre = nombre.concat(" ");
+                if (this.grupo != null)
+                    nombre = nombre.concat(this.grupo.obtenerColorPrint() + this.nombre + Valor.ANSI_RESET);
+                else
+                    nombre = nombre.concat(this.nombre);
+                for (int i = 0; i < t / 2; i++)
+                    nombre = nombre.concat(" ");
+            }
+        } else
             nombre = this.grupo.obtenerColorPrint() + this.nombre + Valor.ANSI_RESET;
-        else
-            nombre = this.nombre;
         return nombre;
     }
 
     @Override
     public String toString() {
-       String cadena = this.printNombreColor() + "|";
+       String cadena = this.printNombreColor();
 
        return cadena;
     }

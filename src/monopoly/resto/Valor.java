@@ -52,25 +52,25 @@ public class Valor {
     public static final String SOLAR2_GRUPO_NEGRO = "Ventormenta";
     public static final String SOLAR1_GRUPO_CYAN = "Lunargenta";
     public static final String SOLAR2_GRUPO_CYAN = "Entrañas";
-    public static final String SOLAR3_GRUPO_CYAN = "Cima del Trueno";
+    public static final String SOLAR3_GRUPO_CYAN = "CimadelTrueno";
     public static final String SOLAR1_GRUPO_ROSA = "Forjaz";
     public static final String SOLAR2_GRUPO_ROSA = "Darnassus";
     public static final String SOLAR3_GRUPO_ROSA = "Exodar";
     public static final String SOLAR1_GRUPO_NARANJA = "Dalaran";
-    public static final String SOLAR2_GRUPO_NARANJA = "Bosque Cancion Eterna";
-    public static final String SOLAR3_GRUPO_NARANJA = "Bosque de Elwynn";
-    public static final String SOLAR1_GRUPO_ROJO = "Claros de Tirisfal";
+    public static final String SOLAR2_GRUPO_NARANJA = "BosqueCancionEterna";
+    public static final String SOLAR3_GRUPO_NARANJA = "BosquedeElwynn";
+    public static final String SOLAR1_GRUPO_ROJO = "ClarosdeTirisfal";
     public static final String SOLAR2_GRUPO_ROJO = "Durotar";
     public static final String SOLAR3_GRUPO_ROJO = "Vallefresno";
-    public static final String SOLAR1_GRUPO_AMARILLO = "Laderas de Trabalomas";
-    public static final String SOLAR2_GRUPO_AMARILLO = "Montañas de Alterac";
-    public static final String SOLAR3_GRUPO_AMARILLO = "Tierras Altas de Arathi";
+    public static final String SOLAR1_GRUPO_AMARILLO = "LaderasdeTrabalomas";
+    public static final String SOLAR2_GRUPO_AMARILLO = "MontañasdeAlterac";
+    public static final String SOLAR3_GRUPO_AMARILLO = "TierrasAltasdeArathi";
     public static final String SOLAR1_GRUPO_VERDE = "Frondavil";
-    public static final String SOLAR2_GRUPO_VERDE = "Costa Oscura";
-    public static final String SOLAR3_GRUPO_VERDE = "Los Baldios";
-    public static final String SOLAR1_GRUPO_AZUL = "Crater de Un'Goro";
-    public static final String SOLAR2_GRUPO_AZUL = "Corona de Hielo";
-    public static final String CASILLa_TIPO_SOLAR = "solar";
+    public static final String SOLAR2_GRUPO_VERDE = "CostaOscura";
+    public static final String SOLAR3_GRUPO_VERDE = "LosBaldios";
+    public static final String SOLAR1_GRUPO_AZUL = "CraterdeUn'Goro";
+    public static final String SOLAR2_GRUPO_AZUL = "CoronadeHielo";
+    public static final String CASILLA_TIPO_SOLAR = "solar";
     public static final String CASILLA_SALIDA = "Salida";
     public static final String CASILLA_IMPUESTO = "Impuesto1";
     public static final String CASILLA_IMPUESTO2 = "Impuesto2";
@@ -81,6 +81,9 @@ public class Valor {
     public static final String CASILLA_SUERTE = "Suerte";
     public static final String CASILLA_CAJA = "Caja";
     public static final String CASILLA_CARCEL = "Carcel";
+    public static final String CASILLA_SERVICIO = "Servicio";
+    public static final String CASILLA_IR_CARCEL = "Ir a carcel";
+    public static final String CASILLA_PARKING = "Parking";
     public static final String CASILLA_TIPO_TRANSPORTE = "transporte";
     public static final String CASILLA_TIPO_SERVICIO = "servicio";
     public static final String CASILLA_TIPO_SUERTE = "suerte";
@@ -91,7 +94,20 @@ public class Valor {
     public static final String CASILLA_TIPO_IMPUESTO = "impuesto";
     public static final String CASILLA_TIPO_IR_CARCEL = "ir_carcel";
     public static final String CASILLA_TIPO_CAJA = "caja";
-    
+    public static final String LINEA_HORIZONTAL = new String(Character.toChars(0x2500));
+    public static final String LINEA_VERTICAL = new String(Character.toChars(0x2502));
+    public static final String ESQUINA_SUPERIOR_IZQUIERDA = new String(Character.toChars(0x250c));
+    public static final String ESQUINA_SUPERIOR_DERECHA = new String(Character.toChars(0x2510));
+    public static final String ESQUINA_INFERIOR_IZQUIERDA = new String(Character.toChars(0x2514));
+    public static final String ESQUINA_INFERIOR_DERECHA = new String(Character.toChars(0x2518));
+    public static final String INTERSECCION_IZQUIERDA = new String(Character.toChars(0x251c));
+    public static final String INTERSECCION_DERECHA = new String(Character.toChars(0x2524));
+    public static final String INTERSECCION_SUPERIOR = new String(Character.toChars(0x252c));
+    public static final String INTERSECCION_INFERIOR = new String(Character.toChars(0x2534));
+    public static final String INTERSECCION_TOTAL = new String(Character.toChars(0x253c));
+    public static final int TAMANHO_CASILLA = Valor.SOLAR3_GRUPO_AMARILLO.length() + 5; // aumentamos algo o tamaño para que non quede tan axustada a casilla
+    public static final int TAMANHO_LINEA = TAMANHO_CASILLA * 11;
+
     public void aumentarValor5(Tablero t){
         for(ArrayList<Casilla> a: t.getCasillas()){
             for(Casilla casilla: a){

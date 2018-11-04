@@ -14,8 +14,16 @@ public class Dado {
         dado2 = 0;
     }
 
+
     //getters y setters
     
+    public static int tirarDados() {
+        Random random = new Random();
+
+        return random.nextInt((6-1) + 1) + 1 + random.nextInt((6-1)+1)+1;
+    }
+
+
     public int getDado1() {
         return dado1;
     }
