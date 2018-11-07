@@ -71,6 +71,7 @@ public class Avatar {
             System.out.println(Valor.ANSI_ROJO + "Tablero nulo.");
             System.exit(1);
        }
+       this.casilla.eliminarAvatar(this);
        for(ArrayList<Casilla> n : tablero.getCasillas()){
            if(n.contains(this.casilla)){
                int newPos = n.indexOf(casilla) + avance;             
@@ -81,6 +82,7 @@ public class Avatar {
                this.casilla = n.get(newPos);
            }
        }
+       this.casilla.añadirAvatar(this);
     }
     
     @Override

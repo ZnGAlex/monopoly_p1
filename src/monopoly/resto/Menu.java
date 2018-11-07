@@ -87,14 +87,14 @@ public class Menu {
                                 if(tablero.casillaByName(unido) == null)
                                     System.out.println("La casilla " + unido + " no existe.");
                                 else
-                                    tablero.casillaByName(unido).info();
+                                    System.out.println(tablero.casillaByName(unido).info());
                         }
                     }
                     break;
                 case "jugador": /*MOSTRAR TURNO ACTUAL*/
                     System.out.println("\n" +
                             "\t nombre: " + turno.turnoActual().getNombre() +
-                            ",\n\t avatar: " + turno.turnoActual().getAvatar());
+                            ",\n\t avatar: " + turno.turnoActual().getAvatar().getId());
                     break;                    
                 case "lanzar": /*LANZAR LOS DADOS*/
                     if(!partes[1].equals("dados"))
@@ -114,6 +114,7 @@ public class Menu {
                     else{
                         System.out.println("Debes lanzar los dados antes de acabar tu turno");
                     }
+                    break;
                 case "ver":
                     if(!partes[1].equals("tablero"))
                         System.out.println("Comando incorrecto.");

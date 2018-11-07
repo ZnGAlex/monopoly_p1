@@ -168,6 +168,22 @@ public class Casilla {
         return cadena;
     }
 
+    //metodos
+    
+    public void añadirAvatar(Avatar avatar){
+        if(!this.avatares.containsKey(avatar.getId())){
+            this.avatares.put(avatar.getId(), avatar);
+        }
+        else System.out.println("El avatar ya estaba en la casilla");
+    }
+    
+    public void eliminarAvatar(Avatar avatar){
+        if(this.avatares.containsKey(avatar.getId())){
+            this.avatares.remove(avatar.getId());
+        }
+        else System.out.println("El avatar no esta en la casilla");
+    }
+    
     public String stringAvatares() {
         String cadena_avatares = "";
         String cadena = "";
