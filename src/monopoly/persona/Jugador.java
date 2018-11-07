@@ -140,9 +140,13 @@ public class Jugador {
     
     public void tirarDadosJugador(Tablero tablero){
         Dado dados = new Dado();
+        int pares = 0,desplazamiento = 0;
         
         do{
-            avatar.moverAvatar(dados.tirarDados(), tablero);
+            desplazamiento = dados.tirarDados();
+            System.out.println(this.nombre + " se desplaza " + desplazamiento + " posiciones");
+            avatar.moverAvatar(desplazamiento, tablero);
+            pares++;
         }while(dados.dadosIguales());
     }
     
