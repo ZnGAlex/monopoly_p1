@@ -15,6 +15,7 @@ public class Menu {
         HashMap<String, Avatar> avatares = new HashMap<>();
         HashMap<String, Jugador> jugadores = new HashMap<>();
         ArrayList<Jugador> jgdrs = new ArrayList<>();
+        boolean lanzoDados = false;
 
         System.out.println("Cuantos jugadores hay?");
         Scanner s = new Scanner(System.in);
@@ -47,7 +48,6 @@ public class Menu {
             String comando = partes[0];
 
             int n = 0;
-            boolean lanzoDados = false;
 
             switch (comando) {
                 case "salir": /*SALIR DEL PROGRAMA*/
@@ -110,7 +110,8 @@ public class Menu {
                     else if (lanzoDados) {
                         turno.siguienteTurno();
                         System.out.println("Turno de " + turno.turnoActual());
-                    } else {
+                    }
+                    else{
                         System.out.println("Debes lanzar los dados antes de acabar tu turno");
                     }
                     break;
