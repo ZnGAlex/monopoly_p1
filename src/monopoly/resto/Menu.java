@@ -47,7 +47,6 @@ public class Menu {
             String[] partes = orden.split(" ");
             String comando = partes[0];
 
-            int n = 0;
 
             switch (comando) {
                 case "salir": /*SALIR DEL PROGRAMA*/

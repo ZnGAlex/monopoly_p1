@@ -10,6 +10,7 @@ import java.util.Set;
 public class Casilla {
     private String nombre;
     private String tipo;
+    int posicion;
     private Grupo grupo;
     private Jugador propietario;
     private int valor;
@@ -83,10 +84,11 @@ public class Casilla {
 
     // constructores
 
-    public Casilla (String nombre, String tipo, Grupo grupo) {
+    public Casilla (String nombre, String tipo, Grupo grupo,int posicion) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.grupo = grupo;
+        this.posicion = posicion;
         this.propietario = null;
         switch (grupo.getColor()) {
             case Valor.GRUPO_NEGRO:
@@ -126,7 +128,7 @@ public class Casilla {
         this.edificios = new HashMap<>();
     }
     
-    public Casilla (String nombre, String tipo){
+    public Casilla (String nombre, String tipo, int posicion){
         if (nombre == null) {
             System.out.println(Valor.ANSI_ROJO + "Nombre nulo." + Valor.ANSI_RESET);
             System.exit(1);
@@ -137,6 +139,7 @@ public class Casilla {
         }
         this.nombre = nombre;
         this.tipo = tipo;
+        this.posicion = posicion;
         this.grupo = null;
         this.alquiler = 0;
         this.propietario = null;
