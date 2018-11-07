@@ -88,7 +88,7 @@ public class Avatar {
         String cadena= "{\n " +
                             "\t id: " + this.id +
                             ",\n\t tipo: " + this.ficha +
-                            ",\n\t casilla: placeholder" +
+                            ",\n\t casilla: " + this.casilla.getNombre() +
                             ",\n\t jugador: " + this.jugador.getNombre() + "\n}" ;
         return cadena;
     }

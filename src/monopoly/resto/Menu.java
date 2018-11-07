@@ -7,9 +7,6 @@ import java.util.Scanner;
 import java.util.StringJoiner;
 
 public class Menu {
-
-
-    Tablero tablero;
     
     public Menu() {
         Tablero tablero = new Tablero();
@@ -33,7 +30,7 @@ public class Menu {
                 String ficha = datos.nextLine();
                 Jugador j = new Jugador(nombre, ficha, tablero.getCasillas().get(0).get(0));
                 jugadores.put(nombre, j);
-                avatares.put(nombre,j.getAvatar());
+                avatares.put(j.getAvatar().getId(),j.getAvatar());
                 jgdrs.add(j);
             }
         }
@@ -47,7 +44,6 @@ public class Menu {
             String[] partes = orden.split(" ");
             String comando = partes[0];
 
-            String nombre_casilla = "";
             int n = 0;
             boolean lanzoDados = false;
 
@@ -61,40 +57,41 @@ public class Menu {
                             turno.turnoActual().salirCarcel();
                     }
                 case "describir": /*DESCRIBIR JUGADOR/AVATAR/CASILLA*/
-
-                    if (partes.length < 2 || partes.length > 3)
+                    if (partes.length > 3)
                         System.out.println("\nComando incorrecto.");
                     else {
                         switch(partes[1]){
                             case "jugador":
+                                if (partes.length < 3) {
+                                    System.out.println("Indique el nombre del jugador.");
+                                    break;
+                                }
                                 if (jugadores.get(partes[2]) == null)
                                     System.out.println("El jugador " + partes[2] + " no existe.");
                                 else
                                     System.out.println(jugadores.get(partes[2]));
                                 break;
                             case "avatar":
-                                if(tablero.getJugadores().get(partes[2]) == null)
+                                if (partes.length < 3) {
+                                    System.out.println("Indique el nombre del avatar.");
+                                    break;
+                                }
+                                if(jugadores.get(partes[2]) == null)
                                     System.out.println("El avatar " + partes[2] + " no existe.");
                                 else
-                                    tablero.getJugadores().get(partes[2]).toString();
-                                
+                                    System.out.println(jugadores.get(partes[2]).getAvatar());
                                 break;
                             default:
-                                String unido = "";
-                                for(int i=1; i< partes.length;i++){
-                                    unido = unido.concat(partes[i] + "");
-                                }
-                                if(tablero.casillaByName(unido) == null)
-                                    System.out.println("La casilla " + unido + " no existe.");
+                                if(tablero.casillaByName(partes[1]) == null)
+                                    System.out.println("La casilla " + partes[1] + " no existe.");
                                 else
-                                    tablero.casillaByName(unido).info();
+                                    System.out.println(tablero.casillaByName(partes[1]).info());
                         }
                     }
                     break;
                 case "jugador": /*MOSTRAR TURNO ACTUAL*/
-                    System.out.println("\n" +
-                            "\t nombre: " + turno.turnoActual().getNombre() +
-                            ",\n\t avatar: " + turno.turnoActual().getAvatar());
+                    System.out.println("\t nombre: " + turno.turnoActual().getNombre());
+                    System.out.println("\t avatar: " + turno.turnoActual().getAvatar().getId());
                     break;                    
                 case "lanzar": /*LANZAR LOS DADOS*/
                     if(!partes[1].equals("dados"))

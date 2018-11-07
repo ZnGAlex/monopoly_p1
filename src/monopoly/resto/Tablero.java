@@ -154,12 +154,13 @@ public class Tablero {
      */
     public Casilla casillaByName(String nombre){
         if(nombre == null){
-            System.out.println(Valor.ANSI_ROJO + "Nombre nulo.");
+            System.out.println(Valor.ANSI_ROJO + "Nombre nulo." + Valor.ANSI_RESET);
             System.exit(1);
         }
         for(ArrayList<Casilla> n: casillas){
             for(Casilla cas: n){
-                if (cas.getNombre().equals(nombre)) return cas;
+                if (cas.getNombre().equals(nombre))
+                    return cas;
             }
         }
             return null;      
