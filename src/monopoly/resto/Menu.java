@@ -1,13 +1,15 @@
 package monopoly.resto;
 
 import java.util.ArrayList;
+
 import monopoly.persona.*;
+
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.StringJoiner;
 
 public class Menu {
-    
+
     public Menu() {
         Tablero tablero = new Tablero();
         HashMap<String, Avatar> avatares = new HashMap<>();
@@ -30,7 +32,7 @@ public class Menu {
                 String ficha = datos.nextLine();
                 Jugador j = new Jugador(nombre, ficha, tablero.getCasillas().get(0).get(0));
                 jugadores.put(nombre, j);
-                avatares.put(j.getAvatar().getId(),j.getAvatar());
+                avatares.put(j.getAvatar().getId(), j.getAvatar());
                 jgdrs.add(j);
             }
         }
@@ -47,20 +49,19 @@ public class Menu {
             int n = 0;
             boolean lanzoDados = false;
 
-            switch(comando) {
+            switch (comando) {
                 case "salir": /*SALIR DEL PROGRAMA*/
-                    if (partes.length == 1){
+                    if (partes.length == 1) {
                         System.out.println("\nGracias por jugar.");
                         return;
-                    }
-                    else if (!partes[1].equals("carcel")){
-                            turno.turnoActual().salirCarcel();
+                    } else if (!partes[1].equals("carcel")) {
+                        turno.turnoActual().salirCarcel();
                     }
                 case "describir": /*DESCRIBIR JUGADOR/AVATAR/CASILLA*/
                     if (partes.length > 3)
                         System.out.println("\nComando incorrecto.");
                     else {
-                        switch(partes[1]){
+                        switch (partes[1]) {
                             case "jugador":
                                 if (partes.length < 3) {
                                     System.out.println("Indique el nombre del jugador.");
@@ -76,43 +77,45 @@ public class Menu {
                                     System.out.println("Indique el nombre del avatar.");
                                     break;
                                 }
-                                if(jugadores.get(partes[2]) == null)
+                                if (jugadores.get(partes[2]) == null)
                                     System.out.println("El avatar " + partes[2] + " no existe.");
                                 else
                                     System.out.println(jugadores.get(partes[2]).getAvatar());
                                 break;
                             default:
-                                if(tablero.casillaByName(partes[1]) == null)
+                                if (tablero.casillaByName(partes[1]) == null)
                                     System.out.println("La casilla " + partes[1] + " no existe.");
-                                else
+                                else {
                                     System.out.println(tablero.casillaByName(partes[1]).info());
+                                }
+                                break;
                         }
                     }
                     break;
                 case "jugador": /*MOSTRAR TURNO ACTUAL*/
                     System.out.println("\t nombre: " + turno.turnoActual().getNombre());
                     System.out.println("\t avatar: " + turno.turnoActual().getAvatar().getId());
-                    break;                    
+                    break;
                 case "lanzar": /*LANZAR LOS DADOS*/
-                    if(!partes[1].equals("dados"))
+                    if (!partes[1].equals("dados"))
                         System.out.println("\nComando incorrecto.");
-                    else{
+                    else {
                         turno.turnoActual().tirarDadosJugador(tablero);
                         lanzoDados = true;
                     }
                     break;
                 case "acabar":
-                    if(!partes[1].equals("turno"))
+                    if (!partes[1].equals("turno"))
                         System.out.println("Comando incorrecto.");
-                    else if(lanzoDados){
+                    else if (lanzoDados) {
                         turno.siguienteTurno();
                         System.out.println("Turno de " + turno.turnoActual());
-                    }
-                    else{
+                    } else {
                         System.out.println("Debes lanzar los dados antes de acabar tu turno");
                     }
+                    break;
                 case "ver":
-                    if(!partes[1].equals("tablero"))
+                    if (!partes[1].equals("tablero"))
                         System.out.println("Comando incorrecto.");
                     else System.out.println(tablero);
                     break;
