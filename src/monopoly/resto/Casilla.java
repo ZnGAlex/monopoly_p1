@@ -82,6 +82,10 @@ public class Casilla {
         this.edificios = edificios;
     }
 
+    public int getPosicion() {
+        return this.posicion;
+    }
+
     // constructores
 
     public Casilla (String nombre, String tipo, Grupo grupo,int posicion) {

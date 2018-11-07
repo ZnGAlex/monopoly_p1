@@ -71,18 +71,23 @@ public class Avatar {
             System.out.println(Valor.ANSI_ROJO + "Tablero nulo.");
             System.exit(1);
        }
+       int posicionActual = this.casilla.getPosicion();
+       int lado = (posicionActual + avance) / 10;
+       int posicionNueva = (posicionActual + avance) % 10;
        this.casilla.eliminarAvatar(this);
-       for(ArrayList<Casilla> n : tablero.getCasillas()){
+        this.casilla = tablero.getCasillas().get(lado).get(posicionNueva);
+       tablero.getCasillas().get(lado).get(posicionNueva).getAvatares().put(this.getId(), this);
+       /*for(ArrayList<Casilla> n : tablero.getCasillas()){
            if(n.contains(this.casilla)){
                int newPos = n.indexOf(casilla) + avance;             
                while(newPos > n.size()){
                    newPos -= 10;
-                   n = tablero.getCasillas().get((tablero.getCasillas().indexOf(n)+1)%4); /*Siguiente lado del tablero*/
+                   n = tablero.getCasillas().get((tablero.getCasillas().indexOf(n)+1)%4);  // Siguiente lado del tablero
                }
                this.casilla = n.get(newPos);
            }
        }
-       this.casilla.añadirAvatar(this);
+       this.casilla.añadirAvatar(this);*/
     }
     
     @Override
