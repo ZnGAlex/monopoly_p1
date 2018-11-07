@@ -68,7 +68,7 @@ public class Tablero {
         Casilla suerte2 = new Casilla(Valor.CASILLA_SUERTE, Valor.CASILLA_TIPO_SUERTE,Valor.POSICION_CASILLA_SUERTE2);
         Casilla transporte3 = new Casilla(Valor.CASILLA_TRANSPORTE3, Valor.CASILLA_TIPO_TRANSPORTE,Valor.POSICION_CASILLA_TRANSPORTE3);
         Casilla servicio2 = new Casilla(Valor.CASILLA_SERVICIO, Valor.CASILLA_TIPO_SERVICIO,Valor.POSICION_CASILLA_SERVICIO2);
-        Casilla ircarcel = new Casilla(Valor.CASILLA_IR_CARCEL, Valor.CASILLA_TIPO_IR_CARCEL,Valor.POSICION_CASILLA_IRCARCEL);
+        Casilla ircarcel = new Casilla(Valor.CASILLA_IR_CARCEL, Valor.CASILLA_TIPO_IR_CARCEL,Valor.POSICION_CASILLA_IR_CARCEL);
         Casilla caja3 = new Casilla(Valor.CASILLA_CAJA, Valor.CASILLA_TIPO_CAJA,Valor.POSICION_CASILLA_CAJA3);
         Casilla transporte4 = new Casilla(Valor.CASILLA_TRANSPORTE4, Valor.CASILLA_TIPO_TRANSPORTE,Valor.POSICION_CASILLA_TRANSPORTE4);
         Casilla suerte3 = new Casilla(Valor.CASILLA_SUERTE, Valor.CASILLA_TIPO_SUERTE,Valor.POSICION_CASILLA_SUERTE3);
