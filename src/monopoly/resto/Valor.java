@@ -134,7 +134,7 @@ public class Valor {
     public static final int POSICION_CASILLA_TRANSPORTE4 = 35;
     public static final int POSICION_CASILLA_SUERTE3 = 36;
     public static final int POSICION_SOLAR1_GRUPO_AZUL = 37;
-    public static final int POSICION_CASILLA_IMPUESTO2 = 38
+    public static final int POSICION_CASILLA_IMPUESTO2 = 38;
     public static final int POSICION_SOLAR2_GRUPO_AZUL = 39;
     public static final String LINEA_HORIZONTAL = new String(Character.toChars(0x2500));
     public static final String LINEA_VERTICAL = new String(Character.toChars(0x2502));

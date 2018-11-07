@@ -60,7 +60,7 @@ public class Turno {
     }
     
     public void siguienteTurno(){
-        turno += turno%jugadores.size();
+        turno = (turno+1)%jugadores.size();
     }
     
 }
