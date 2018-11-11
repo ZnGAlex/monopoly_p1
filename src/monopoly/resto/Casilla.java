@@ -147,9 +147,42 @@ public class Casilla {
         this.grupo = null;
         this.alquiler = 0;
         this.propietario = null;
-        this.valor = 0;
         this.avatares = new HashMap<>();
         this.edificios = null;
+        
+        switch(tipo){
+            case "transporte":
+                this.valor = Valor.COSTE_CASILLA_TRANSPORTE;
+                break;
+            case "servicio":
+                this.valor = Valor.COSTE_CASILLA_SERVIVIO;
+                break;
+            default:
+                this.valor = 0;
+        }
+               
+    }
+   
+    
+    public String shortInfo() {
+        String cadena = new String();
+        switch(tipo){
+            case "solar":
+                cadena = "{\n " +
+                    "\t tipo: " + this.tipo +
+                    ",\n\t grupo: " + this.grupo +
+                    ",\n\t valor: " + this.valor +
+                    "\n}";
+                break;
+            case "transporte": case "servicio":
+                cadena = "{\n " +
+                    "\t tipo: " + this.tipo +
+                    ",\n\t valor: " + this.valor +
+                    "\n}";
+                break;
+        }
+        
+        return cadena;
     }
 
     public String info() {
@@ -176,6 +209,10 @@ public class Casilla {
     }
 
     //metodos
+    
+    public boolean seVende(){
+        return propietario == null && valor>0;
+    }
     
     public void añadirAvatar(Avatar avatar){
         if(!this.avatares.containsKey(avatar.getId())){

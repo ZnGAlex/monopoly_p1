@@ -165,6 +165,17 @@ public class Tablero {
         }
             return null;      
     }
+    
+    public ArrayList<Casilla> casillasEnVenta(){
+        ArrayList<Casilla> casVent = new ArrayList<>();
+        for(ArrayList<Casilla> n: casillas){
+            for(Casilla cas: n){
+                if(cas.seVende())
+                    casVent.add(cas);
+            }
+        }
+        return casVent;
+    }
 
     public String imprimirBordeSuperior() {
         String cadena = Valor.ESQUINA_SUPERIOR_IZQUIERDA;

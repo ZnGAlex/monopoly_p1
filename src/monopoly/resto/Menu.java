@@ -108,6 +108,7 @@ public class Menu {
                     else if (lanzoDados) {
                         turno.siguienteTurno();
                         System.out.println("Turno de " + turno.turnoActual());
+                        lanzoDados = false;
                     }
                     else{
                         System.out.println("Debes lanzar los dados antes de acabar tu turno");
@@ -117,6 +118,28 @@ public class Menu {
                     if (!partes[1].equals("tablero"))
                         System.out.println("Comando incorrecto.");
                     else System.out.println(tablero);
+                    break;
+                case "listar":
+                    switch(partes[1]){
+                        case "jugadores":
+                            for(Jugador jugador: jgdrs){
+                                System.out.println(jugador);
+                            }
+                            break;
+                        case "avatares":
+                            for(Avatar avatar: avatares.values()){
+                                System.out.println(avatar);
+                            }
+                            break;
+                        case "enventa":
+                            System.out.println(tablero);
+                            for(Casilla casilla: tablero.casillasEnVenta()){
+                               System.out.println(casilla.shortInfo());
+                            }
+                            break;
+                        default:
+                            System.out.println("Comando incorrecto.");
+                    }
                     break;
                 default:
                     System.out.println("\nComando incorrecto.");
