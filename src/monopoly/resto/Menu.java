@@ -16,27 +16,44 @@ public class Menu {
         HashMap<String, Jugador> jugadores = new HashMap<>();
         ArrayList<Jugador> jgdrs = new ArrayList<>();
         boolean lanzoDados = false;
-
-        System.out.println("Cuantos jugadores hay?");
-        Scanner s = new Scanner(System.in);
-        int numJugadores = s.nextInt();
-
-        if (numJugadores < 2 || numJugadores > 6) {  /*CREACION DE LOS JUGADORES*/
-            System.out.println("Numero de jugadores: de 2 a 6.");
-            System.exit(1);
-        } else {
-            for (int i = 0; i < numJugadores; i++) {
-                Scanner datos = new Scanner(System.in);
-                System.out.print("Introduzca el nombre del jugador: ");
-                String nombre = datos.nextLine();
-                System.out.print("Escoja una ficha (esfinge, coche, sombrero o pelota): ");
-                String ficha = datos.nextLine();
-                Jugador j = new Jugador(nombre, ficha, tablero.getCasillas().get(0).get(0));
-                jugadores.put(nombre, j);
-                avatares.put(j.getAvatar().getId(), j.getAvatar());
-                jgdrs.add(j);
+        boolean iniciarJuego = false;
+        
+        do{
+            System.out.print("$> ");
+            Scanner scanner = new Scanner(System.in);
+            String orden = scanner.nextLine();
+            String[] partes = orden.split(" ");
+            String comando = partes[0];    
+            
+            switch(comando){
+                case "crear":
+                    if(!partes[1].equals("jugador") || partes.length != 4){
+                        System.out.println("Comando incorrecto.");
+                    }
+                    else{
+                        Jugador j = new Jugador(partes[2], partes[3], tablero.getCasillas().get(0).get(0));
+                        jugadores.put(partes[2], j);
+                        avatares.put(j.getAvatar().getId(), j.getAvatar());
+                        jgdrs.add(j);
+                        if(jgdrs.size() == 6)
+                            iniciarJuego = true;
+                    }
+                    break;
+                case "iniciar":
+                    if(!partes[1].equals("juego")){
+                        System.out.println("Comando incorrecto.");
+                    }
+                    else if(jgdrs.size() < 2){
+                        System.out.println("Jugadores insuficientes.");
+                    }
+                    else{
+                        iniciarJuego = true;
+                    }
             }
-        }
+        }while(!iniciarJuego);
+        
+        
+        
         Turno turno = new Turno(jgdrs);
         tablero.getCasillas().get(0).get(0).setAvatares(avatares);
 
