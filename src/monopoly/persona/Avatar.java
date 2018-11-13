@@ -14,14 +14,17 @@ public class Avatar {
 
     public Avatar(Jugador jugador, String ficha, Casilla casilla) {
         if(jugador != null && ficha != null){
-            Character n = (char) Math.ceil(Math.random() * 255);
+            Character n;
+            do {
+                n = (char) Math.ceil(Math.random() * 255);
+            } while (n < 48 || (n > 57 && n < 65) || (n > 90 && n < 97) || n > 122 );
             this.id = n.toString();
             this.jugador = jugador;
             this.ficha = ficha;
             this.casilla = casilla;
         }
         else{
-            System.out.println("ERROR CONSTRUCTOR AVATAR: jugador o ficha nulo/s\n");
+            System.out.println("Error creando avatar.");
             System.exit(1);
         }
     }
@@ -33,6 +36,10 @@ public class Avatar {
     }
 
     public void setId(String id) {
+        if (id == null) {
+            System.out.println("Id nulo.");
+            System.exit(1);
+        }
         this.id = id;
     }
 
@@ -41,6 +48,10 @@ public class Avatar {
     }
 
     public void setFicha(String ficha) {
+        if (ficha == null) {
+            System.out.println("Ficha nula.");
+            System.exit(1);
+        }
         this.ficha = ficha;
     }
 
@@ -49,6 +60,10 @@ public class Avatar {
     }
 
     public void setJugador(Jugador jugador) {
+        if (jugador == null) {
+            System.out.println("Jugador nulo.");
+            System.exit(1);
+        }
         this.jugador = jugador;
     }
 
@@ -57,6 +72,10 @@ public class Avatar {
     }
 
     public void setCasilla(Casilla casilla) {
+        if (casilla == null) {
+            System.out.println("Casilla nula.");
+            System.exit(1);
+        }
         this.casilla = casilla;
     }
     
@@ -75,19 +94,9 @@ public class Avatar {
        int lado = (posicionActual + avance) / 10;
        int posicionNueva = (posicionActual + avance) % 10;
        this.casilla.eliminarAvatar(this);
-        this.casilla = tablero.getCasillas().get(lado).get(posicionNueva);
+       this.casilla = tablero.getCasillas().get(lado).get(posicionNueva);
        tablero.getCasillas().get(lado).get(posicionNueva).getAvatares().put(this.getId(), this);
-       /*for(ArrayList<Casilla> n : tablero.getCasillas()){
-           if(n.contains(this.casilla)){
-               int newPos = n.indexOf(casilla) + avance;             
-               while(newPos > n.size()){
-                   newPos -= 10;
-                   n = tablero.getCasillas().get((tablero.getCasillas().indexOf(n)+1)%4);  // Siguiente lado del tablero
-               }
-               this.casilla = n.get(newPos);
-           }
-       }
-       this.casilla.añadirAvatar(this);*/
+
     }
     
     @Override

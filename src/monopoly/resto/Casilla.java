@@ -88,12 +88,12 @@ public class Casilla {
 
     // constructores
 
-    public Casilla (String nombre, String tipo, Grupo grupo,int posicion) {
+    public Casilla (String nombre, String tipo, Grupo grupo,int posicion, Jugador banca) {
         this.nombre = nombre;
         this.tipo = tipo;
         this.grupo = grupo;
         this.posicion = posicion;
-        this.propietario = null;
+        this.propietario = banca;
         switch (grupo.getColor()) {
             case Valor.GRUPO_NEGRO:
                 this.valor = Valor.COSTE_GRUPO_NEGRO;
@@ -132,7 +132,7 @@ public class Casilla {
         this.edificios = new HashMap<>();
     }
     
-    public Casilla (String nombre, String tipo, int posicion){
+    public Casilla (String nombre, String tipo, int posicion, Jugador banca){
         if (nombre == null) {
             System.out.println(Valor.ANSI_ROJO + "Nombre nulo." + Valor.ANSI_RESET);
             System.exit(1);
@@ -146,7 +146,7 @@ public class Casilla {
         this.posicion = posicion;
         this.grupo = null;
         this.alquiler = 0;
-        this.propietario = null;
+        this.propietario = banca;
         this.avatares = new HashMap<>();
         this.edificios = null;
         
@@ -189,7 +189,7 @@ public class Casilla {
         String cadena = "{\n " +
                 "\t tipo: " + this.tipo +
                 ",\n\t grupo: " + this.grupo +
-                ",\n\t propietario: " +
+                ",\n\t propietario: " + this.propietario.getNombre() +
                 ",\n\t valor: " + this.valor +
                 ",\n\t alquiler actual: " + this.alquiler +
                 ",\n\t alquiler inicial: " + this.valor * 0.9 +
@@ -211,7 +211,7 @@ public class Casilla {
     //metodos
     
     public boolean seVende(){
-        return propietario == null && valor>0;
+        return propietario.getNombre().equals("banca") && valor>0;
     }
     
     public void añadirAvatar(Avatar avatar){

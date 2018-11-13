@@ -68,11 +68,11 @@ public class Jugador {
     // constructores
     public Jugador(String nombre, String ficha, Casilla casilla) {
         if (nombre == null) {
-            System.out.println(Valor.ANSI_ROJO + "Nombre nulo.");
+            System.out.println(Valor.ANSI_ROJO + "Nombre nulo." + Valor.ANSI_RESET);
             System.exit(1);
         }
         if (ficha == null) {
-            System.out.println(Valor.ANSI_ROJO + "Ficha nula.");
+            System.out.println(Valor.ANSI_ROJO + "Ficha nula." + Valor.ANSI_RESET);
             System.exit(1);
         }
         if (ficha.equalsIgnoreCase("Esfinge") || ficha.equalsIgnoreCase("Coche") || ficha.equalsIgnoreCase("Sombrero") || ficha.equalsIgnoreCase("Pelota"))
@@ -86,6 +86,19 @@ public class Jugador {
         this.propiedades = new HashMap<>();
         this.hipotecas = new HashMap<>();
         this.edificios = new HashMap<>();
+    }
+
+    public Jugador(String nombre) {
+        if (nombre == null) {
+            System.out.println(Valor.ANSI_ROJO + "Nombre nulo." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
+        this.nombre = nombre;
+        this.fortuna = Valor.FORTUNA_BANCA;
+        this.propiedades = new HashMap<>();
+        this.hipotecas = new HashMap<>();
+        this.edificios = new HashMap<>();
+        this.avatar = null;
     }
 
 

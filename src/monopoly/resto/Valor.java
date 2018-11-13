@@ -25,6 +25,7 @@ public class Valor {
     public static final int COSTE_SALIR_CARCEL = (int)(CANTIDAD_PASAR_SALIDA * 0.25);
     public static final int COSTE_CASILLA_TRANSPORTE = CANTIDAD_PASAR_SALIDA;
     public static final int COSTE_CASILLA_SERVIVIO = (int) (0.75*CANTIDAD_PASAR_SALIDA);
+    public static final int FORTUNA_BANCA = 999999999;
     public static final String GRUPO_NEGRO = "Negro";
     public static final String GRUPO_CYAN = "Cyan";
     public static final String GRUPO_ROSA = "Rosa";

@@ -19,6 +19,7 @@ public class Menu {
         boolean iniciarJuego = false;
         
         do{
+            System.out.println(tablero);
             System.out.print("$> ");
             Scanner scanner = new Scanner(System.in);
             String orden = scanner.nextLine();
@@ -35,11 +36,14 @@ public class Menu {
                         jugadores.put(partes[2], j);
                         avatares.put(j.getAvatar().getId(), j.getAvatar());
                         jgdrs.add(j);
+                        tablero.getCasillas().get(0).get(0).setAvatares(avatares);
                         if(jgdrs.size() == 6)
                             iniciarJuego = true;
                     }
                     break;
                 case "iniciar":
+                    if (partes.length != 2)
+                        System.out.println("Comando incorrecto. Inicie con iniciar juego");
                     if(!partes[1].equals("juego")){
                         System.out.println("Comando incorrecto.");
                     }
@@ -51,11 +55,11 @@ public class Menu {
                     }
             }
         }while(!iniciarJuego);
-        
-        
-        
+
         Turno turno = new Turno(jgdrs);
         tablero.getCasillas().get(0).get(0).setAvatares(avatares);
+
+        System.out.println(tablero);
 
         while (true) {
             System.out.print("$> ");
@@ -114,17 +118,20 @@ public class Menu {
                 case "lanzar": /*LANZAR LOS DADOS*/
                     if (!partes[1].equals("dados"))
                         System.out.println("\nComando incorrecto.");
-                    else {
+                    else if (lanzoDados) {
+                        System.out.println("El jugador " + turno.turnoActual().getNombre() + " ya ha lanzado los dados.");
+                    }  else {
                         turno.turnoActual().tirarDadosJugador(tablero);
                         lanzoDados = true;
                     }
+                    System.out.println(tablero);
                     break;
                 case "acabar":
                     if (!partes[1].equals("turno"))
                         System.out.println("Comando incorrecto.");
                     else if (lanzoDados) {
                         turno.siguienteTurno();
-                        System.out.println("Turno de " + turno.turnoActual());
+                        System.out.println("Turno de " + turno.turnoActual().getNombre());
                         lanzoDados = false;
                     }
                     else{
