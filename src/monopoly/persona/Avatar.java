@@ -91,12 +91,21 @@ public class Avatar {
             System.exit(1);
        }
        int posicionActual = this.casilla.getPosicion();
-       int lado = (posicionActual + avance) / 10;
+       int lado = ((posicionActual + avance) / 10) % 4;
        int posicionNueva = (posicionActual + avance) % 10;
-       this.casilla.eliminarAvatar(this);
-       this.casilla = tablero.getCasillas().get(lado).get(posicionNueva);
-       tablero.getCasillas().get(lado).get(posicionNueva).getAvatares().put(this.getId(), this);
-
+       if (tablero.getCasillas().get(lado).get(posicionNueva).getPosicion() == Valor.POSICION_CASILLA_IR_CARCEL) {
+           lado = Valor.POSICION_CASILLA_CARCEL / 10;
+           posicionNueva = Valor.POSICION_CASILLA_CARCEL % 10;
+           this.casilla.eliminarAvatar(this);
+           this.casilla = tablero.getCasillas().get(lado).get(posicionNueva);
+           System.out.println("El jugador va a la carcel.");
+           this.casilla.getAvatares().put(this.id, this);
+       } else {
+           System.out.println("Desde " + this.casilla.getNombre() + " hasta " + tablero.getCasillas().get(lado).get(posicionNueva).getNombre());
+           this.casilla.eliminarAvatar(this);
+           this.casilla = tablero.getCasillas().get(lado).get(posicionNueva);
+           this.casilla.getAvatares().put(this.id, this);
+       }
     }
     
     @Override
