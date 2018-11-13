@@ -96,10 +96,10 @@ public class Menu {
                                     System.out.println("Indique el nombre del avatar.");
                                     break;
                                 }
-                                if (jugadores.get(partes[2]) == null)
+                                if (avatares.containsKey(partes[2]) == false)
                                     System.out.println("El avatar " + partes[2] + " no existe.");
                                 else
-                                    System.out.println(jugadores.get(partes[2]).getAvatar());
+                                    System.out.println(avatares.get(partes[2]));
                                 break;
                             default:
                                 if (tablero.casillaByName(partes[1]) == null)
