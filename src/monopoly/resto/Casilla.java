@@ -145,7 +145,6 @@ public class Casilla {
         this.tipo = tipo;
         this.posicion = posicion;
         this.grupo = null;
-        this.alquiler = 0;
         this.propietario = banca;
         this.avatares = new HashMap<>();
         this.edificios = null;
@@ -153,10 +152,15 @@ public class Casilla {
         switch(tipo){
             case "transporte":
                 this.valor = Valor.COSTE_CASILLA_TRANSPORTE;
+                this.alquiler = Valor.ALQUILER_TRANSPORTE;
                 break;
             case "servicio":
                 this.valor = Valor.COSTE_CASILLA_SERVIVIO;
+                this.alquiler=Valor.ALQUILER_SERVICIO;
                 break;
+            case "impuesto":
+                if(this.nombre.equals("Impuesto1")) this.alquiler = Valor.ALQUILER_IMPUESTO1;
+                else this.alquiler = Valor.ALQUILER_IMPUESTO2;
             default:
                 this.valor = 0;
         }
@@ -186,25 +190,49 @@ public class Casilla {
     }
 
     public String info() {
-        String cadena = "{\n " +
-                "\t tipo: " + this.tipo +
-                ",\n\t grupo: " + this.grupo +
-                ",\n\t propietario: " + this.propietario.getNombre() +
-                ",\n\t valor: " + this.valor +
-                ",\n\t alquiler actual: " + this.alquiler +
-                ",\n\t alquiler inicial: " + this.valor * 0.9 +
-                ",\n\t valor hotel: " + this.valor * 0.6 + " (mas cuatro casas)" +
-                ",\n\t valor casa: " + this.valor * 0.6 +
-                ",\n\t valor piscina: " + this.valor * 0.4 +
-                ",\n\t valor pista de deporte: " + this.valor * 1.25 +
-                ",\n\t alquiler una casa: " + this.valor * 0.9 * 5 +
-                ",\n\t alquiler dos casas: " + this.valor * 0.9 * 15 +
-                ",\n\t alquiler tres casas: " + this.valor * 0.9 * 35 +
-                ",\n\t alquiler cuatro casas: " + this.valor * 0.9 * 50 +
-                ",\n\t alquiler hotel: " + this.valor * 0.9 * 70 +
-                ",\n\t alquiler piscina: " + this.valor * 25 +
-                ",\n\t alquiler pista de deporte: " + this.valor * 25 +
-                "\n}";
+        String cadena = new String();
+        switch(this.tipo){
+            case "solar":
+                cadena = "{\n " +
+                        "\t tipo: " + this.tipo +
+                        ",\n\t grupo: " + this.grupo +
+                        ",\n\t propietario: " + this.propietario.getNombre() +
+                        ",\n\t valor: " + this.valor +
+                        ",\n\t alquiler actual: " + this.alquiler +
+                        ",\n\t alquiler inicial: " + this.valor * 0.9 +
+                        ",\n\t valor hotel: " + this.valor * 0.6 + " (mas cuatro casas)" +
+                        ",\n\t valor casa: " + this.valor * 0.6 +
+                        ",\n\t valor piscina: " + this.valor * 0.4 +
+                        ",\n\t valor pista de deporte: " + this.valor * 1.25 +
+                        ",\n\t alquiler una casa: " + this.valor * 0.9 * 5 +
+                        ",\n\t alquiler dos casas: " + this.valor * 0.9 * 15 +
+                        ",\n\t alquiler tres casas: " + this.valor * 0.9 * 35 +
+                        ",\n\t alquiler cuatro casas: " + this.valor * 0.9 * 50 +
+                        ",\n\t alquiler hotel: " + this.valor * 0.9 * 70 +
+                        ",\n\t alquiler piscina: " + this.valor * 25 +
+                        ",\n\t alquiler pista de deporte: " + this.valor * 25 +
+                        "\n}";
+                break;
+            case "transporte": case "servicio":
+                cadena = "{\n " +
+                        "\t tipo: " + this.tipo +
+                        ",\n\t propietario: " + this.propietario.getNombre() +
+                        ",\n\t valor: " + this.valor +
+                        ",\n\t alquiler: " + this.alquiler +
+                        "\n}";            
+                break;
+            case "impuesto":
+                cadena = "{\n " +
+                        "\t tipo: " + this.tipo +
+                        ",\n\t alquiler: " + this.alquiler +
+                        "\n}";
+                break;
+            default:
+                cadena = "{\n " +
+                        "\t tipo: " + this.tipo +
+                        "\n}";
+        }
+        
         return cadena;
     }
 
