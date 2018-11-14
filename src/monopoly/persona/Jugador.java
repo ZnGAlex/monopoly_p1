@@ -13,6 +13,8 @@ public class Jugador {
     private HashMap<String, Casilla> hipotecas;
     private HashMap<String, Edificio> edificios;
     private int inCarcel;
+    private boolean dadosTirados;
+    private int dadosDobles;
 
     public String getNombre() {
         return nombre;
@@ -65,7 +67,7 @@ public class Jugador {
     // setter y getter
 
     // constructores
-    public Jugador(String nombre, String ficha, Casilla casilla) {
+    public Jugador(String nombre, String ficha, Casilla casilla, String id) {
         if (nombre == null) {
             System.out.println(Valor.ANSI_ROJO + "Nombre nulo." + Valor.ANSI_RESET);
             System.exit(1);
@@ -75,7 +77,7 @@ public class Jugador {
             System.exit(1);
         }
         if (ficha.equalsIgnoreCase("Esfinge") || ficha.equalsIgnoreCase("Coche") || ficha.equalsIgnoreCase("Sombrero") || ficha.equalsIgnoreCase("Pelota"))
-            this.avatar = new Avatar(this, ficha, casilla);
+            this.avatar = new Avatar(this, ficha, casilla, id);
         else {
             System.out.println(Valor.ANSI_ROJO + "Ficha debe ser: Esfinge, Coche, Sombrero o Pelota");
             System.exit(1);
@@ -85,7 +87,8 @@ public class Jugador {
         this.propiedades = new HashMap<>();
         this.hipotecas = new HashMap<>();
         this.edificios = new HashMap<>();
-        this.inCarcel = 0;
+        this.setInCarcel(0);
+        this.setDadosTirados(false);
     }
 
     public Jugador(String nombre) {
@@ -99,7 +102,8 @@ public class Jugador {
         this.hipotecas = new HashMap<>();
         this.edificios = new HashMap<>();
         this.avatar = null;
-        this.inCarcel = 0;
+        this.setInCarcel(0);
+        this.setDadosDobles(0);
     }
 
 
@@ -152,20 +156,29 @@ public class Jugador {
         return cadena;
     }
     
-    public boolean tirarDadosJugador(Tablero tablero){
+    public void tirarDadosJugador(Tablero tablero){
         Dado dados = new Dado();
         int desplazamiento = 0;
        
         desplazamiento = dados.tirarDados();
-        System.out.println(this.nombre + " se desplaza " + desplazamiento + " posiciones");
-        avatar.moverAvatar(desplazamiento, tablero);
-        
-        return dados.dadosIguales();
+        this.setDadosTirados(true);
+        if (dados.dadosIguales()) {
+            System.out.println("Dados dobles.");
+            this.setDadosDobles(this.getDadosDobles() + 1);
+            this.setDadosTirados(false);
+        }
+        if (this.getDadosDobles() == 3) {
+            System.out.println("El jugador " + this.nombre + " ha sacado dados dobles tres veces. Va a la carcel.");
+            this.avatar.moverAvatarCasilla(tablero.getCasillas().get(Valor.POSICION_CASILLA_CARCEL/10).get(Valor.POSICION_CASILLA_CARCEL%10));
+        } else {
+            System.out.println(this.nombre + " se desplaza " + desplazamiento + " posiciones");
+            avatar.moverAvatar(desplazamiento, tablero);
+        }
     }
     
     public void encarcelarJugador(Tablero tablero){
         this.avatar.moverAvatarCasilla(tablero.casillaByName("Carcel"));
-        this.inCarcel = 1;
+        this.setInCarcel(1);
     }
     
     public void salirCarcel(){
@@ -209,4 +222,27 @@ public class Jugador {
         return cadena;
     }
 
+    public int getInCarcel() {
+        return inCarcel;
+    }
+
+    public void setInCarcel(int inCarcel) {
+        this.inCarcel = inCarcel;
+    }
+
+    public boolean getDadosTirados() {
+        return dadosTirados;
+    }
+
+    public void setDadosTirados(boolean dadosTirados) {
+        this.dadosTirados = dadosTirados;
+    }
+
+    public int getDadosDobles() {
+        return dadosDobles;
+    }
+
+    public void setDadosDobles(int dadosDobles) {
+        this.dadosDobles = dadosDobles;
+    }
 }

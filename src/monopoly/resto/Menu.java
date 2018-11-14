@@ -1,12 +1,8 @@
 package monopoly.resto;
 
-import java.util.ArrayList;
+import java.util.*;
 
 import monopoly.persona.*;
-
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.StringJoiner;
 
 public class Menu {
 
@@ -15,7 +11,6 @@ public class Menu {
         HashMap<String, Avatar> avatares = new HashMap<>();
         HashMap<String, Jugador> jugadores = new HashMap<>();
         ArrayList<Jugador> jgdrs = new ArrayList<>();
-        boolean lanzoDados = false;
         boolean iniciarJuego = false;
         
         do{
@@ -32,7 +27,19 @@ public class Menu {
                         System.out.println("Comando incorrecto.");
                     }
                     else{
-                        Jugador j = new Jugador(partes[2], partes[3], tablero.getCasillas().get(0).get(0));
+                        Character id;
+                        boolean seRepite;
+                        do {
+                            seRepite = false;
+                            id = (char) Math.ceil(Math.random() * 255);
+                            Iterator it= avatares.values().iterator();
+                            while (it.hasNext()) {
+                                Avatar av = (Avatar) it.next();
+                                if (av.getId().equals(id.toString()))
+                                    seRepite = true;
+                            }
+                        } while (id < 48 || (id > 57 && id < 65) || (id > 90 && id < 97) || id > 122 || seRepite);
+                        Jugador j = new Jugador(partes[2], partes[3], tablero.getCasillas().get(0).get(0), id.toString());
                         jugadores.put(partes[2], j);
                         avatares.put(j.getAvatar().getId(), j.getAvatar());
                         jgdrs.add(j);
@@ -118,21 +125,19 @@ public class Menu {
                 case "lanzar": /*LANZAR LOS DADOS*/
                     if (!partes[1].equals("dados"))
                         System.out.println("\nComando incorrecto.");
-                    else if (lanzoDados) {
+                    else if (turno.turnoActual().getDadosTirados()) {
                         System.out.println("El jugador " + turno.turnoActual().getNombre() + " ya ha lanzado los dados.");
                     }  else {
                         turno.turnoActual().tirarDadosJugador(tablero);
-                        lanzoDados = true;
                     }
                     System.out.println(tablero);
                     break;
                 case "acabar":
                     if (!partes[1].equals("turno"))
                         System.out.println("Comando incorrecto.");
-                    else if (lanzoDados) {
+                    else if (turno.turnoActual().getDadosTirados()) {
                         turno.siguienteTurno();
                         System.out.println("Turno de " + turno.turnoActual().getNombre());
-                        lanzoDados = false;
                     }
                     else{
                         System.out.println("Debes lanzar los dados antes de acabar tu turno");
@@ -170,11 +175,12 @@ public class Menu {
                         System.out.println("Comando incorrecto.");
                     } else {
                         if (turno.turnoActual().getAvatar().getCasilla().getNombre().equals(partes[1])) {
-                            System.out.println("Se puede comprar la casilla.");
                             for (ArrayList<Casilla> lado : tablero.getCasillas()) {
                                 for (Casilla casilla : lado) {
                                     if (casilla.getNombre().equals(partes[1])) {
-                                        if (casilla.getValor() > turno.turnoActual().getFortuna())
+                                        if (casilla.getValor() == 0)
+                                            System.out.println("La casilla " + casilla.getNombre() + " no se puede comprar.");
+                                        else if (casilla.getValor() > turno.turnoActual().getFortuna())
                                             System.out.println("El jugador no dispone de dinero suficiente.");
                                         else {
                                             turno.turnoActual().comprarCasilla(casilla);

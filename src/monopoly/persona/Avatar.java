@@ -12,13 +12,9 @@ public class Avatar {
     
     // constructores
 
-    public Avatar(Jugador jugador, String ficha, Casilla casilla) {
+    public Avatar(Jugador jugador, String ficha, Casilla casilla, String id) {
         if(jugador != null && ficha != null){
-            Character n;
-            do {
-                n = (char) Math.ceil(Math.random() * 255);
-            } while (n < 48 || (n > 57 && n < 65) || (n > 90 && n < 97) || n > 122 );
-            this.id = n.toString();
+            this.id = id;
             this.jugador = jugador;
             this.ficha = ficha;
             this.casilla = casilla;
