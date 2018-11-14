@@ -9,6 +9,7 @@ public class Tablero {
     private ArrayList<ArrayList<Casilla>> casillas;
     private HashMap<String, Avatar> avatares;
     private HashMap<String, Jugador> jugadores;
+    private HashMap<String, Grupo> grupos;
 
     public Tablero() {
         Jugador banca = new Jugador("banca");
@@ -17,8 +18,8 @@ public class Tablero {
         ArrayList<Casilla> izquierda = new ArrayList<>();
         ArrayList<Casilla> derecha = new ArrayList<>();
         ArrayList<Casilla> arriba = new ArrayList<>();
-        HashMap<String, Grupo> grupos = new HashMap<>();
-        Grupo grupo_marron = new Grupo(Valor.GRUPO_NEGRO, Valor.COSTE_GRUPO_NEGRO, Valor.ALQUILER_GRUPO_NEGRO);
+        grupos = new HashMap<>();
+        Grupo grupo_negro = new Grupo(Valor.GRUPO_NEGRO, Valor.COSTE_GRUPO_NEGRO, Valor.ALQUILER_GRUPO_NEGRO);
         Grupo grupo_cyan = new Grupo(Valor.GRUPO_CYAN, Valor.COSTE_GRUPO_CYAN, Valor.ALQUILER_GRUPO_CYAN);
         Grupo grupo_rosa = new Grupo(Valor.GRUPO_ROSA, Valor.COSTE_GRUPO_ROSA, Valor.ALQUILER_GRUPO_ROSA);
         Grupo grupo_naranja = new Grupo(Valor.GRUPO_NARANJA, Valor.COSTE_GRUPO_NARANJA, Valor.ALQUILER_GRUPO_NARANJA);
@@ -26,7 +27,7 @@ public class Tablero {
         Grupo grupo_amarillo = new Grupo(Valor.GRUPO_AMARILLO, Valor.COSTE_GRUPO_AMARILLO, Valor.ALQUILER_GRUPO_AMARILLO);
         Grupo grupo_verde = new Grupo(Valor.GRUPO_VERDE, Valor.COSTE_GRUPO_VERDE, Valor.ALQUILER_GRUPO_VERDE);
         Grupo grupo_azul = new Grupo(Valor.GRUPO_AZUL, Valor.COSTE_GRUPO_AZUL, Valor.ALQUILER_GRUPO_AZUL);
-        grupos.put(Valor.GRUPO_NEGRO, grupo_marron);
+        grupos.put(Valor.GRUPO_NEGRO, grupo_negro);
         grupos.put(Valor.GRUPO_CYAN, grupo_cyan);
         grupos.put(Valor.GRUPO_ROSA, grupo_rosa);
         grupos.put(Valor.GRUPO_NARANJA, grupo_naranja);
@@ -34,8 +35,8 @@ public class Tablero {
         grupos.put(Valor.GRUPO_AMARILLO, grupo_amarillo);
         grupos.put(Valor.GRUPO_VERDE, grupo_verde);
         grupos.put(Valor.GRUPO_AZUL, grupo_azul);
-        Casilla solar1GrupoNegro = new Casilla(Valor.SOLAR1_GRUPO_NEGRO, Valor.CASILLA_TIPO_SOLAR, grupo_marron,Valor.POSICION_SOLAR1_GRUPO_NEGRO, banca);
-        Casilla solar2GrupoNegro = new Casilla(Valor.SOLAR2_GRUPO_NEGRO, Valor.CASILLA_TIPO_SOLAR, grupo_marron,Valor.POSICION_SOLAR2_GRUPO_NEGRO, banca);
+        Casilla solar1GrupoNegro = new Casilla(Valor.SOLAR1_GRUPO_NEGRO, Valor.CASILLA_TIPO_SOLAR, grupo_negro,Valor.POSICION_SOLAR1_GRUPO_NEGRO, banca);
+        Casilla solar2GrupoNegro = new Casilla(Valor.SOLAR2_GRUPO_NEGRO, Valor.CASILLA_TIPO_SOLAR, grupo_negro,Valor.POSICION_SOLAR2_GRUPO_NEGRO, banca);
         Casilla solar1GrupoCyan = new Casilla(Valor.SOLAR1_GRUPO_CYAN, Valor.CASILLA_TIPO_SOLAR, grupo_cyan,Valor.POSICION_SOLAR1_GRUPO_CYAN, banca);
         Casilla solar2GrupoCyan = new Casilla(Valor.SOLAR2_GRUPO_CYAN, Valor.CASILLA_TIPO_SOLAR, grupo_cyan,Valor.POSICION_SOLAR2_GRUPO_CYAN, banca);
         Casilla solar3GrupoCyan = new Casilla(Valor.SOLAR3_GRUPO_CYAN, Valor.CASILLA_TIPO_SOLAR, grupo_cyan,Valor.POSICION_SOLAR3_GRUPO_CYAN, banca);
@@ -56,6 +57,28 @@ public class Tablero {
         Casilla solar3GrupoVerde = new Casilla(Valor.SOLAR3_GRUPO_VERDE, Valor.CASILLA_TIPO_SOLAR, grupo_verde,Valor.POSICION_SOLAR3_GRUPO_VERDE, banca);
         Casilla solar1GrupoAzul = new Casilla(Valor.SOLAR1_GRUPO_AZUL, Valor.CASILLA_TIPO_SOLAR, grupo_azul,Valor.POSICION_SOLAR1_GRUPO_AZUL, banca);
         Casilla solar2GrupoAzul = new Casilla(Valor.SOLAR2_GRUPO_AZUL, Valor.CASILLA_TIPO_SOLAR, grupo_azul,Valor.POSICION_SOLAR2_GRUPO_AZUL, banca);
+        grupo_negro.getCasillas().add(solar1GrupoNegro);
+        grupo_negro.getCasillas().add(solar2GrupoNegro);
+        grupo_cyan.getCasillas().add(solar1GrupoCyan);
+        grupo_cyan.getCasillas().add(solar2GrupoCyan);
+        grupo_cyan.getCasillas().add(solar3GrupoCyan);
+        grupo_rosa.getCasillas().add(solar1GrupoRosa);
+        grupo_rosa.getCasillas().add(solar2GrupoRosa);
+        grupo_rosa.getCasillas().add(solar3GrupoRosa);
+        grupo_naranja.getCasillas().add(solar1GrupoNaranja);
+        grupo_naranja.getCasillas().add(solar2GrupoNaranja);
+        grupo_naranja.getCasillas().add(solar3GrupoNaranja);
+        grupo_rojo.getCasillas().add(solar1GrupoRojo);
+        grupo_rojo.getCasillas().add(solar2GrupoRojo);
+        grupo_rojo.getCasillas().add(solar3GrupoRojo);
+        grupo_amarillo.getCasillas().add(solar1GrupoAmarillo);
+        grupo_amarillo.getCasillas().add(solar2GrupoAmarillo);
+        grupo_amarillo.getCasillas().add(solar3GrupoAmarillo);
+        grupo_verde.getCasillas().add(solar1GrupoVerde);
+        grupo_verde.getCasillas().add(solar2GrupoVerde);
+        grupo_verde.getCasillas().add(solar3GrupoVerde);
+        grupo_azul.getCasillas().add(solar1GrupoAzul);
+        grupo_azul.getCasillas().add(solar2GrupoAzul);
         Casilla salida = new Casilla(Valor.CASILLA_SALIDA, Valor.CASILLA_TIPO_SALIDA,Valor.POSICION_CASILLA_SALIDA, banca);
         Casilla suerte1 = new Casilla(Valor.CASILLA_SUERTE, Valor.CASILLA_TIPO_SUERTE,Valor.POSICION_CASILLA_SUERTE1, banca);
         Casilla caja1 = new Casilla(Valor.CASILLA_CAJA, Valor.CASILLA_TIPO_CAJA,Valor.POSICION_CASILLA_CAJA1, banca);
@@ -280,5 +303,13 @@ public class Tablero {
                 Valor.LINEA_VERTICAL + this.casillas.get(1).get(0) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(9) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(8) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(7) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(6) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(5) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(4) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(3) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(2) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(1) + Valor.LINEA_VERTICAL + this.casillas.get(0).get(0) + Valor.LINEA_VERTICAL +  "\n" +
                 Valor.LINEA_VERTICAL + this.casillas.get(1).get(0).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(9).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(8).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(7).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(6).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(5).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(4).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(3).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(2).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(1).stringAvatares() + Valor.LINEA_VERTICAL + this.casillas.get(0).get(0).stringAvatares() + Valor.LINEA_VERTICAL +  "\n" +
                 this.imprimirBordeInferior() + "\n";
+    }
+
+    public HashMap<String, Grupo> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(HashMap<String, Grupo> grupos) {
+        this.grupos = grupos;
     }
 }
