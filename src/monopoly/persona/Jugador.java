@@ -204,12 +204,22 @@ public class Jugador {
     }
    
 
-    public void comprarCasilla(Casilla c) {
-        this.fortuna = fortuna - c.getValor();
-        this.propiedades.put(c.getNombre(), c);
-        c.setPropietario(this);
-        System.out.println("El jugador " + this.nombre + " compra la casilla " + c.getNombre() + " por " + c.getValor() + "€");
-        System.out.println("Su fortuna actual es " + this.fortuna + "€");
+    public void comprarCasilla() {
+        Casilla c = this.avatar.getCasilla();
+        if(!c.getPropietario().getNombre().equals("banca") || c.getValor() == 0){
+            System.out.println("La casilla no se puede comprar");
+        }
+        else if(this.fortuna > c.getValor()){
+            this.fortuna = fortuna - c.getValor();
+            this.propiedades.put(c.getNombre(), c);
+            c.setPropietario(this);
+            System.out.println("El jugador " + this.nombre + " compra la casilla " + c.getNombre() + " por " + c.getValor() + "€");
+            System.out.println("Su fortuna actual es " + this.fortuna + "€");
+        }
+        
+        else{
+            System.out.println("No tienes suficiente dinero");
+        }
     }
 
     @Override
