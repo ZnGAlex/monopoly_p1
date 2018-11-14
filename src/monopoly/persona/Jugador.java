@@ -14,6 +14,7 @@ public class Jugador {
     private HashMap<String, Casilla> propiedades;
     private HashMap<String, Casilla> hipotecas;
     private HashMap<String, Edificio> edificios;
+    private int inCarcel;
 
     public String getNombre() {
         return nombre;
@@ -86,6 +87,7 @@ public class Jugador {
         this.propiedades = new HashMap<>();
         this.hipotecas = new HashMap<>();
         this.edificios = new HashMap<>();
+        this.inCarcel = 0;
     }
 
     public Jugador(String nombre) {
@@ -99,6 +101,7 @@ public class Jugador {
         this.hipotecas = new HashMap<>();
         this.edificios = new HashMap<>();
         this.avatar = null;
+        this.inCarcel = 0;
     }
 
 
@@ -151,16 +154,20 @@ public class Jugador {
         return cadena;
     }
     
-    public void tirarDadosJugador(Tablero tablero){
+    public boolean tirarDadosJugador(Tablero tablero){
         Dado dados = new Dado();
-        int pares = 0,desplazamiento = 0;
+        int desplazamiento = 0;
+       
+        desplazamiento = dados.tirarDados();
+        System.out.println(this.nombre + " se desplaza " + desplazamiento + " posiciones");
+        avatar.moverAvatar(desplazamiento, tablero);
         
-        do{
-            desplazamiento = dados.tirarDados();
-            System.out.println(this.nombre + " se desplaza " + desplazamiento + " posiciones");
-            avatar.moverAvatar(desplazamiento, tablero);
-            pares++;
-        }while(dados.dadosIguales());
+        return dados.dadosIguales();
+    }
+    
+    public void encarcelarJugador(Tablero tablero){
+        this.avatar.moverAvatarCasilla(tablero.casillaByName("Carcel"));
+        this.inCarcel = 1;
     }
     
     public void salirCarcel(){

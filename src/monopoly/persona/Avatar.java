@@ -93,19 +93,43 @@ public class Avatar {
        int posicionActual = this.casilla.getPosicion();
        int lado = ((posicionActual + avance) / 10) % 4;
        int posicionNueva = (posicionActual + avance) % 10;
-       if (tablero.getCasillas().get(lado).get(posicionNueva).getPosicion() == Valor.POSICION_CASILLA_IR_CARCEL) {
-           lado = Valor.POSICION_CASILLA_CARCEL / 10;
-           posicionNueva = Valor.POSICION_CASILLA_CARCEL % 10;
-           this.casilla.eliminarAvatar(this);
-           this.casilla = tablero.getCasillas().get(lado).get(posicionNueva);
-           System.out.println("El jugador va a la carcel.");
-           this.casilla.getAvatares().put(this.id, this);
-       } else {
-           System.out.println("Desde " + this.casilla.getNombre() + " hasta " + tablero.getCasillas().get(lado).get(posicionNueva).getNombre());
-           this.casilla.eliminarAvatar(this);
-           this.casilla = tablero.getCasillas().get(lado).get(posicionNueva);
-           this.casilla.getAvatares().put(this.id, this);
+       
+       System.out.println("Desde " + this.casilla.getNombre() + " hasta " + tablero.getCasillas().get(lado).get(posicionNueva).getNombre());
+       switch(tablero.getCasillas().get(lado).get(posicionNueva).getPosicion()){
+            case Valor.POSICION_CASILLA_IR_CARCEL:
+               this.jugador.encarcelarJugador(tablero);
+               
+               System.out.println("El jugador va a la carcel.");
+               break;
+            case Valor.POSICION_CASILLA_IMPUESTO1:
+                break;
+            case Valor.POSICION_CASILLA_IMPUESTO2:
+
+                break;
+            case Valor.POSICION_CASILLA_CAJA1: case Valor.POSICION_CASILLA_CAJA2: case Valor.POSICION_CASILLA_CAJA3:
+                break;
+            case Valor.POSICION_CASILLA_SUERTE1: case Valor.POSICION_CASILLA_SUERTE2: case Valor.POSICION_CASILLA_SUERTE3:
+                break;
+            case Valor.POSICION_CASILLA_PARKING:
+                break;
+            default:
+               System.out.println("Desde " + this.casilla.getNombre() + " hasta " + tablero.getCasillas().get(lado).get(posicionNueva).getNombre());
+               this.casilla.eliminarAvatar(this);
+               this.casilla = tablero.getCasillas().get(lado).get(posicionNueva);
+               this.casilla.getAvatares().put(this.id, this);
+            
        }
+    }
+    
+    public void moverAvatarCasilla(Casilla destino){
+        if(casilla == null){
+            System.out.println(Valor.ANSI_ROJO + "Avance negativo.");
+            System.exit(1);
+        }
+        this.casilla.eliminarAvatar(this);
+        this.casilla = destino;
+        this.casilla.anhadirAvatar(this);
+        
     }
     
     @Override
