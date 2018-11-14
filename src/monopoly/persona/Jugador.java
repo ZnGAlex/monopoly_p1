@@ -183,10 +183,11 @@ public class Jugador {
                 this.avatar.moverAvatar(desplazamiento, tablero, turno);
                 this.inCarcel = false;
             } else {
-                System.out.println("El jugador " + this.nombre + " no dispone de suficiente dinero. Que quieres hacer?");
-                System.out.println("Hipotecar propiedad (hipotecarse) o declararse en bancarrota (bancarrota): ");
-                String opcion;
-                do {
+                while(Valor.COSTE_SALIR_CARCEL > this.fortuna && !this.bancarrota){
+                    System.out.println("El jugador " + this.nombre + " no dispone de suficiente dinero. Que quieres hacer?");
+                    System.out.println("Hipotecar propiedad (hipotecarse) o declararse en bancarrota (bancarrota): ");
+                    String opcion;
+                    
                     Scanner sc = new Scanner(System.in);
                     opcion = sc.nextLine();
                     switch (opcion) {
@@ -202,7 +203,8 @@ public class Jugador {
                             System.out.println("Opcion incorrecta.");
                             break;
                     }
-                } while (opcion.equals("bancarrota") || opcion.equals("hipotecarse"));
+                    
+                }
             }
         }
         else if (this.inCarcel && this.turnosEnCarcel != 3) {
