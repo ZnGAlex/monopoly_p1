@@ -213,12 +213,20 @@ public class Casilla {
                         ",\n\t alquiler pista de deporte: " + this.valor * 25 +
                         "\n}";
                 break;
-            case "transporte": case "servicio":
+            case "transporte":
                 cadena = "{\n " +
                         "\t tipo: " + this.tipo +
                         ",\n\t propietario: " + this.propietario.getNombre() +
                         ",\n\t valor: " + this.valor +
-                        ",\n\t alquiler: " + this.alquiler +
+                        ",\n\t alquiler: " + this.alquiler + " * 0.25 * nº de transportes del dueño" +
+                        "\n}";
+                break;
+            case "servicio":
+                cadena = "{\n " +
+                        "\t tipo: " + this.tipo +
+                        ",\n\t propietario: " + this.propietario.getNombre() +
+                        ",\n\t valor: " + this.valor +
+                        ",\n\t alquiler: " + this.alquiler + " * valor dados * [4 || 10] si el dueño tiene una o dos propiedades" +
                         "\n}";            
                 break;
             case "impuesto":

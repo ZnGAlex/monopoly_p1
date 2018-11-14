@@ -119,6 +119,12 @@ public class Avatar {
                 System.out.println("El jugador cobra el dinero del Parking");
                 this.jugador.cobrarParking();
                 break;
+            case Valor.POSICION_CASILLA_SERVICIO1: case Valor.POSICION_CASILLA_SERVICIO2:
+                this.jugador.pagarAlquiler(tablero,turno,avance);
+                break;
+            case Valor.POSICION_CASILLA_TRANSPORTE1: case Valor.POSICION_CASILLA_TRANSPORTE2: case Valor.POSICION_CASILLA_TRANSPORTE3: case Valor.POSICION_CASILLA_TRANSPORTE4:
+                this.jugador.pagarTransporte(tablero,turno);
+                break;
             default:
                 this.jugador.pagarAlquiler(tablero,turno);
        }

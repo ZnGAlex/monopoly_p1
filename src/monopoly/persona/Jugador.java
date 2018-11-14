@@ -282,7 +282,7 @@ public class Jugador {
     }
     
     public void pagarAlquiler(Tablero tablero, Turno turno){
-        if(!this.avatar.getCasilla().getPropietario().equals(this)){
+        if(!this.avatar.getCasilla().getPropietario().getNombre().equals(this.getNombre())){
             if(!this.avatar.getCasilla().getPropietario().getNombre().equals("banca")){
                     while(this.avatar.getCasilla().getAlquiler() > this.fortuna && !bancarrota){
                         Scanner scanner = new Scanner(System.in);
@@ -301,11 +301,82 @@ public class Jugador {
                         }
 
                     }
-                    System.out.println("No tienes suficiente dinero, quieres hipotecar o declararte en bancarrota");
-                
+               
                 if(!bancarrota){
+                    System.out.println("El jugador " + this.nombre + " paga " + this.avatar.getCasilla().getAlquiler() + " a " + this.avatar.getCasilla().getPropietario().getNombre());
                     this.fortuna-=this.avatar.getCasilla().getAlquiler();
                     this.avatar.getCasilla().getPropietario().cobrarAlquiler(this.avatar.getCasilla().getAlquiler());
+                }
+            }
+        }
+    }
+    
+    public void pagarAlquiler(Tablero tablero, Turno turno, int valorDados){
+        int valorPagar;
+        if(!this.avatar.getCasilla().getPropietario().getNombre().equals(this.getNombre())){
+            if(!this.avatar.getCasilla().getPropietario().getNombre().equals("banca")){
+                if(this.avatar.getCasilla().getPropietario().getNombre().equals(tablero.getCasillas().get(1).get(2).getPropietario().getNombre()) && this.avatar.getCasilla().getPropietario().getNombre().equals(tablero.getCasillas().get(2).get(8).getPropietario().getNombre())){
+                    valorPagar = this.avatar.getCasilla().getAlquiler()*valorDados*10;
+                }
+                else valorPagar = this.avatar.getCasilla().getAlquiler()*valorDados*4;
+                    while(valorPagar > this.fortuna && !bancarrota){
+                        Scanner scanner = new Scanner(System.in);
+                        System.out.println("No tienes suficiente dinero. ¿Quieres hipotecar o declararte en bancarrota?: ");
+                        String opcion = scanner.nextLine();
+
+                        switch(opcion){
+                            case "hipotecarse":
+                                this.hipotecar();
+                                break;
+                            case "bancarrota":
+                                this.declararBancarrota(this.avatar.getCasilla().getPropietario(), tablero, turno);
+                                break;
+                            default:
+                                System.out.println("Opcion incorrecta, las opciones son 'hipotecarse' y 'bancarrota'");
+                        }
+
+                    }
+               
+                if(!bancarrota){
+                    System.out.println("El jugador " + this.nombre + " paga " + valorPagar + " a " + this.avatar.getCasilla().getPropietario().getNombre());
+                    this.fortuna-=valorPagar;
+                    this.avatar.getCasilla().getPropietario().cobrarAlquiler(valorPagar);
+                }
+            }
+        }
+    }
+    public void pagarTransporte(Tablero tablero, Turno turno){
+        int valorPagar, numEstaciones = 0;
+
+        if(!this.avatar.getCasilla().getPropietario().getNombre().equals(this.getNombre())){
+            if(!this.avatar.getCasilla().getPropietario().getNombre().equals("banca")){
+                if(this.avatar.getCasilla().getPropietario().getNombre().equals(tablero.getCasillas().get(0).get(5).getPropietario().getNombre())) numEstaciones++;
+                if(this.avatar.getCasilla().getPropietario().getNombre().equals(tablero.getCasillas().get(1).get(5).getPropietario().getNombre())) numEstaciones++;
+                if(this.avatar.getCasilla().getPropietario().getNombre().equals(tablero.getCasillas().get(2).get(5).getPropietario().getNombre())) numEstaciones++;
+                if(this.avatar.getCasilla().getPropietario().getNombre().equals(tablero.getCasillas().get(3).get(5).getPropietario().getNombre())) numEstaciones++;
+                valorPagar = (int)(this.avatar.getCasilla().getAlquiler()*numEstaciones*0.25);
+                    while(valorPagar > this.fortuna && !bancarrota){
+                        Scanner scanner = new Scanner(System.in);
+                        System.out.println("No tienes suficiente dinero. ¿Quieres hipotecar o declararte en bancarrota?: ");
+                        String opcion = scanner.nextLine();
+
+                        switch(opcion){
+                            case "hipotecarse":
+                                this.hipotecar();
+                                break;
+                            case "bancarrota":
+                                this.declararBancarrota(this.avatar.getCasilla().getPropietario(), tablero, turno);
+                                break;
+                            default:
+                                System.out.println("Opcion incorrecta, las opciones son 'hipotecarse' y 'bancarrota'");
+                        }
+
+                    }
+               
+                if(!bancarrota){
+                    System.out.println("El jugador " + this.nombre + " paga " + valorPagar + " a " + this.avatar.getCasilla().getPropietario().getNombre());
+                    this.fortuna-=valorPagar;
+                    this.avatar.getCasilla().getPropietario().cobrarAlquiler(valorPagar);
                 }
             }
         }
@@ -321,6 +392,7 @@ public class Jugador {
             String prop = scanner.nextLine();
 
             if(this.propiedades.containsKey(prop)){
+                this.fortuna +=(int) (0.5 * this.propiedades.get(prop).getValor());
                 this.hipotecas.put(prop,this.propiedades.get(prop));
                 this.propiedades.remove(prop);
                 flag = false;

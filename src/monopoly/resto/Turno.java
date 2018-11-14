@@ -65,6 +65,7 @@ public class Turno {
     
     public void siguienteTurno(){
         turno = (turno+1)%jugadores.size();
+        System.out.println("Turno de " + jugadores.get(turno).getNombre());
     }
     
 }
