@@ -17,6 +17,7 @@ public class Jugador {
     private boolean dadosTirados;
     private int dadosDobles;
     private int turnosEnCarcel;
+    private boolean bancarrota;
 
     public String getNombre() {
         return nombre;
@@ -93,6 +94,7 @@ public class Jugador {
         this.dadosTirados = false;
         this.dadosDobles = 0;
         this.turnosEnCarcel = 0;
+        bancarrota = false;
     }
 
     public Jugador(String nombre) {
@@ -110,6 +112,7 @@ public class Jugador {
         this.dadosTirados = false;
         this.dadosDobles = 0;
         this.turnosEnCarcel = 0;
+        bancarrota = false;
     }
 
 
@@ -258,17 +261,40 @@ public class Jugador {
     }
     
     public void pagarAlquiler(){
-        if(!this.avatar.getCasilla().getPropietario().getNombre().equals("banca")){
-            if(this.avatar.getCasilla().getAlquiler()>this.fortuna){
-                
-            }
-            else{
-                this.fortuna-=this.avatar.getCasilla().getAlquiler();
-                this.avatar.getCasilla().getPropietario().cobrarAlquiler(this.avatar.getCasilla().getAlquiler());
+        if(!this.avatar.getCasilla().getPropietario().equals(this)){
+            if(!this.avatar.getCasilla().getPropietario().getNombre().equals("banca")){
+                if(this.avatar.getCasilla().getAlquiler()>this.fortuna){
+                    System.out.println("No tienes suficiente dinero, quieres hipotecar o declararte en bancarrota");
+                }
+                else{
+                    this.fortuna-=this.avatar.getCasilla().getAlquiler();
+                    this.avatar.getCasilla().getPropietario().cobrarAlquiler(this.avatar.getCasilla().getAlquiler());
+                }
             }
         }
     }
     
+                
+    public void hipotecar(){
+        boolean flag = true;
+        do{
+            System.out.println(this.propiedades);
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Propiedar a hipotecar: ");
+            String prop = scanner.nextLine();
+
+            if(this.propiedades.containsKey(prop)){
+                this.hipotecas.put(prop,this.propiedades.get(prop));
+                this.propiedades.remove(prop);
+                flag = false;
+            }
+            else{
+                System.out.println("No tienes esa propiedad");
+            }
+        }while(flag);
+    }
+    
+
     public void cobrarAlquiler(int dinero){
         this.fortuna += dinero;
     }

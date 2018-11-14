@@ -6,7 +6,7 @@ import monopoly.resto.*;
 public class Monopoly {
 
     ////////////////////////////////////////////////////////////
-    // EMPREGAR FONTE MONOSPACED, P.E. COMO CONSOLATA //
+    // EMPREGAR FONTE MONOSPACED, P.E. COMO CONSOLAS //
     ////////////////////////////////////////////////////////////
     public static void main(String[] args) {
         new Menu();
