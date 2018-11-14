@@ -297,6 +297,21 @@ public class Jugador {
         }while(flag);
     }
     
+    public void declararBancarrota(Jugador jugador){
+        this.bancarrota = true;
+        for(Casilla prop: this.propiedades.values()){
+            jugador.getPropiedades().put(prop.getNombre(), prop);
+            prop.setPropietario(jugador);
+            this.propiedades.remove(prop.getNombre()); 
+        }
+        for(Casilla hip: this.hipotecas.values()){
+            jugador.getHipotecas().put(hip.getNombre(),hip);
+            hip.setPropietario(jugador);
+            this.hipotecas.remove(hip.getNombre());
+        }
+    }
+    
+    
 
     public void cobrarAlquiler(int dinero){
         this.fortuna += dinero;
