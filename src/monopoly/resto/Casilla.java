@@ -242,7 +242,7 @@ public class Casilla {
         return propietario.getNombre().equals("banca") && valor>0;
     }
     
-    public void añadirAvatar(Avatar avatar){
+    public void anhadirAvatar(Avatar avatar){
         if(!this.avatares.containsKey(avatar.getId())){
             this.avatares.put(avatar.getId(), avatar);
         }
