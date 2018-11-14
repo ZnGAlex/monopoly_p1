@@ -17,6 +17,10 @@ public class Turno {
     private int turno;
 
     // constructores
+
+    public Turno() {
+        this.jugadores = new ArrayList<>();
+    }
     
     public Turno(ArrayList<Jugador> jugadores){
         if (jugadores == null) {

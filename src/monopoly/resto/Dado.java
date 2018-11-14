@@ -14,6 +14,11 @@ public class Dado {
         dado2 = 0;
     }
 
+    public Dado(int dado1, int dado2) {
+        this.dado1 = dado1;
+        this.dado2 = dado2;
+    }
+
 
     //getters y setters
 
@@ -43,8 +48,8 @@ public class Dado {
         Random random = new Random();
         // dado1 = random.nextInt((6-1) + 1) + 1;
         //dado2 = random.nextInt((6-1) + 1) + 1;
-        dado1 = 6;
-        dado2 = 4;
+        dado1 = 2;
+        dado2 = 2;
         return dado1 + dado2;
     }
     
