@@ -13,6 +13,9 @@ public class Jugador {
     private HashMap<String, Casilla> hipotecas;
     private HashMap<String, Edificio> edificios;
     private boolean inCarcel;
+    private boolean dadosTirados;
+    private int dadosDobles;
+    private int turnosEnCarcel;
 
     public String getNombre() {
         return nombre;
@@ -65,7 +68,7 @@ public class Jugador {
     // setter y getter
 
     // constructores
-    public Jugador(String nombre, String ficha, Casilla casilla) {
+    public Jugador(String nombre, String ficha, Casilla casilla, String id) {
         if (nombre == null) {
             System.out.println(Valor.ANSI_ROJO + "Nombre nulo." + Valor.ANSI_RESET);
             System.exit(1);
@@ -75,7 +78,7 @@ public class Jugador {
             System.exit(1);
         }
         if (ficha.equalsIgnoreCase("Esfinge") || ficha.equalsIgnoreCase("Coche") || ficha.equalsIgnoreCase("Sombrero") || ficha.equalsIgnoreCase("Pelota"))
-            this.avatar = new Avatar(this, ficha, casilla);
+            this.avatar = new Avatar(this, ficha, casilla, id);
         else {
             System.out.println(Valor.ANSI_ROJO + "Ficha debe ser: Esfinge, Coche, Sombrero o Pelota");
             System.exit(1);
@@ -86,6 +89,9 @@ public class Jugador {
         this.hipotecas = new HashMap<>();
         this.edificios = new HashMap<>();
         this.inCarcel = false;
+        this.dadosTirados = false;
+        this.dadosDobles = 0;
+        this.turnosEnCarcel = 0;
     }
 
     public Jugador(String nombre) {
@@ -100,6 +106,9 @@ public class Jugador {
         this.edificios = new HashMap<>();
         this.avatar = null;
         this.inCarcel = false;
+        this.dadosTirados = false;
+        this.dadosDobles = 0;
+        this.turnosEnCarcel = 0;
     }
 
 
@@ -153,15 +162,36 @@ public class Jugador {
         return cadena;
     }
     
-    public boolean tirarDadosJugador(Tablero tablero){
+    public void tirarDadosJugador(Tablero tablero){
         Dado dados = new Dado();
         int desplazamiento = 0;
        
         desplazamiento = dados.tirarDados();
-        System.out.println(this.nombre + " se desplaza " + desplazamiento + " posiciones");
-        avatar.moverAvatar(desplazamiento, tablero);
-        
-        return dados.dadosIguales();
+        this.setDadosTirados(true);
+
+        if (this.inCarcel && this.turnosEnCarcel == 3)
+            System.out.println("El jugador ha tirado tres veces en la carcel. Tiene que pagar para salir.");
+        else if (this.inCarcel && this.turnosEnCarcel != 3) {
+            if (dados.dadosIguales()) {
+                System.out.println("El jugador ha sacado dados dobles. Sale de la carcel.");
+                this.avatar.moverAvatar(desplazamiento, tablero);
+            } else {
+                System.out.println("El jugador no ha sacado dados dobles. Permanece en la carcel.");
+            }
+        } else {
+            if (dados.dadosIguales()) {
+                System.out.println("Dados dobles.");
+                this.setDadosDobles(this.getDadosDobles() + 1);
+                this.setDadosTirados(false);
+            }
+            if (this.getDadosDobles() == 3) {
+                System.out.println("El jugador " + this.nombre + " ha sacado dados dobles tres veces. Va a la carcel.");
+                this.avatar.moverAvatarCasilla(tablero.getCasillas().get(Valor.POSICION_CASILLA_CARCEL / 10).get(Valor.POSICION_CASILLA_CARCEL % 10));
+            } else {
+                System.out.println(this.nombre + " se desplaza " + desplazamiento + " posiciones");
+                avatar.moverAvatar(desplazamiento, tablero);
+            }
+        }
     }
     
     public void encarcelarJugador(Tablero tablero){
@@ -263,4 +293,27 @@ public class Jugador {
         return cadena;
     }
 
+    public boolean getInCarcel() {
+        return inCarcel;
+    }
+
+    public void setInCarcel(boolean inCarcel) {
+        this.inCarcel = inCarcel;
+    }
+
+    public boolean getDadosTirados() {
+        return dadosTirados;
+    }
+
+    public void setDadosTirados(boolean dadosTirados) {
+        this.dadosTirados = dadosTirados;
+    }
+
+    public int getDadosDobles() {
+        return dadosDobles;
+    }
+
+    public void setDadosDobles(int dadosDobles) {
+        this.dadosDobles = dadosDobles;
+    }
 }
