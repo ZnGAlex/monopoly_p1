@@ -70,6 +70,7 @@ public class Menu {
 
         Turno turno = new Turno(jgdrs);
         tablero.getCasillas().get(0).get(0).setAvatares(avatares);
+        tablero.setJugadores(jugadores);
 
         System.out.println(tablero);
 

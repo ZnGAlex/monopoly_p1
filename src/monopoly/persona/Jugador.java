@@ -348,6 +348,7 @@ public class Jugador {
             if (j.getNombre().equals(jugador.getNombre()))
                 turno.getJugadores().remove(j);
         }
+        jugador.getAvatar().getCasilla().eliminarAvatar(jugador.getAvatar());
     }
     
     
