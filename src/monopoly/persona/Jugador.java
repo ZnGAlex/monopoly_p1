@@ -180,7 +180,7 @@ public class Jugador {
             if (this.fortuna >= Valor.COSTE_SALIR_CARCEL) {
                 this.fortuna -= Valor.COSTE_SALIR_CARCEL;
                 System.out.println("El jugador " + this.nombre + " ha pagado para salir de la carcel.");
-                this.avatar.moverAvatar(desplazamiento, tablero);
+                this.avatar.moverAvatar(desplazamiento, tablero, turno);
                 this.inCarcel = false;
             } else {
                 System.out.println("El jugador " + this.nombre + " no dispone de suficiente dinero. Que quieres hacer?");
@@ -195,7 +195,7 @@ public class Jugador {
                             break;
                         case "hipotecarse":
                             this.hipotecar(); // el usuario se hipoteca
-                            this.avatar.moverAvatar(desplazamiento, tablero);
+                            this.avatar.moverAvatar(desplazamiento, tablero, turno);
                             this.inCarcel = false;
                             break;
                         default:
@@ -207,8 +207,8 @@ public class Jugador {
         }
         else if (this.inCarcel && this.turnosEnCarcel != 3) {
             if (dados.dadosIguales()) {
-                System.out.println("El jugador ha sacado dados dobles. Sale de la carcel.");
-                this.avatar.moverAvatar(desplazamiento, tablero);
+                System.out.println("El jugador " + this.nombre + " ha sacado dados dobles. Sale de la carcel.");
+                this.avatar.moverAvatar(desplazamiento, tablero, turno);
                 this.turnosEnCarcel = 0;
             } else {
                 System.out.println("El jugador no ha sacado dados dobles. Permanece en la carcel.");
@@ -226,7 +226,7 @@ public class Jugador {
                 turno.siguienteTurno();
             } else {
                 System.out.println(this.nombre + " se desplaza " + desplazamiento + " posiciones");
-                avatar.moverAvatar(desplazamiento, tablero);
+                avatar.moverAvatar(desplazamiento, tablero, turno);
             }
         }
     }
@@ -252,7 +252,7 @@ public class Jugador {
         
     }
     
-    public void pagarImpuesto(int impuesto,Tablero tablero){
+    public void pagarImpuesto(int impuesto,Tablero tablero, Turno turno){
         while(impuesto > this.fortuna && !bancarrota){
             Scanner scanner = new Scanner(System.in);
             System.out.println("No tienes suficiente dinero. ¿Quieres hipotecar o declararte en bancarrota?: ");
@@ -263,7 +263,7 @@ public class Jugador {
                     this.hipotecar();
                     break;
                 case "bancarrota":
-                    this.declararBancarrota(tablero.getCasillas().get(0).get(0).getPropietario());
+                    this.declararBancarrota(tablero.getCasillas().get(0).get(0).getPropietario(), tablero, turno);
                     break;
                 default:
                     System.out.println("Opcion incorrecta, las opciones son 'hipotecarse' y 'bancarrota'");
@@ -281,7 +281,7 @@ public class Jugador {
         Valor.DINERO_PARKING = 0;
     }
     
-    public void pagarAlquiler(){
+    public void pagarAlquiler(Tablero tablero, Turno turno){
         if(!this.avatar.getCasilla().getPropietario().equals(this)){
             if(!this.avatar.getCasilla().getPropietario().getNombre().equals("banca")){
                     while(this.avatar.getCasilla().getAlquiler() > this.fortuna && !bancarrota){
@@ -294,7 +294,7 @@ public class Jugador {
                                 this.hipotecar();
                                 break;
                             case "bancarrota":
-                                this.declararBancarrota(this.avatar.getCasilla().getPropietario());
+                                this.declararBancarrota(this.avatar.getCasilla().getPropietario(), tablero, turno);
                                 break;
                             default:
                                 System.out.println("Opcion incorrecta, las opciones son 'hipotecarse' y 'bancarrota'");

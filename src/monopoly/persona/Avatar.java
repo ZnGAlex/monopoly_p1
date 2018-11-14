@@ -77,7 +77,7 @@ public class Avatar {
     
     // metodos
     
-    public void moverAvatar(int avance,Tablero tablero){
+    public void moverAvatar(int avance,Tablero tablero, Turno turno){
        if(avance < 0){
             System.out.println(Valor.ANSI_ROJO + "Avance negativo.");
             System.exit(1);
@@ -99,14 +99,15 @@ public class Avatar {
             case Valor.POSICION_CASILLA_IR_CARCEL:
                 this.jugador.encarcelarJugador(tablero);
                 System.out.println("El jugador va a la carcel.");
+                turno.siguienteTurno();
                break;
             case Valor.POSICION_CASILLA_IMPUESTO1:
                 System.out.println("El jugador paga un impuesto de " + Valor.ALQUILER_IMPUESTO1);
-                this.jugador.pagarImpuesto(Valor.ALQUILER_IMPUESTO1,tablero);
+                this.jugador.pagarImpuesto(Valor.ALQUILER_IMPUESTO1,tablero, turno);
                 break;
             case Valor.POSICION_CASILLA_IMPUESTO2:
                 System.out.println("El jugador paga un impuesto de " + Valor.ALQUILER_IMPUESTO2);
-                this.jugador.pagarImpuesto(Valor.ALQUILER_IMPUESTO2,tablero);
+                this.jugador.pagarImpuesto(Valor.ALQUILER_IMPUESTO2,tablero, turno);
                 break;
             case Valor.POSICION_CASILLA_CAJA1: case Valor.POSICION_CASILLA_CAJA2: case Valor.POSICION_CASILLA_CAJA3:
                 break;
@@ -117,7 +118,7 @@ public class Avatar {
                 this.jugador.cobrarParking();
                 break;
             default:
-                this.jugador.pagarAlquiler();
+                this.jugador.pagarAlquiler(tablero,turno);
        }
     }
     
