@@ -15,6 +15,10 @@ public class Dado {
     }
 
     public Dado(int dado1, int dado2) {
+        if (dado1 <0 || dado1>6 || dado2<0 || dado2>6) {
+            System.out.println(Valor.ANSI_ROJO + "Dado no valido." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
         this.dado1 = dado1;
         this.dado2 = dado2;
     }
@@ -27,6 +31,10 @@ public class Dado {
     }
 
     public void setDado1(int dado1) {
+        if (dado1 <0 || dado1>6) {
+            System.out.println(Valor.ANSI_ROJO + "Dado no valido." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
         this.dado1 = dado1;
     }
 
@@ -35,6 +43,10 @@ public class Dado {
     }
 
     public void setDado2(int dado2) {
+        if (dado2<0 || dado2>6) {
+            System.out.println(Valor.ANSI_ROJO + "Dado no valido." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
         this.dado2 = dado2;
     }
     
