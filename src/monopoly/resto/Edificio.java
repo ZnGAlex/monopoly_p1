@@ -1,7 +1,7 @@
 package monopoly.resto;
 
-import monopoly.persona.Jugador;
 
+// Esta clase todavia no se utiliza
 public class Edificio {
     private String tipo;
     private Casilla casilla;

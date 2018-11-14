@@ -121,7 +121,7 @@ public class Jugador {
 
     // Metodos
     
-
+    // obtencion del listado de casillas del jugador
     public String obtenerPropiedades() {
         String cadena = "";
 
@@ -137,7 +137,7 @@ public class Jugador {
 
         return cadena;
     }
-
+    // obtencion del listado de hipotecas del jugador
     public String obtenerHipotecas() {
         String cadena = "";
 
@@ -154,6 +154,7 @@ public class Jugador {
         return cadena;
     }
 
+    // obtencion del listado de edificios del jugador
     public String obtenerEdificios() {
         String cadena = "";
 
@@ -168,7 +169,8 @@ public class Jugador {
         }
         return cadena;
     }
-    
+
+    // metodo para que el jugador tire dados
     public void tirarDadosJugador(Tablero tablero, Turno turno){
         Dado dados = new Dado();
         int desplazamiento = 0;
@@ -233,12 +235,14 @@ public class Jugador {
             }
         }
     }
-    
+
+    // metodo para llevar el jugador a la carcel
     public void encarcelarJugador(Tablero tablero){
         this.avatar.moverAvatarCasilla(tablero.casillaByName("Carcel"));
         this.inCarcel = true;
     }
-    
+
+    // metodo para que el jugador pueda salir de la carcel
     public void salirCarcel(){
         if(this.inCarcel = true){
             if(Valor.COSTE_SALIR_CARCEL > this.fortuna){
@@ -278,12 +282,12 @@ public class Jugador {
             Valor.DINERO_PARKING += impuesto;
         }
     }
-    
+
     public void cobrarParking(){
         this.fortuna+=Valor.DINERO_PARKING;
         Valor.DINERO_PARKING = 0;
     }
-    
+
     public void pagarAlquiler(Tablero tablero, Turno turno){
         if(!this.avatar.getCasilla().getPropietario().getNombre().equals(this.nombre)){
 
@@ -389,7 +393,7 @@ public class Jugador {
         }
     }
     
-                
+
     public void hipotecar(){
         boolean flag = true;
         do{

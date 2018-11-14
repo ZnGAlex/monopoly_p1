@@ -3,6 +3,7 @@ package monopoly.resto;
 import java.util.ArrayList;
 
 public class Valor {
+    // grupo de valores de coste
     public static final int COSTE_INICIAL = 100000;
     public static final int COSTE_GRUPO_NEGRO = COSTE_INICIAL;
     public static final int ALQUILER_GRUPO_NEGRO = (int) (COSTE_INICIAL * 0.1);
@@ -30,6 +31,9 @@ public class Valor {
     public static final int COSTE_CASILLA_TRANSPORTE = CANTIDAD_PASAR_SALIDA;
     public static final int COSTE_CASILLA_SERVIVIO = (int) (0.75*CANTIDAD_PASAR_SALIDA);
     public static final int FORTUNA_BANCA = 999999999;
+    public static int DINERO_PARKING = 0;
+
+    // grupo de valores de grupo
     public static final String GRUPO_NEGRO = "Negro";
     public static final String GRUPO_CYAN = "Cyan";
     public static final String GRUPO_ROSA = "Rosa";
@@ -38,6 +42,8 @@ public class Valor {
     public static final String GRUPO_AMARILLO = "Amarillo";
     public static final String GRUPO_VERDE = "Verde";
     public static final String GRUPO_AZUL = "Azul";
+
+    // grupo de valores de colores para impresion
     public static final String ANSI_RESET = "\u001b[0m";
     public static final String ANSI_CLS = "\u001b[2J";
     public static final String ANSI_BOLD = "\u001b[1m";
@@ -57,6 +63,8 @@ public class Valor {
     public static final String ANSI_CYAN_BRIGHT = "\u001b[96m";
     public static final String ANSI_GRIS = "\u001b[37m";
     public static final String ANSI_BLANCO = "\u001b[97m";
+
+    // grupo de nombres para casillas
     public static final String SOLAR1_GRUPO_NEGRO = "Orgrimmar";
     public static final String SOLAR2_GRUPO_NEGRO = "Ventormenta";
     public static final String SOLAR1_GRUPO_CYAN = "Lunargenta";
@@ -103,6 +111,8 @@ public class Valor {
     public static final String CASILLA_TIPO_IMPUESTO = "impuesto";
     public static final String CASILLA_TIPO_IR_CARCEL = "ir_carcel";
     public static final String CASILLA_TIPO_CAJA = "caja";
+
+    // numeros de posicion en tablero de las casillas
     public static final int POSICION_CASILLA_SALIDA = 0;
     public static final int POSICION_SOLAR1_GRUPO_NEGRO = 1;
     public static final int POSICION_CASILLA_CAJA1 = 2;
@@ -143,6 +153,8 @@ public class Valor {
     public static final int POSICION_SOLAR1_GRUPO_AZUL = 37;
     public static final int POSICION_CASILLA_IMPUESTO2 = 38;
     public static final int POSICION_SOLAR2_GRUPO_AZUL = 39;
+
+    // caracteres especiales para la impresion del tablero
     public static final String LINEA_HORIZONTAL = new String(Character.toChars(0x2500));
     public static final String LINEA_VERTICAL = new String(Character.toChars(0x2502));
     public static final String ESQUINA_SUPERIOR_IZQUIERDA = new String(Character.toChars(0x250c));
@@ -156,8 +168,8 @@ public class Valor {
     public static final String INTERSECCION_TOTAL = new String(Character.toChars(0x253c));
     public static final int TAMANHO_CASILLA = Valor.SOLAR3_GRUPO_AMARILLO.length() + 5; // aumentamos algo o tamaño para que non quede tan axustada a casilla
     public static final int TAMANHO_LINEA = TAMANHO_CASILLA * 11;
-    public static int DINERO_PARKING = 0;
 
+    // incremento del valor de las variables al pasar por salida
     public void aumentarValor5(Tablero t){
         for(ArrayList<Casilla> a: t.getCasillas()){
             for(Casilla casilla: a){
