@@ -180,6 +180,7 @@ public class Jugador {
             if (this.fortuna >= Valor.COSTE_SALIR_CARCEL) {
                 this.fortuna -= Valor.COSTE_SALIR_CARCEL;
                 System.out.println("El jugador " + this.nombre + " ha pagado para salir de la carcel.");
+                this.avatar.moverAvatar(desplazamiento, tablero);
                 this.inCarcel = false;
             } else {
                 System.out.println("El jugador " + this.nombre + " no dispone de suficiente dinero. Que quieres hacer?");
@@ -193,13 +194,15 @@ public class Jugador {
                             // funcion bancarrota
                             break;
                         case "hipotecarse":
-                            // funcion hipotecarse
+                            this.hipotecar(); // el usuario se hipoteca
+                            this.avatar.moverAvatar(desplazamiento, tablero);
+                            this.inCarcel = false;
                             break;
                         default:
                             System.out.println("Opcion incorrecta.");
                             break;
                     }
-                } while (opcion.equals("bancarrota") || opcion.equals("hipotecarse"))
+                } while (opcion.equals("bancarrota") || opcion.equals("hipotecarse"));
             }
         }
         else if (this.inCarcel && this.turnosEnCarcel != 3) {
