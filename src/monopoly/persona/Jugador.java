@@ -202,7 +202,7 @@ public class Jugador {
                             System.out.println("Opcion incorrecta.");
                             break;
                     }
-                } while (opcion.equals("bancarrota") || opcion.equals("hipotecarse"));
+                } while (!opcion.equals("bancarrota") && !opcion.equals("hipotecarse"));
             }
         }
         else if (this.inCarcel && this.turnosEnCarcel != 3) {
@@ -349,6 +349,15 @@ public class Jugador {
                 turno.getJugadores().remove(j);
         }
         jugador.getAvatar().getCasilla().eliminarAvatar(jugador.getAvatar());
+        if (tablero.getJugadores().size() == 1) {
+            Iterator jug_it = tablero.getJugadores().values().iterator();
+            while (jug_it.hasNext()) {
+                Jugador ganador = (Jugador) jug_it.next();
+                System.out.println("El ganador de la partida es " + ganador.getNombre());
+            }
+            System.exit(0);
+        }
+
     }
     
     

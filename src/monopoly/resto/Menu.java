@@ -20,6 +20,7 @@ public class Menu {
         
         do{
             System.out.println(tablero);
+            System.out.println(imprimirOpciones());
             System.out.print("$> ");
             Scanner scanner = new Scanner(System.in);
             String orden = scanner.nextLine();
@@ -75,6 +76,7 @@ public class Menu {
         System.out.println(tablero);
 
         while (true) {
+            System.out.println(imprimirOpcionesJugador());
             System.out.print("$> ");
             Scanner scanner = new Scanner(System.in);
             String orden = scanner.nextLine();
@@ -194,5 +196,13 @@ public class Menu {
                     break;
             }
         }
+    }
+
+    public String imprimirOpciones() {
+        return "Comandos:\n crear jugador [nombre] [coche/sombrero/esfinge/pelota]\n salir";
+    }
+
+    public String imprimirOpcionesJugador() {
+        return "Comandos:\n lanzar dados\n comprar [casilla]\n listar [enventa/jugadores/avatares]\n salir carcel\n acabar turno\n describir jugador [nombre]\n describir [casilla]\n describir avatar [avatar]\n ver tablero";
     }
 }

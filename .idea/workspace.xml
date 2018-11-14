@@ -43,12 +43,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="29155" />
+          <entry key="java" value="29837" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="29155" />
+          <entry key="JAVA" value="29837" />
         </counts>
       </usages-collector>
     </session>
@@ -90,11 +90,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/monopoly/persona/Jugador.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="376">
-              <caret line="350" column="75" selection-start-line="350" selection-start-column="75" selection-end-line="350" selection-end-column="75" />
+              <caret line="203" column="21" lean-forward="true" selection-start-line="203" selection-start-column="21" selection-end-line="203" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#570#571#0" expanded="true" />
@@ -129,7 +129,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/monopoly/persona/Avatar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
+            <state relative-caret-position="288">
               <caret line="98" column="50" lean-forward="true" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="50" />
             </state>
           </provider>
@@ -151,17 +151,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/monopoly/resto/Casilla.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="594">
-              <caret line="312" selection-start-line="312" selection-end-line="312" />
+            <state relative-caret-position="612">
+              <caret line="244" column="24" selection-start-line="244" selection-start-column="24" selection-end-line="244" selection-end-column="24" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/monopoly/resto/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="72" column="38" selection-start-line="72" selection-start-column="38" selection-end-line="72" selection-end-column="38" />
+            <state relative-caret-position="180">
+              <caret line="78" column="56" selection-start-line="78" selection-start-column="56" selection-end-line="78" selection-end-column="56" />
             </state>
           </provider>
         </entry>
@@ -255,8 +255,8 @@
         <option value="$PROJECT_DIR$/src/monopoly/resto/Dado.java" />
         <option value="$PROJECT_DIR$/src/monopoly/persona/Avatar.java" />
         <option value="$PROJECT_DIR$/src/monopoly/resto/Valor.java" />
-        <option value="$PROJECT_DIR$/src/monopoly/resto/Menu.java" />
         <option value="$PROJECT_DIR$/src/monopoly/persona/Jugador.java" />
+        <option value="$PROJECT_DIR$/src/monopoly/resto/Menu.java" />
       </list>
     </option>
   </component>
@@ -325,7 +325,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542208912103" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1542210134130" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Console Font" />
   </component>
@@ -396,12 +396,12 @@
       <workItem from="1542114524615" duration="1953000" />
       <workItem from="1542134863364" duration="2709000" />
       <workItem from="1542185591584" duration="13926000" />
-      <workItem from="1542205485673" duration="2567000" />
+      <workItem from="1542205485673" duration="3827000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="86880000" />
+    <option name="totallyTimeSpent" value="88140000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -552,31 +552,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/monopoly/resto/Menu.java">
+    <entry file="file://$PROJECT_DIR$/src/monopoly/resto/Casilla.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="72" column="38" selection-start-line="72" selection-start-column="38" selection-end-line="72" selection-end-column="38" />
+        <state relative-caret-position="612">
+          <caret line="244" column="24" selection-start-line="244" selection-start-column="24" selection-end-line="244" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/monopoly/persona/Avatar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
+        <state relative-caret-position="288">
           <caret line="98" column="50" lean-forward="true" selection-start-line="98" selection-start-column="50" selection-end-line="98" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/monopoly/resto/Casilla.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="594">
-          <caret line="312" selection-start-line="312" selection-end-line="312" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/monopoly/persona/Jugador.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="376">
-          <caret line="350" column="75" selection-start-line="350" selection-start-column="75" selection-end-line="350" selection-end-column="75" />
+          <caret line="203" column="21" lean-forward="true" selection-start-line="203" selection-start-column="21" selection-end-line="203" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#570#571#0" expanded="true" />
@@ -604,6 +597,13 @@
             <element signature="e#1523#1524#0" expanded="true" />
             <element signature="e#1565#1566#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/monopoly/resto/Menu.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="78" column="56" selection-start-line="78" selection-start-column="56" selection-end-line="78" selection-end-column="56" />
         </state>
       </provider>
     </entry>
