@@ -216,6 +216,7 @@ public class Jugador {
         } else {
             if (dados.dadosIguales()) {
                 System.out.println("Dados dobles.");
+                this.dadosTirados = false;
                 this.setDadosDobles(this.getDadosDobles() + 1);
             }
             if (this.getDadosDobles() == 3) {
@@ -251,11 +252,25 @@ public class Jugador {
         
     }
     
-    public void pagarImpuesto(int impuesto){
-        if(impuesto > this.fortuna){
+    public void pagarImpuesto(int impuesto,Tablero tablero){
+        while(impuesto > this.fortuna && !bancarrota){
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("No tienes suficiente dinero. ¿Quieres hipotecar o declararte en bancarrota?: ");
+            String opcion = scanner.nextLine();
+            
+            switch(opcion){
+                case "hipotecarse":
+                    this.hipotecar();
+                    break;
+                case "bancarrota":
+                    this.declararBancarrota(tablero.getCasillas().get(0).get(0).getPropietario());
+                    break;
+                default:
+                    System.out.println("Opcion incorrecta, las opciones son 'hipotecarse' y 'bancarrota'");
+            }
             
         }
-        else{
+        if(!bancarrota){
             this.fortuna -= impuesto;
             Valor.DINERO_PARKING += impuesto;
         }
@@ -269,10 +284,26 @@ public class Jugador {
     public void pagarAlquiler(){
         if(!this.avatar.getCasilla().getPropietario().equals(this)){
             if(!this.avatar.getCasilla().getPropietario().getNombre().equals("banca")){
-                if(this.avatar.getCasilla().getAlquiler()>this.fortuna){
+                    while(this.avatar.getCasilla().getAlquiler() > this.fortuna && !bancarrota){
+                        Scanner scanner = new Scanner(System.in);
+                        System.out.println("No tienes suficiente dinero. ¿Quieres hipotecar o declararte en bancarrota?: ");
+                        String opcion = scanner.nextLine();
+
+                        switch(opcion){
+                            case "hipotecarse":
+                                this.hipotecar();
+                                break;
+                            case "bancarrota":
+                                this.declararBancarrota(this.avatar.getCasilla().getPropietario());
+                                break;
+                            default:
+                                System.out.println("Opcion incorrecta, las opciones son 'hipotecarse' y 'bancarrota'");
+                        }
+
+                    }
                     System.out.println("No tienes suficiente dinero, quieres hipotecar o declararte en bancarrota");
-                }
-                else{
+                
+                if(!bancarrota){
                     this.fortuna-=this.avatar.getCasilla().getAlquiler();
                     this.avatar.getCasilla().getPropietario().cobrarAlquiler(this.avatar.getCasilla().getAlquiler());
                 }

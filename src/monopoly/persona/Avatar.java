@@ -102,11 +102,11 @@ public class Avatar {
                break;
             case Valor.POSICION_CASILLA_IMPUESTO1:
                 System.out.println("El jugador paga un impuesto de " + Valor.ALQUILER_IMPUESTO1);
-                this.jugador.pagarImpuesto(Valor.ALQUILER_IMPUESTO1);
+                this.jugador.pagarImpuesto(Valor.ALQUILER_IMPUESTO1,tablero);
                 break;
             case Valor.POSICION_CASILLA_IMPUESTO2:
                 System.out.println("El jugador paga un impuesto de " + Valor.ALQUILER_IMPUESTO2);
-                this.jugador.pagarImpuesto(Valor.ALQUILER_IMPUESTO2);
+                this.jugador.pagarImpuesto(Valor.ALQUILER_IMPUESTO2,tablero);
                 break;
             case Valor.POSICION_CASILLA_CAJA1: case Valor.POSICION_CASILLA_CAJA2: case Valor.POSICION_CASILLA_CAJA3:
                 break;
