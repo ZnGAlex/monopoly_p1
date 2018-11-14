@@ -184,13 +184,55 @@ public class Jugador {
     public void salirCarcel(){
         System.out.println(nombre + " paga " + Valor.COSTE_SALIR_CARCEL +  " y sale de la cárcel. Puede lanzar los dados.");
     }
+    
+    public void pagarImpuesto(int impuesto){
+        if(impuesto > this.fortuna){
+            
+        }
+        else{
+            this.fortuna -= impuesto;
+            Valor.DINERO_PARKING += impuesto;
+        }
+    }
+    
+    public void cobrarParking(){
+        this.fortuna+=Valor.DINERO_PARKING;
+        Valor.DINERO_PARKING = 0;
+    }
+    
+    public void pagarAlquiler(){
+        if(!this.avatar.getCasilla().getPropietario().getNombre().equals("banca")){
+            if(this.avatar.getCasilla().getAlquiler()>this.fortuna){
+                
+            }
+            else{
+                this.fortuna-=this.avatar.getCasilla().getAlquiler();
+                this.avatar.getCasilla().getPropietario().cobrarAlquiler(this.avatar.getCasilla().getAlquiler());
+            }
+        }
+    }
+    
+    public void cobrarAlquiler(int dinero){
+        this.fortuna += dinero;
+    }
+   
 
-    public void comprarCasilla(Casilla c) {
-        this.fortuna = fortuna - c.getValor();
-        this.propiedades.put(c.getNombre(), c);
-        c.setPropietario(this);
-        System.out.println("El jugador " + this.nombre + " compra la casilla " + c.getNombre() + " por " + c.getValor() + "€");
-        System.out.println("Su fortuna actual es " + this.fortuna + "€");
+    public void comprarCasilla() {
+        Casilla c = this.avatar.getCasilla();
+        if(!c.getPropietario().getNombre().equals("banca") || c.getValor() == 0){
+            System.out.println("La casilla no se puede comprar");
+        }
+        else if(this.fortuna > c.getValor()){
+            this.fortuna = fortuna - c.getValor();
+            this.propiedades.put(c.getNombre(), c);
+            c.setPropietario(this);
+            System.out.println("El jugador " + this.nombre + " compra la casilla " + c.getNombre() + " por " + c.getValor() + "€");
+            System.out.println("Su fortuna actual es " + this.fortuna + "€");
+        }
+        
+        else{
+            System.out.println("No tienes suficiente dinero");
+        }
     }
 
     @Override

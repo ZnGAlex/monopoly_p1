@@ -191,6 +191,9 @@ public class Menu {
                         } else {
                             System.out.println("El jugador no esta en la casilla.");
                         }
+                            else
+                                System.out.println("No estas en " + partes[1]);
+                                
                     }
                     break;
                 default:
