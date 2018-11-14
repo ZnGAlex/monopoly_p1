@@ -66,6 +66,13 @@ public class Menu {
                     else{
                         iniciarJuego = true;
                     }
+                    break;
+                case "salir":
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Comando incorrecto");
+                    break;
             }
         }while(!iniciarJuego);
 
@@ -199,7 +206,7 @@ public class Menu {
     }
 
     public String imprimirOpciones() {
-        return "Comandos:\n crear jugador [nombre] [coche/sombrero/esfinge/pelota]\n salir";
+        return "Comandos:\n crear jugador [nombre] [coche/sombrero/esfinge/pelota]\n iniciar juego\n salir";
     }
 
     public String imprimirOpcionesJugador() {

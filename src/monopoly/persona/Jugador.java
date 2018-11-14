@@ -211,7 +211,7 @@ public class Jugador {
                 this.avatar.moverAvatar(desplazamiento, tablero, turno);
                 this.turnosEnCarcel = 0;
             } else {
-                System.out.println("El jugador no ha sacado dados dobles. Permanece en la carcel.");
+                System.out.println("El jugador no ha sacado dados dobles. Permanece en la carcel. Lleva " + this.turnosEnCarcel + " turnos en la carcel.");
             }
         } else {
             if (dados.dadosIguales()) {
