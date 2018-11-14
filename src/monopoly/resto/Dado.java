@@ -48,8 +48,8 @@ public class Dado {
         Random random = new Random();
         // dado1 = random.nextInt((6-1) + 1) + 1;
         //dado2 = random.nextInt((6-1) + 1) + 1;
-        dado1 = 2;
-        dado2 = 2;
+        dado1 = 6;
+        dado2 = 4;
         return dado1 + dado2;
     }
     
