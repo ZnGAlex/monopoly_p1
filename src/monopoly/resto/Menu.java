@@ -136,6 +136,7 @@ public class Menu {
                     if (!partes[1].equals("turno"))
                         System.out.println("Comando incorrecto.");
                     else if (turno.turnoActual().getDadosTirados()) {
+                        turno.turnoActual().setDadosTirados(false);
                         turno.siguienteTurno();
                         System.out.println("Turno de " + turno.turnoActual().getNombre());
                     }

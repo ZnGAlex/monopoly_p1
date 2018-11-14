@@ -166,8 +166,10 @@ public class Jugador {
         int desplazamiento = 0;
        
         desplazamiento = dados.tirarDados();
-        this.setDadosTirados(true);
+        this.dadosTirados = true;
 
+        if (this.inCarcel)
+            this.turnosEnCarcel++;
         if (this.inCarcel && this.turnosEnCarcel == 3)
             System.out.println("El jugador ha tirado tres veces en la carcel. Tiene que pagar para salir.");
         else if (this.inCarcel && this.turnosEnCarcel != 3) {
@@ -181,7 +183,6 @@ public class Jugador {
             if (dados.dadosIguales()) {
                 System.out.println("Dados dobles.");
                 this.setDadosDobles(this.getDadosDobles() + 1);
-                this.setDadosTirados(false);
             }
             if (this.getDadosDobles() == 3) {
                 System.out.println("El jugador " + this.nombre + " ha sacado dados dobles tres veces. Va a la carcel.");
@@ -195,7 +196,7 @@ public class Jugador {
     
     public void encarcelarJugador(Tablero tablero){
         this.avatar.moverAvatarCasilla(tablero.casillaByName("Carcel"));
-        this.setInCarcel(true);
+        this.inCarcel = true;
     }
     
     public void salirCarcel(){
