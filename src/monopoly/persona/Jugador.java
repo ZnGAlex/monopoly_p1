@@ -113,6 +113,7 @@ public class Jugador {
 
 
     // Metodos
+    
 
     public String obtenerPropiedades() {
         String cadena = "";
@@ -200,7 +201,18 @@ public class Jugador {
     }
     
     public void salirCarcel(){
-        System.out.println(nombre + " paga " + Valor.COSTE_SALIR_CARCEL +  " y sale de la cárcel. Puede lanzar los dados.");
+        if(this.inCarcel = true){
+            if(Valor.COSTE_SALIR_CARCEL > this.fortuna){
+                System.out.println("No tienes suficiente dinero");
+            }
+            else{
+                System.out.println(nombre + " paga " + Valor.COSTE_SALIR_CARCEL +  " y sale de la cárcel. Puede lanzar los dados.");
+                this.fortuna -= Valor.COSTE_SALIR_CARCEL;
+                this.inCarcel = false;
+            }
+        }
+            
+        
     }
     
     public void pagarImpuesto(int impuesto){
