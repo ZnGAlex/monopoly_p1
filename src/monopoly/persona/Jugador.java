@@ -2,10 +2,8 @@ package monopoly.persona;
 
 import monopoly.resto.*;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
 public class Jugador {
     private String nombre;
@@ -113,10 +111,10 @@ public class Jugador {
         if (this.propiedades.size() == 0)
             cadena = "no tiene propiedades";
         else {
-            Iterator propiedades_i = this.propiedades.entrySet().iterator();
+            Iterator propiedades_i = this.propiedades.values().iterator();
             while (propiedades_i.hasNext()) {
                 Casilla propiedad = (Casilla) propiedades_i.next();
-                cadena = cadena.concat(", " + propiedad.getNombre());
+                cadena = cadena.concat(propiedad.getNombre() + " ");
             }
         }
 
@@ -129,10 +127,10 @@ public class Jugador {
         if (this.hipotecas.size() == 0)
             cadena = "no tiene hipotecas";
         else {
-            Iterator hipotecas_i = this.hipotecas.entrySet().iterator();
+            Iterator hipotecas_i = this.hipotecas.values().iterator();
             while (hipotecas_i.hasNext()) {
                 Casilla hipoteca = (Casilla) hipotecas_i.next();
-                cadena = cadena.concat(", " + hipoteca.getNombre());
+                cadena = cadena.concat(hipoteca.getNombre() + " ");
             }
         }
 
@@ -145,10 +143,10 @@ public class Jugador {
         if (this.edificios.size() == 0)
             cadena = "no tiene edificios";
         else {
-            Iterator edificios_i = this.edificios.entrySet().iterator();
+            Iterator edificios_i = this.edificios.values().iterator();
             while (edificios_i.hasNext()) {
                 Casilla edificio = (Casilla) edificios_i.next();
-                cadena = cadena.concat(", " + edificio.getNombre());
+                cadena = cadena.concat(edificio.getNombre() + " ");
             }
         }
         return cadena;
@@ -205,6 +203,14 @@ public class Jugador {
         this.fortuna += dinero;
     }
    
+
+    public void comprarCasilla(Casilla c) {
+        this.fortuna = fortuna - c.getValor();
+        this.propiedades.put(c.getNombre(), c);
+        c.setPropietario(this);
+        System.out.println("El jugador " + this.nombre + " compra la casilla " + c.getNombre() + " por " + c.getValor() + "€");
+        System.out.println("Su fortuna actual es " + this.fortuna + "€");
+    }
 
     @Override
     public boolean equals(Object o) {

@@ -96,7 +96,7 @@ public class Menu {
                                     System.out.println("Indique el nombre del avatar.");
                                     break;
                                 }
-                                if (avatares.containsKey(partes[2]) == false)
+                                if (!avatares.containsKey(partes[2]))
                                     System.out.println("El avatar " + partes[2] + " no existe.");
                                 else
                                     System.out.println(avatares.get(partes[2]));
@@ -174,7 +174,11 @@ public class Menu {
                             for (ArrayList<Casilla> lado : tablero.getCasillas()) {
                                 for (Casilla casilla : lado) {
                                     if (casilla.getNombre().equals(partes[1])) {
-                                        System.out.println("Aqui se comprara la casilla");
+                                        if (casilla.getValor() > turno.turnoActual().getFortuna())
+                                            System.out.println("El jugador no dispone de dinero suficiente.");
+                                        else {
+                                            turno.turnoActual().comprarCasilla(casilla);
+                                        }
                                     }
                                 }
                             }
