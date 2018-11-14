@@ -4,6 +4,7 @@ import monopoly.resto.*;
 
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class Jugador {
     private String nombre;
@@ -171,12 +172,38 @@ public class Jugador {
 
         if (this.inCarcel)
             this.turnosEnCarcel++;
-        if (this.inCarcel && this.turnosEnCarcel == 3)
-            System.out.println("El jugador ha tirado tres veces en la carcel. Tiene que pagar para salir.");
+        if (this.inCarcel && this.turnosEnCarcel == 3) {
+            System.out.println("El jugador " + this.nombre + " ha tirado tres veces en la carcel. Tiene que pagar para salir.");
+            if (this.fortuna >= Valor.COSTE_SALIR_CARCEL) {
+                this.fortuna -= Valor.COSTE_SALIR_CARCEL;
+                System.out.println("El jugador " + this.nombre + " ha pagado para salir de la carcel.");
+                this.inCarcel = false;
+            } else {
+                System.out.println("El jugador " + this.nombre + " no dispone de suficiente dinero. Que quieres hacer?");
+                System.out.println("Hipotecar propiedad (hipotecarse) o declararse en bancarrota (bancarrota): ");
+                String opcion;
+                do {
+                    Scanner sc = new Scanner(System.in);
+                    opcion = sc.nextLine();
+                    switch (opcion) {
+                        case "bancarrota":
+                            // funcion bancarrota
+                            break;
+                        case "hipotecarse":
+                            // funcion hipotecarse
+                            break;
+                        default:
+                            System.out.println("Opcion incorrecta.");
+                            break;
+                    }
+                } while (opcion.equals("bancarrota") || opcion.equals("hipotecarse"))
+            }
+        }
         else if (this.inCarcel && this.turnosEnCarcel != 3) {
             if (dados.dadosIguales()) {
                 System.out.println("El jugador ha sacado dados dobles. Sale de la carcel.");
                 this.avatar.moverAvatar(desplazamiento, tablero);
+                this.turnosEnCarcel = 0;
             } else {
                 System.out.println("El jugador no ha sacado dados dobles. Permanece en la carcel.");
             }
