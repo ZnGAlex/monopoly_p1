@@ -317,13 +317,16 @@ public class Jugador {
         do{
             System.out.println(this.propiedades);
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Propiedar a hipotecar: ");
+            System.out.println("Propiedar a hipotecar o cancelar: ");
             String prop = scanner.nextLine();
 
             if(this.propiedades.containsKey(prop)){
                 this.hipotecas.put(prop,this.propiedades.get(prop));
                 this.propiedades.remove(prop);
                 flag = false;
+            }
+            else if(prop.equals("cancelar")){
+                return;
             }
             else{
                 System.out.println("No tienes esa propiedad");
