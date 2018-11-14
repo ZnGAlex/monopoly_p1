@@ -156,6 +156,7 @@ public class Valor {
     public static final String INTERSECCION_TOTAL = new String(Character.toChars(0x253c));
     public static final int TAMANHO_CASILLA = Valor.SOLAR3_GRUPO_AMARILLO.length() + 5; // aumentamos algo o tamaño para que non quede tan axustada a casilla
     public static final int TAMANHO_LINEA = TAMANHO_CASILLA * 11;
+    public static int DINERO_PARKING = 0;
 
     public void aumentarValor5(Tablero t){
         for(ArrayList<Casilla> a: t.getCasillas()){
