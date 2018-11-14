@@ -166,7 +166,7 @@ public class Jugador {
         return cadena;
     }
     
-    public void tirarDadosJugador(Tablero tablero){
+    public void tirarDadosJugador(Tablero tablero, Turno turno){
         Dado dados = new Dado();
         int desplazamiento = 0;
        
@@ -191,7 +191,7 @@ public class Jugador {
                     opcion = sc.nextLine();
                     switch (opcion) {
                         case "bancarrota":
-                            // funcion bancarrota
+                            this.declararBancarrota(this, tablero, turno);// funcion bancarrota
                             break;
                         case "hipotecarse":
                             this.hipotecar(); // el usuario se hipoteca
@@ -221,6 +221,8 @@ public class Jugador {
             if (this.getDadosDobles() == 3) {
                 System.out.println("El jugador " + this.nombre + " ha sacado dados dobles tres veces. Va a la carcel.");
                 this.avatar.moverAvatarCasilla(tablero.getCasillas().get(Valor.POSICION_CASILLA_CARCEL / 10).get(Valor.POSICION_CASILLA_CARCEL % 10));
+                System.out.println("El jugador " + this.nombre + " acaba su turno.");
+                turno.siguienteTurno();
             } else {
                 System.out.println(this.nombre + " se desplaza " + desplazamiento + " posiciones");
                 avatar.moverAvatar(desplazamiento, tablero);
@@ -242,6 +244,7 @@ public class Jugador {
                 System.out.println(nombre + " paga " + Valor.COSTE_SALIR_CARCEL +  " y sale de la cárcel. Puede lanzar los dados.");
                 this.fortuna -= Valor.COSTE_SALIR_CARCEL;
                 this.inCarcel = false;
+                this.dadosTirados = false;
             }
         }
             
@@ -297,7 +300,7 @@ public class Jugador {
         }while(flag);
     }
     
-    public void declararBancarrota(Jugador jugador){
+    public void declararBancarrota(Jugador jugador, Tablero tablero, Turno turno){
         this.bancarrota = true;
         for(Casilla prop: this.propiedades.values()){
             jugador.getPropiedades().put(prop.getNombre(), prop);
@@ -308,6 +311,11 @@ public class Jugador {
             jugador.getHipotecas().put(hip.getNombre(),hip);
             hip.setPropietario(jugador);
             this.hipotecas.remove(hip.getNombre());
+        }
+        tablero.getJugadores().remove(jugador.getNombre());
+        for (Jugador j : turno.getJugadores()) {
+            if (j.getNombre().equals(jugador.getNombre()))
+                turno.getJugadores().remove(j);
         }
     }
     

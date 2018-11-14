@@ -5,12 +5,17 @@ import java.util.*;
 import monopoly.persona.*;
 
 public class Menu {
+    Tablero tablero;
+    HashMap<String, Avatar> avatares;
+    HashMap<String, Jugador> jugadores;
+    ArrayList<Jugador> jgdrs;
+
 
     public Menu() {
-        Tablero tablero = new Tablero();
-        HashMap<String, Avatar> avatares = new HashMap<>();
-        HashMap<String, Jugador> jugadores = new HashMap<>();
-        ArrayList<Jugador> jgdrs = new ArrayList<>();
+        tablero = new Tablero();
+        avatares = new HashMap<>();
+        jugadores = new HashMap<>();
+        jgdrs = new ArrayList<>();
         boolean iniciarJuego = false;
         
         do{
@@ -129,7 +134,7 @@ public class Menu {
                     else if (turno.turnoActual().getDadosTirados()) {
                         System.out.println("El jugador " + turno.turnoActual().getNombre() + " ya ha lanzado los dados.");
                     }  else {
-                        turno.turnoActual().tirarDadosJugador(tablero);
+                        turno.turnoActual().tirarDadosJugador(tablero, turno);
                     }
                     System.out.println(tablero);
                     break;
