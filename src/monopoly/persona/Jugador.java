@@ -12,7 +12,7 @@ public class Jugador {
     private HashMap<String, Casilla> propiedades;
     private HashMap<String, Casilla> hipotecas;
     private HashMap<String, Edificio> edificios;
-    private int inCarcel;
+    private boolean inCarcel;
 
     public String getNombre() {
         return nombre;
@@ -85,7 +85,7 @@ public class Jugador {
         this.propiedades = new HashMap<>();
         this.hipotecas = new HashMap<>();
         this.edificios = new HashMap<>();
-        this.inCarcel = 0;
+        this.inCarcel = false;
     }
 
     public Jugador(String nombre) {
@@ -99,11 +99,12 @@ public class Jugador {
         this.hipotecas = new HashMap<>();
         this.edificios = new HashMap<>();
         this.avatar = null;
-        this.inCarcel = 0;
+        this.inCarcel = false;
     }
 
 
     // Metodos
+    
 
     public String obtenerPropiedades() {
         String cadena = "";
@@ -165,11 +166,22 @@ public class Jugador {
     
     public void encarcelarJugador(Tablero tablero){
         this.avatar.moverAvatarCasilla(tablero.casillaByName("Carcel"));
-        this.inCarcel = 1;
+        this.inCarcel = true;
     }
     
     public void salirCarcel(){
-        System.out.println(nombre + " paga " + Valor.COSTE_SALIR_CARCEL +  " y sale de la cárcel. Puede lanzar los dados.");
+        if(this.inCarcel = true){
+            if(Valor.COSTE_SALIR_CARCEL > this.fortuna){
+                System.out.println("No tienes suficiente dinero");
+            }
+            else{
+                System.out.println(nombre + " paga " + Valor.COSTE_SALIR_CARCEL +  " y sale de la cárcel. Puede lanzar los dados.");
+                this.fortuna -= Valor.COSTE_SALIR_CARCEL;
+                this.inCarcel = false;
+            }
+        }
+            
+        
     }
     
     public void pagarImpuesto(int impuesto){

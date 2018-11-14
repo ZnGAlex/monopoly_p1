@@ -73,9 +73,10 @@ public class Menu {
                     if (partes.length == 1) {
                         System.out.println("\nGracias por jugar.");
                         return;
-                    } else if (!partes[1].equals("carcel")) {
+                    } else if (partes[1].equals("carcel")) {
                         turno.turnoActual().salirCarcel();
                     }
+                    break;
                 case "describir": /*DESCRIBIR JUGADOR/AVATAR/CASILLA*/
                     if (partes.length > 3)
                         System.out.println("\nComando incorrecto.");
@@ -169,9 +170,8 @@ public class Menu {
                     if (partes.length > 2) {
                         System.out.println("Comando incorrecto.");
                     } else {
-                            if(turno.turnoActual().getAvatar().getCasilla().getNombre().equals(partes[1])){
+                            if(turno.turnoActual().getAvatar().getCasilla().getNombre().equals(partes[1]))
                                 turno.turnoActual().comprarCasilla();
-                            }
                             else
                                 System.out.println("No estas en " + partes[1]);
                                 
