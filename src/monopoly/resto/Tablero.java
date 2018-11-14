@@ -14,6 +14,7 @@ public class Tablero {
     public Tablero() {
         Jugador banca = new Jugador("banca");
         this.casillas = new ArrayList<>();
+        this.avatares = new HashMap<>();
         ArrayList<Casilla> abajo = new ArrayList<>();
         ArrayList<Casilla> izquierda = new ArrayList<>();
         ArrayList<Casilla> derecha = new ArrayList<>();
@@ -247,14 +248,10 @@ public class Tablero {
         return cadena;
     }
 
-    public String imprimirEspacio(boolean casilla) {
+    public String imprimirEspacio(boolean medio) {
         String cadena = "";
-        if (casilla) {
-            for (int i = 0; i < Valor.TAMANHO_CASILLA; i++)
-                cadena = cadena.concat(Valor.LINEA_HORIZONTAL);
-        } else {
-
-        }
+        for (int i = 0; i < Valor.TAMANHO_CASILLA; i++)
+            cadena = cadena.concat(Valor.LINEA_HORIZONTAL);
 
         return cadena;
     }

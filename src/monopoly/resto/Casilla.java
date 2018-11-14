@@ -1,5 +1,6 @@
 package monopoly.resto;
 
+import java.util.ArrayList;
 import monopoly.persona.*;
 
 import java.util.HashMap;
@@ -18,11 +19,26 @@ public class Casilla {
     private HashMap<String, Avatar> avatares;
     private HashMap<String, Edificio> edificios;
 
+    
+    //Setters y getters
     public String getNombre() {
         return nombre;
     }
 
+    public void setPosicion(int posicion) {
+        if (posicion <0 || posicion>40 || posicion<0 || posicion>40) {
+            System.out.println(Valor.ANSI_ROJO + "Posicion no valida." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
+        this.posicion = posicion;
+    }
+
+
     public void setNombre(String nombre) {
+        if (nombre == null) {
+            System.out.println(Valor.ANSI_ROJO + "Nombre nulo." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
         this.nombre = nombre;
     }
 
@@ -31,6 +47,10 @@ public class Casilla {
     }
 
     public void setTipo(String tipo) {
+        if (tipo == null) {
+            System.out.println(Valor.ANSI_ROJO + "Tipo nulo." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
         this.tipo = tipo;
     }
 
@@ -39,6 +59,10 @@ public class Casilla {
     }
 
     public void setGrupo(Grupo grupo) {
+        if (grupo == null) {
+            System.out.println(Valor.ANSI_ROJO + "Grupo nulo." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
         this.grupo = grupo;
     }
 
@@ -47,6 +71,10 @@ public class Casilla {
     }
 
     public void setPropietario(Jugador propietario) {
+        if (propietario == null) {
+            System.out.println(Valor.ANSI_ROJO + "Propietario nulo." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
         this.propietario = propietario;
     }
 
@@ -55,6 +83,10 @@ public class Casilla {
     }
 
     public void setValor(int valor) {
+        if (valor < 0) {
+            System.out.println(Valor.ANSI_ROJO + "Valor no valido." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
         this.valor = valor;
     }
 
@@ -63,6 +95,10 @@ public class Casilla {
     }
 
     public void setAlquiler(int alquiler) {
+        if (alquiler < 0) {
+            System.out.println(Valor.ANSI_ROJO + "Alquiler no valido." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
         this.alquiler = alquiler;
     }
 
@@ -71,6 +107,10 @@ public class Casilla {
     }
 
     public void setAvatares(HashMap<String, Avatar> avatares) {
+        if (avatares == null) {
+            System.out.println(Valor.ANSI_ROJO + "Avatares nulo." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
         this.avatares = avatares;
     }
 
@@ -79,6 +119,10 @@ public class Casilla {
     }
 
     public void setEdificios(HashMap<String, Edificio> edificios) {
+        if (edificios == null) {
+            System.out.println(Valor.ANSI_ROJO + "Edificios nulo." + Valor.ANSI_RESET);
+            System.exit(1);
+        }
         this.edificios = edificios;
     }
 
@@ -167,7 +211,11 @@ public class Casilla {
                
     }
    
+    //Metodos
     
+    /**
+     * Info breve sobre las casillas
+     */
     public String shortInfo() {
         String cadena = new String();
         switch(tipo){
@@ -189,6 +237,9 @@ public class Casilla {
         return cadena;
     }
 
+    /**
+     * Info completa de las casillas
+     */
     public String info() {
         String cadena = new String();
         switch(this.tipo){
@@ -235,6 +286,26 @@ public class Casilla {
                         ",\n\t alquiler: " + this.alquiler +
                         "\n}";
                 break;
+            case "carcel":
+                ArrayList<String> jug = new ArrayList<>();
+                for(Avatar avat: this.avatares.values()){
+                    jug.add(avat.getJugador().getNombre());
+                }
+                cadena = "{\n " +
+                        "\t salir: " + Valor.COSTE_SALIR_CARCEL +
+                        ",\n\t jugadores: " + jug +
+                        "\n}";
+                break;
+            case "parking":
+                ArrayList<String> jugad = new ArrayList<>();
+                for(Avatar avat: this.avatares.values()){
+                    jugad.add(avat.getJugador().getNombre());
+                }
+                cadena = "{\n " +
+                        "\t bote: " + Valor.DINERO_PARKING +
+                        ",\n\t jugadores: " + jugad +
+                        "\n}";
+                break;
             default:
                 cadena = "{\n " +
                         "\t tipo: " + this.tipo +
@@ -244,12 +315,17 @@ public class Casilla {
         return cadena;
     }
 
-    //metodos
-    
+    /**
+     * Comprueba si la casilla esta a la venta
+     * @return  True si esta a la venta
+     */
     public boolean seVende(){
         return propietario.getNombre().equals("banca") && valor>0;
     }
     
+    /**
+     * Añade un avatar a la casilla
+     */
     public void anhadirAvatar(Avatar avatar){
         if(!this.avatares.containsKey(avatar.getId())){
             this.avatares.put(avatar.getId(), avatar);
@@ -257,6 +333,9 @@ public class Casilla {
         else System.out.println("El avatar ya estaba en la casilla");
     }
     
+    /**
+     * Elimina un avatar de la casilla 
+     */
     public void eliminarAvatar(Avatar avatar){
         if(this.avatares.containsKey(avatar.getId())){
             this.avatares.remove(avatar.getId());
@@ -264,12 +343,15 @@ public class Casilla {
         else System.out.println("El avatar no esta en la casilla");
     }
     
+    /**
+     * Devuelve los IDs de los avatares de la casilla
+     */
     public String stringAvatares() {
         String cadena_avatares = "";
         String cadena = "";
         if (this.avatares.size() != 0) {
             Iterator avatares_it = this.avatares.values().iterator();
-            while (avatares_it.hasNext()) {
+            while (avatares_it.hasNext()) { /*Recorro los avatares y añado los IDs al string*/
                 Avatar a = (Avatar) avatares_it.next();
                 cadena_avatares = cadena_avatares.concat("&" + a.getId());
             }
@@ -282,6 +364,9 @@ public class Casilla {
         return cadena;
     }
 
+    /**
+     * Devuelve el nombre de la casilla con su color correspondiente
+     */
     public String printNombreColor() {
         String nombre = "";
         int t;
