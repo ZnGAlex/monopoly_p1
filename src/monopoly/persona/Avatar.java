@@ -97,6 +97,7 @@ public class Avatar {
        
        switch(tablero.getCasillas().get(lado).get(posicionNueva).getPosicion()){
             case Valor.POSICION_CASILLA_IR_CARCEL:
+                this.jugador.setDadosTirados(false);
                 this.jugador.encarcelarJugador(tablero);
                 System.out.println("El jugador va a la carcel.");
                 turno.siguienteTurno();
