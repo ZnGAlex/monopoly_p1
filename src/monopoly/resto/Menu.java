@@ -174,23 +174,9 @@ public class Menu {
                     if (partes.length > 2) {
                         System.out.println("Comando incorrecto.");
                     } else {
-                        if (turno.turnoActual().getAvatar().getCasilla().getNombre().equals(partes[1])) {
-                            for (ArrayList<Casilla> lado : tablero.getCasillas()) {
-                                for (Casilla casilla : lado) {
-                                    if (casilla.getNombre().equals(partes[1])) {
-                                        if (casilla.getValor() == 0)
-                                            System.out.println("La casilla " + casilla.getNombre() + " no se puede comprar.");
-                                        else if (casilla.getValor() > turno.turnoActual().getFortuna())
-                                            System.out.println("El jugador no dispone de dinero suficiente.");
-                                        else {
-                                            turno.turnoActual().comprarCasilla(casilla);
-                                        }
-                                    }
-                                }
+                            if(turno.turnoActual().getAvatar().getCasilla().getNombre().equals(partes[1])){
+                                turno.turnoActual().comprarCasilla();
                             }
-                        } else {
-                            System.out.println("El jugador no esta en la casilla.");
-                        }
                             else
                                 System.out.println("No estas en " + partes[1]);
                                 
