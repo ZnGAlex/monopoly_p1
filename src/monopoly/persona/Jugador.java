@@ -13,6 +13,7 @@ public class Jugador {
     private HashMap<String, Casilla> propiedades;
     private HashMap<String, Casilla> hipotecas;
     private HashMap<String, Edificio> edificios;
+    private HashMap<String, Grupo> grupos;
     private boolean inCarcel;
     private boolean dadosTirados;
     private int dadosDobles;
@@ -95,6 +96,7 @@ public class Jugador {
         this.dadosDobles = 0;
         this.turnosEnCarcel = 0;
         bancarrota = false;
+        this.grupos = new HashMap<>();
     }
 
     public Jugador(String nombre) {
@@ -113,6 +115,7 @@ public class Jugador {
         this.dadosDobles = 0;
         this.turnosEnCarcel = 0;
         bancarrota = false;
+        this.grupos = new HashMap<>();
     }
 
 
@@ -282,7 +285,7 @@ public class Jugador {
     }
     
     public void pagarAlquiler(Tablero tablero, Turno turno){
-        if(!this.avatar.getCasilla().getPropietario().equals(this)){
+        if(!this.avatar.getCasilla().getPropietario().getNombre().equals(this.nombre)){
             if(!this.avatar.getCasilla().getPropietario().getNombre().equals("banca")){
                     while(this.avatar.getCasilla().getAlquiler() > this.fortuna && !bancarrota){
                         Scanner scanner = new Scanner(System.in);
@@ -301,11 +304,14 @@ public class Jugador {
                         }
 
                     }
-                    System.out.println("No tienes suficiente dinero, quieres hipotecar o declararte en bancarrota");
                 
                 if(!bancarrota){
-                    this.fortuna-=this.avatar.getCasilla().getAlquiler();
-                    this.avatar.getCasilla().getPropietario().cobrarAlquiler(this.avatar.getCasilla().getAlquiler());
+                    int coste = this.getAvatar().getCasilla().getValor();
+                    if (this.avatar.getCasilla().getPropietario().getGrupos().containsKey(this.getAvatar().getCasilla().getGrupo().getColor()))
+                        coste = this.getAvatar().getCasilla().getValor() * 2;
+                    System.out.println("El jugador " + this.nombre + " paga " + coste + " a " + this.avatar.getCasilla().getPropietario().getNombre());
+                    this.fortuna-= coste;
+                    this.avatar.getCasilla().getPropietario().cobrarAlquiler(coste);
                 }
             }
         }
@@ -370,7 +376,7 @@ public class Jugador {
     }
    
 
-    public void comprarCasilla() {
+    public void comprarCasilla(Tablero tablero) {
         Casilla c = this.avatar.getCasilla();
         if(!c.getPropietario().getNombre().equals("banca") || c.getValor() == 0){
             System.out.println("La casilla no se puede comprar");
@@ -379,6 +385,17 @@ public class Jugador {
             this.fortuna = fortuna - c.getValor();
             this.propiedades.put(c.getNombre(), c);
             c.setPropietario(this);
+            Iterator grupos = tablero.getGrupos().values().iterator();
+            while (grupos.hasNext()) {
+                int tienePropiedad = 0;
+                Grupo g = (Grupo) grupos.next();
+                for (Casilla casilla : g.getCasillas()) {
+                    if (casilla.getPropietario().getNombre().equals(this.nombre))
+                        tienePropiedad++;
+                }
+                if (tienePropiedad == g.getCasillas().size())
+                    this.anhadirGrupo(g);
+            }
             System.out.println("El jugador " + this.nombre + " compra la casilla " + c.getNombre() + " por " + c.getValor() + "€");
             System.out.println("Su fortuna actual es " + this.fortuna + "€");
         }
@@ -439,5 +456,21 @@ public class Jugador {
 
     public void setDadosDobles(int dadosDobles) {
         this.dadosDobles = dadosDobles;
+    }
+
+    public HashMap<String, Grupo> getGrupos() {
+        return grupos;
+    }
+
+    public void setGrupos(HashMap<String, Grupo> grupos) {
+        if (grupos == null) {
+            System.out.println("grupos nulos");
+            System.exit(1);
+        }
+        this.grupos = grupos;
+    }
+
+    public void anhadirGrupo(Grupo grupo) {
+        this.grupos.put(grupo.getColor(), grupo);
     }
 }

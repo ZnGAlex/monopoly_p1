@@ -192,7 +192,7 @@ public class Menu {
                         System.out.println("Comando incorrecto.");
                     } else {
                             if(turno.turnoActual().getAvatar().getCasilla().getNombre().equals(partes[1]))
-                                turno.turnoActual().comprarCasilla();
+                                turno.turnoActual().comprarCasilla(tablero);
                             else
                                 System.out.println("No estas en " + partes[1]);
                                 
