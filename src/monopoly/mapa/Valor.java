@@ -1,4 +1,4 @@
-package monopoly.resto;
+package monopoly.mapa;
 
 import java.util.ArrayList;
 
@@ -30,6 +30,7 @@ public class Valor {
     public static final int COSTE_SALIR_CARCEL = (int)(CANTIDAD_PASAR_SALIDA * 0.25);
     public static final int COSTE_CASILLA_TRANSPORTE = CANTIDAD_PASAR_SALIDA;
     public static final int COSTE_CASILLA_SERVIVIO = (int) (0.75*CANTIDAD_PASAR_SALIDA);
+    public static final int FACTOR_SERVICIO = (int) (CANTIDAD_PASAR_SALIDA / 200);
     public static final int FORTUNA_BANCA = 999999999;
     public static int DINERO_PARKING = 0;
 
@@ -99,7 +100,7 @@ public class Valor {
     public static final String CASILLA_CAJA = "Caja";
     public static final String CASILLA_CARCEL = "Carcel";
     public static final String CASILLA_SERVICIO = "Servicio";
-    public static final String CASILLA_IR_CARCEL = "Ir a carcel";
+    public static final String CASILLA_IR_CARCEL = "Iracarcel";
     public static final String CASILLA_PARKING = "Parking";
     public static final String CASILLA_TIPO_TRANSPORTE = "transporte";
     public static final String CASILLA_TIPO_SERVICIO = "servicio";

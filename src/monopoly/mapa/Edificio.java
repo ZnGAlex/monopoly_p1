@@ -1,4 +1,4 @@
-package monopoly.resto;
+package monopoly.mapa;
 
 
 // Esta clase todavia no se utiliza

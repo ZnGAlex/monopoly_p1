@@ -1,4 +1,4 @@
-package monopoly.resto;
+package monopoly.mapa;
 
 import java.util.Random;
 

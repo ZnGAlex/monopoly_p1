@@ -1,7 +1,6 @@
 package monopoly;
 
-import monopoly.persona.*;
-import monopoly.resto.*;
+import monopoly.mapa.*;
 
 public class Monopoly {
 

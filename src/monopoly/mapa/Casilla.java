@@ -1,12 +1,10 @@
-package monopoly.resto;
+package monopoly.mapa;
 
 import java.util.ArrayList;
 import monopoly.persona.*;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
 
 public class Casilla {
     private String nombre;
@@ -269,7 +267,7 @@ public class Casilla {
                         "\t tipo: " + this.tipo +
                         ",\n\t propietario: " + this.propietario.getNombre() +
                         ",\n\t valor: " + this.valor +
-                        ",\n\t alquiler: " + this.alquiler + " * 0.25 * nº de transportes del dueño" +
+                        ",\n\t alquiler: " + this.alquiler +
                         "\n}";
                 break;
             case "servicio":
@@ -277,7 +275,7 @@ public class Casilla {
                         "\t tipo: " + this.tipo +
                         ",\n\t propietario: " + this.propietario.getNombre() +
                         ",\n\t valor: " + this.valor +
-                        ",\n\t alquiler: " + this.alquiler + " * valor dados * [4 || 10] si el dueño tiene una o dos propiedades" +
+                        ",\n\t alquiler: " + this.alquiler +
                         "\n}";            
                 break;
             case "impuesto":

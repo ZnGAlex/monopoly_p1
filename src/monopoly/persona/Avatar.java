@@ -1,7 +1,6 @@
 package monopoly.persona;
 
-import java.util.ArrayList;
-import monopoly.resto.*;
+import monopoly.mapa.*;
 
 public class Avatar {
     private String id;
@@ -130,7 +129,7 @@ public class Avatar {
             case Valor.POSICION_CASILLA_TRANSPORTE1: case Valor.POSICION_CASILLA_TRANSPORTE2: case Valor.POSICION_CASILLA_TRANSPORTE3: case Valor.POSICION_CASILLA_TRANSPORTE4: /*Transporte*/
                 this.jugador.pagarTransporte(tablero,turno);
                 break;
-            default: /*resto*/
+            default: /*mapa*/
                 this.jugador.pagarAlquiler(tablero,turno);
        }
     }

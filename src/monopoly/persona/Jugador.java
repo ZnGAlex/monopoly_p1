@@ -1,7 +1,8 @@
 package monopoly.persona;
 
-import monopoly.resto.*;
+import monopoly.mapa.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Scanner;
@@ -276,6 +277,8 @@ public class Jugador {
        
         desplazamiento = dados.tirarDados();
         this.dadosTirados = true;
+
+        cambiarAlquilerCasillas(tablero, desplazamiento);
 
         if (this.inCarcel)
             this.turnosEnCarcel++;
@@ -611,12 +614,66 @@ public class Jugador {
                 if (tienePropiedad == g.getCasillas().size())
                     this.anhadirGrupo(g);
             }
+            cambiarAlquilerCasillas(tablero);
             System.out.println("El jugador " + this.nombre + " compra la casilla " + c.getNombre() + " por " + c.getValor() + "€");
             System.out.println("Su fortuna actual es " + this.fortuna + "€");
-        }
-
-        else{
+        } else{
             System.out.println("No tienes suficiente dinero");
+        }
+    }
+
+    // cambia el alquiler de las casillas de transporte en funcion del propietario
+    public void cambiarAlquilerCasillas(Tablero tablero) {
+        Iterator jug_it = tablero.getJugadores().values().iterator();
+        while (jug_it.hasNext()) {
+            int numCasillas = 0;
+            Jugador j = (Jugador) jug_it.next();
+            for (ArrayList<Casilla> lado : tablero.getCasillas()) {
+                for (Casilla c : lado) {
+                    if (c.getTipo().equals(Valor.CASILLA_TIPO_TRANSPORTE))
+                        if (c.getPropietario().getNombre().equals(j.getNombre()))
+                            numCasillas++;
+                }
+            }
+            if (numCasillas != 0) {
+                for (ArrayList<Casilla> lado : tablero.getCasillas()) {
+                    for (Casilla c : lado) {
+                        if (c.getTipo().equals(Valor.CASILLA_TIPO_TRANSPORTE))
+                            if (c.getPropietario().getNombre().equals(j.getNombre()))
+                                c.setAlquiler((int) (Valor.ALQUILER_TRANSPORTE * 0.25 * numCasillas));
+                    }
+                }
+            }
+        }
+    }
+
+    // cambio valor alquiler casillas servicio
+    public void cambiarAlquilerCasillas(Tablero tablero, int dados) {
+        Iterator jug_it = tablero.getJugadores().values().iterator();
+        while (jug_it.hasNext()) {
+            int numCasillas = 0;
+            Jugador j = (Jugador) jug_it.next();
+            for (ArrayList<Casilla> lado : tablero.getCasillas()) {
+                for (Casilla c : lado) {
+                    if (c.getTipo().equals(Valor.CASILLA_TIPO_SERVICIO))
+                        if (c.getPropietario().getNombre().equals(j.getNombre()))
+                            numCasillas++;
+                }
+            }
+            if (numCasillas != 0) {
+                int valor = 0;
+                if (numCasillas == 1)
+                    valor =Valor.FACTOR_SERVICIO * 4 * dados;
+                else
+                    valor =Valor.FACTOR_SERVICIO * 10 * dados;
+                for (ArrayList<Casilla> lado : tablero.getCasillas()) {
+                    for (Casilla c : lado) {
+                        if (c.getTipo().equals(Valor.CASILLA_TIPO_SERVICIO))
+                            if (c.getPropietario().getNombre().equals(j.getNombre()))
+                                c.setAlquiler(Valor.ALQUILER_SERVICIO * valor);
+                    }
+                }
+            }
         }
     }
 
