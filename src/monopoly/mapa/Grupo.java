@@ -80,6 +80,8 @@ public class Grupo {
         }
     }
 
+
+
     @Override
     public String toString() {
         return this.color;
